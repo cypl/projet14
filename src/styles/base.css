@@ -60,6 +60,9 @@ img {
     clear: both;
 }
 
+main {
+    padding:40px 0;
+}
 section {
     background: #fff;
 }

@@ -1,6 +1,10 @@
 function Error(){
     return(
-        <p>Here, you can see an error.</p>
+        <main>
+            <section className="content_width">
+                <p>Here, you can see an error.</p>
+            </section>
+        </main>
     )
 }
 
