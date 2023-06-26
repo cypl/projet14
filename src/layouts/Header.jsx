@@ -6,7 +6,7 @@ function Header(){
         <>
             <HeaderContainer>
                 <HeaderContent className="content_width">
-                    <Branding><NavLink to="/">HRNET</NavLink></Branding>
+                    <Branding><NavLink to="/">HRnet</NavLink></Branding>
                     <Menu>
                         <ul>
                             <li><MenuLink to="/">Current employees</MenuLink></li>
@@ -46,9 +46,18 @@ const MenuLink = styled(NavLink)`
     text-transform:uppercase;
     padding:10px 15px;
     margin-left:15px;
-    background-color:rgba(0,0,0,0.1);
+    border:1px solid rgba(0,0,0,0.1);
+    background-color:transparent;
     border-radius:4px;
+    transition:0.1s background-color ease-in-out, 0.1s border-color ease-in-out;
     &.active{
-        background-color:rgba(0,0,0,0.25);
+        border:1px solid transparent;
+        background-color:rgba(0,0,0,0.2);
+        transition:0.1s background-color ease-in-out, 0.1s border-color ease-in-out;
+    }
+    &:hover{
+        border:1px solid transparent;
+        background-color:rgba(0,0,0,0.2);
+        transition:0.1s background-color ease-in-out, 0.1s border-color ease-in-out;
     }
 `
