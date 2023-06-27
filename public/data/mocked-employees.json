@@ -1,0 +1,57 @@
+[
+    {
+      "firstName": "Chet",
+      "lastName": "Ryan",
+      "dateOfBirth": "02-28-1973",
+      "startDate": "10-05-2001",
+      "department": "Marketing",
+      "street": "2897 W Olympic Blvd",
+      "city": "Los Angeles",
+      "state": "California",
+      "zipCode": "90006"
+    },
+    {
+      "firstName": "Kelli",
+      "lastName": "Deckow",
+      "dateOfBirth": "07-14-1980",
+      "startDate": "04-09-1999",
+      "department": "Human Ressources",
+      "street": "820 E 116th St",
+      "city": "Carmel",
+      "state": "Iowa",
+      "zipCode": "46032"
+    },
+    {
+      "firstName": "Lexie",
+      "lastName": "Zboncak",
+      "dateOfBirth": "26-05-1988",
+      "startDate": "03-23-1997",
+      "department": "Engineering",
+      "street": "141 Weston St",
+      "city": "Hartford",
+      "state": "Connecticut",
+      "zipCode": "06101"
+    },
+    {
+      "firstName": "Hope",
+      "lastName": "Gaylord",
+      "dateOfBirth": "08-08-1990",
+      "startDate": "01-28-2012",
+      "department": "Sales",
+      "street": "41 William St",
+      "city": "New Bedford",
+      "state": "Maine",
+      "zipCode": "02740"
+    },
+    {
+      "firstName": "Jaqueline",
+      "lastName": "Hand",
+      "dateOfBirth": "03-05-1985",
+      "startDate": "09-12-2019",
+      "department": "Human Ressources",
+      "street": "237 W North Ave",
+      "city": "Chicago",
+      "state": "Indiana",
+      "zipCode": "60610"
+    }
+  ]
