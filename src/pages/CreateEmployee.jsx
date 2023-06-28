@@ -1,8 +1,12 @@
 import { useState } from "react"
-import { TextInput } from '@mantine/core'
+import { TextInput, Select } from '@mantine/core'
 import { DatePickerInput } from "@mantine/dates"
 import styled from 'styled-components'
 import { colors } from "../utils/colors"
+import { statesList } from "../utils/statesList"
+
+
+const statesNames = statesList.map((s) => s.name)
 
 function formatEmployeeData(data){
     return {
@@ -105,6 +109,13 @@ function CreateEmployee(){
                                 label="State"
                                 placeholder="Your state"
                                 onChange={(event) => setLastName(event.target.value)}
+                            />
+                            <Select
+                                label="State"
+                                placeholder="Your state"
+                                searchable
+                                nothingFound="No options"
+                                data={statesNames}
                             />
                             <TextInput
                                 label="Zip code"
