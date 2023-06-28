@@ -31,6 +31,9 @@ function CurrentEmployees(){
         
     }, [employees.data, employees.isLoaded])
     
+    if(employees.isLoaded){
+        console.log(tableRows)
+    }
 
     return(
         <main>
