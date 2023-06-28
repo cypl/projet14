@@ -1,11 +1,13 @@
 import { useState } from "react"
+import { Button } from '@mantine/core';
+import { DatePickerInput } from "@mantine/dates"
 
 function formatEmployeeData(data){
     return {
         firstName: data.firstName ?? "",
         lastName: data.lastName ?? "",
-        dateOfBirth: data.dateOfBirth ?? "",
-        startDate: data.startDate ?? "",
+        dateOfBirth: formatDateString(data.dateOfBirth) ?? "",
+        startDate: formatDateString(data.startDate) ?? "",
         department: data.department ?? "",
         street: data.street ?? "",
         city: data.city ?? "",
@@ -13,11 +15,22 @@ function formatEmployeeData(data){
         zipCode: data.zipCode ?? "",
     }
 }
-        
+function formatDateString(dateObject){
+    if(dateObject != null){
+        var month = ('0' + (dateObject.getMonth() + 1)).slice(-2) // +1 because month start from 0
+        var day = ('0' + dateObject.getDate()).slice(-2)
+        var year = dateObject.getFullYear()
+        return month + '-' + day + '-' + year
+    } else {
+        return ""
+    }
+}
+       
 function CreateEmployee(){
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
-    const [dateOfBirth, setDateOfBirth] = useState('')
+    const [dateOfBirth, setDateOfBirth] = useState(null)
+    const [startDate, setStartDate] = useState(null)
 
     function handleLoginSubmit(event){
         event.preventDefault()
@@ -25,6 +38,7 @@ function CreateEmployee(){
             firstName: firstName,
             lastName: lastName,
             dateOfBirth: dateOfBirth,
+            startDate: startDate,
         }
         console.log(formatEmployeeData(newEmployee))
     }
@@ -46,11 +60,41 @@ function CreateEmployee(){
                     </div>
 
                     <div>
-                        <label htmlFor="dateofbirth">Date of birth</label>
-                        <input type="date" id="dateofbirth" min="01-01-2018" max="12-31-2018" onChange={(event) => setDateOfBirth(event.target.value)}/>
+                        <DatePickerInput
+                            label="Date of birth"
+                            placeholder="Pick date"
+                            valueFormat="MM-DD-YYYY"
+                            mx="left"
+                            maw={300}
+                            clearable
+                            hideOutsideDates
+                            hideWeekdays
+                            // minDate={new Date(2022, 1, 1)} // = 01/02/2022
+                            // maxDate={new Date(2022, 8, 1)} // = 01/09/2022
+                            onChange={setDateOfBirth}
+                            />
+                    </div>
+
+                    <div>
+                        <DatePickerInput
+                            label="Start date"
+                            placeholder="Pick date"
+                            valueFormat="MM-DD-YYYY"
+                            mx="left"
+                            maw={300}
+                            clearable
+                            hideOutsideDates
+                            hideWeekdays
+                            // minDate={new Date(2022, 1, 1)} // = 01/02/2022
+                            // maxDate={new Date(2022, 8, 1)} // = 01/09/2022
+                            onChange={setStartDate}
+                            />
                     </div>
 
                     <button>Save</button>
+                    <Button>
+                    Save
+                    </Button>
                 </form>
             </section>
         </main>
