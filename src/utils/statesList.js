@@ -1,4 +1,4 @@
-export const states = [
+export const statesList = [
     {
         "name": "Alabama",
         "abbreviation": "AL"
