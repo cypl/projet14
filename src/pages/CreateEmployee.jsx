@@ -5,15 +5,14 @@ import styled from 'styled-components'
 import { colors } from "../utils/colors"
 import { statesList } from "../utils/statesList"
 import { departmentsList } from "../utils/departmentsList"
-
+import { randomFirstNames, randomLastNames, randomBirthYears, randomStartYears, randomMonths, randomDays, randomStreets, randomCities, randomStates, randomZipCodes } from "../utils/randomData"
 
 const statesNames = statesList.map((s) => s.name)
-console.log(statesNames)
+
 function getRandomValue(array) {
     const randomIndex = Math.floor(Math.random() * array.length);
     return array[randomIndex];
 }
-
 
 function formatEmployeeData(data){
     return {
@@ -66,51 +65,62 @@ function CreateEmployee(){
         console.log(formatEmployeeData(newEmployee))
     }
 
-    function fillTheForm(id){
-        if(id === 1){
-            const birth = new Date()
-            birth.setFullYear(1983)
-            birth.setMonth(6)
-            birth.setDate(27)
-            const start = new Date()
-            start.setFullYear(2017)
-            start.setMonth(11)
-            start.setDate(1)
-            setFirstName("John")
-            setLastName("Smith")
-            setDateOfBirth(birth)
-            setStartDate(start)
-            setDepartment("Engineering")
-            setStreet("34th Peace St")
-            setCity("Chicago")
-            setUsState(getRandomValue(statesNames))
-            setZipCode(60018)
-        } else {
-            const birth = new Date()
-            birth.setFullYear(1992)
-            birth.setMonth(8)
-            birth.setDate(30)
-            const start = new Date()
-            start.setFullYear(2020)
-            start.setMonth(3)
-            start.setDate(9)
-            setFirstName("Elsa")
-            setLastName("Young")
-            setDateOfBirth(birth)
-            setStartDate(start)
-            setDepartment("Marketing")
-            setStreet("3rd East St")
-            setCity("Detroit")
-            setUsState("Michigan")
-            setZipCode(48201)
+    function fillTheForm(){
+        const birth = new Date()
+        birth.setFullYear(getRandomValue(randomBirthYears))
+        birth.setMonth(getRandomValue(randomMonths))
+        birth.setDate(getRandomValue(randomDays))
+        const start = new Date()
+        start.setFullYear(getRandomValue(randomStartYears))
+        start.setMonth(getRandomValue(randomMonths))
+        start.setDate(getRandomValue(randomDays))
+        setFirstName(getRandomValue(randomFirstNames))
+        setLastName(getRandomValue(randomLastNames))
+        setDateOfBirth(birth)
+        setStartDate(start)
+        setDepartment(getRandomValue(departmentsList))
+        setStreet(getRandomValue(randomStreets))
+        setCity(getRandomValue(randomCities))
+        setUsState(getRandomValue(randomStates))
+        setZipCode(getRandomValue(randomZipCodes))
+    }
+
+    function createEmployeeObject(){
+        const birth = new Date()
+        birth.setFullYear(getRandomValue(randomBirthYears))
+        birth.setMonth(getRandomValue(randomMonths))
+        birth.setDate(getRandomValue(randomDays))
+        const start = new Date()
+        start.setFullYear(getRandomValue(randomStartYears))
+        start.setMonth(getRandomValue(randomMonths))
+        start.setDate(getRandomValue(randomDays))
+        return {
+            firstName: getRandomValue(randomFirstNames),
+            lastName: getRandomValue(randomLastNames),
+            dateOfBirth: formatDateString(birth),
+            startDate: formatDateString(start),
+            department: getRandomValue(departmentsList),
+            street: getRandomValue(randomStreets),
+            city: getRandomValue(randomCities),
+            state: getRandomValue(randomStates),
+            zipCode: getRandomValue(randomZipCodes),
         }
+    }
+
+    function generateMockedData(){
+        const mockedEntries = [1,2,3,4,5,6,7,8,9,10]
+        const generatedData = mockedEntries.map(() => createEmployeeObject())
+        console.log(JSON.stringify(generatedData))
     }
 
     return(
         <main>
             <section className="content_width">
                 <h1 className="section-title"><span>Create</span> an employee.</h1>
-                <FillForm onClick={() => fillTheForm(1)}>fill form</FillForm>
+                <FillForm onClick={() => generateMockedData()}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M234.7 42.7L197 56.8c-3 1.1-5 4-5 7.2s2 6.1 5 7.2l37.7 14.1L248.8 123c1.1 3 4 5 7.2 5s6.1-2 7.2-5l14.1-37.7L315 71.2c3-1.1 5-4 5-7.2s-2-6.1-5-7.2L277.3 42.7 263.2 5c-1.1-3-4-5-7.2-5s-6.1 2-7.2 5L234.7 42.7zM46.1 395.4c-18.7 18.7-18.7 49.1 0 67.9l34.6 34.6c18.7 18.7 49.1 18.7 67.9 0L529.9 116.5c18.7-18.7 18.7-49.1 0-67.9L495.3 14.1c-18.7-18.7-49.1-18.7-67.9 0L46.1 395.4zM484.6 82.6l-105 105-23.3-23.3 105-105 23.3 23.3zM7.5 117.2C3 118.9 0 123.2 0 128s3 9.1 7.5 10.8L64 160l21.2 56.5c1.7 4.5 6 7.5 10.8 7.5s9.1-3 10.8-7.5L128 160l56.5-21.2c4.5-1.7 7.5-6 7.5-10.8s-3-9.1-7.5-10.8L128 96 106.8 39.5C105.1 35 100.8 32 96 32s-9.1 3-10.8 7.5L64 96 7.5 117.2zm352 256c-4.5 1.7-7.5 6-7.5 10.8s3 9.1 7.5 10.8L416 416l21.2 56.5c1.7 4.5 6 7.5 10.8 7.5s9.1-3 10.8-7.5L480 416l56.5-21.2c4.5-1.7 7.5-6 7.5-10.8s-3-9.1-7.5-10.8L480 352l-21.2-56.5c-1.7-4.5-6-7.5-10.8-7.5s-9.1 3-10.8 7.5L416 352l-56.5 21.2z"/></svg>
+                    fill the form
+                </FillForm>
                 <form onSubmit={handleLoginSubmit}>
                     <InputsWrapper>
                         <div className="inputs-col">
@@ -211,18 +221,24 @@ const FillForm = styled.span`
     position:absolute;
     top:10px;
     right:0;
-    font-size:12px;
-    line-height:1;
-    text-transform:uppercase;
-    padding:8px 12px;
-    background-color:${colors.light1};
+    font-size: 12px;
+    line-height:1.25;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border: 1px solid ${colors.light1};
     color:${colors.primary};
     border-radius:4px;
     cursor:pointer;
     transition:0.1s background-color ease-in-out;
     &:hover{
-        background-color:${colors.light2};
+        background-color:${colors.light1};
         transition:0.1s background-color ease-in-out;
+    }
+    & svg{
+        height: 12px;
+        margin-right: 7px;
+        vertical-align: -1px;
+        fill:${colors.primary1};
     }
 `
 const InputsWrapper = styled.div`

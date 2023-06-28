@@ -1,57 +1,112 @@
 [
-    {
-      "firstName": "Chet",
-      "lastName": "Ryan",
-      "dateOfBirth": "02-28-1973",
-      "startDate": "10-05-2001",
-      "department": "Marketing",
-      "street": "2897 W Olympic Blvd",
-      "city": "Los Angeles",
-      "state": "California",
-      "zipCode": "90006"
-    },
-    {
-      "firstName": "Kelli",
-      "lastName": "Deckow",
-      "dateOfBirth": "07-14-1980",
-      "startDate": "04-09-1999",
-      "department": "Human Ressources",
-      "street": "820 E 116th St",
-      "city": "Carmel",
-      "state": "Iowa",
-      "zipCode": "46032"
-    },
-    {
-      "firstName": "Lexie",
-      "lastName": "Zboncak",
-      "dateOfBirth": "26-05-1988",
-      "startDate": "03-23-1997",
-      "department": "Engineering",
-      "street": "141 Weston St",
-      "city": "Hartford",
-      "state": "Connecticut",
-      "zipCode": "06101"
-    },
-    {
-      "firstName": "Hope",
-      "lastName": "Gaylord",
-      "dateOfBirth": "08-08-1990",
-      "startDate": "01-28-2012",
-      "department": "Sales",
-      "street": "41 William St",
-      "city": "New Bedford",
-      "state": "Maine",
-      "zipCode": "02740"
-    },
-    {
-      "firstName": "Jaqueline",
-      "lastName": "Hand",
-      "dateOfBirth": "03-05-1985",
-      "startDate": "09-12-2019",
-      "department": "Human Ressources",
-      "street": "237 W North Ave",
-      "city": "Chicago",
-      "state": "Indiana",
-      "zipCode": "60610"
-    }
-  ]
+  {
+    "firstName": "Sophia",
+    "lastName": "Hernandez",
+    "dateOfBirth": "07-01-1987",
+    "startDate": "11-16-2012",
+    "department": "Human Ressources",
+    "street": "1234 Banana Way",
+    "city": "Omaha",
+    "state": "Vermont",
+    "zipCode": 90028
+  },
+  {
+    "firstName": "Noah",
+    "lastName": "Thompson",
+    "dateOfBirth": "11-19-1985",
+    "startDate": "06-15-2015",
+    "department": "Legal",
+    "street": "1234 Chestnut Way",
+    "city": "Baltimore",
+    "state": "Delaware",
+    "zipCode": 10013
+  },
+  {
+    "firstName": "Chloe",
+    "lastName": "Green",
+    "dateOfBirth": "09-11-1975",
+    "startDate": "02-10-2012",
+    "department": "Legal",
+    "street": "5678 Cypress Ave",
+    "city": "Kansas City",
+    "state": "Montana",
+    "zipCode": 77019
+  },
+  {
+    "firstName": "Aiden",
+    "lastName": "Mitchell",
+    "dateOfBirth": "04-18-1980",
+    "startDate": "09-27-2021",
+    "department": "Sales",
+    "street": "9012 Guava Ln",
+    "city": "Milwaukee",
+    "state": "Nevada",
+    "zipCode": 98109
+  },
+  {
+    "firstName": "Harper",
+    "lastName": "Perez",
+    "dateOfBirth": "05-25-1975",
+    "startDate": "09-23-2014",
+    "department": "Human Ressources",
+    "street": "5678 Strawberry Ave",
+    "city": "Tampa",
+    "state": "Wyoming",
+    "zipCode": 94102
+  },
+  {
+    "firstName": "Elizabeth",
+    "lastName": "Carter",
+    "dateOfBirth": "09-24-1990",
+    "startDate": "07-15-2018",
+    "department": "Sales",
+    "street": "6789 Mango Blvd",
+    "city": "Las Vegas",
+    "state": "California",
+    "zipCode": 75206
+  },
+  {
+    "firstName": "Emma",
+    "lastName": "Martinez",
+    "dateOfBirth": "03-01-1987",
+    "startDate": "01-13-2014",
+    "department": "Marketing",
+    "street": "1234 Chestnut Way",
+    "city": "Orlando",
+    "state": "Federated States Of Micronesia",
+    "zipCode": 94102
+  },
+  {
+    "firstName": "Sofia",
+    "lastName": "Wright",
+    "dateOfBirth": "04-21-1987",
+    "startDate": "12-20-2012",
+    "department": "Engineering",
+    "street": "9012 Lemon Ln",
+    "city": "Salt Lake City",
+    "state": "Pennsylvania",
+    "zipCode": 77006
+  },
+  {
+    "firstName": "Harper",
+    "lastName": "Turner",
+    "dateOfBirth": "10-15-1988",
+    "startDate": "09-18-2017",
+    "department": "Sales",
+    "street": "3456 Watermelon Dr",
+    "city": "Detroit",
+    "state": "Arkansas",
+    "zipCode": 20002
+  },
+  {
+    "firstName": "James",
+    "lastName": "Gonzalez",
+    "dateOfBirth": "06-27-1990",
+    "startDate": "05-15-2017",
+    "department": "Legal",
+    "street": "3456 Pine Dr",
+    "city": "San Diego",
+    "state": "Maryland",
+    "zipCode": 90045
+  }
+]
