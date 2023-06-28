@@ -1,9 +1,10 @@
 import { useState } from "react"
-import { TextInput, Select } from '@mantine/core'
+import { TextInput, Select, NumberInput } from '@mantine/core'
 import { DatePickerInput } from "@mantine/dates"
 import styled from 'styled-components'
 import { colors } from "../utils/colors"
 import { statesList } from "../utils/statesList"
+import { departmentsList } from "../utils/departmentsList"
 
 
 const statesNames = statesList.map((s) => s.name)
@@ -37,6 +38,11 @@ function CreateEmployee(){
     const [lastName, setLastName] = useState('')
     const [dateOfBirth, setDateOfBirth] = useState(null)
     const [startDate, setStartDate] = useState(null)
+    const [department, setDepartment] = useState(null)
+    const [street, setStreet] = useState('')
+    const [city, setCity] = useState('')
+    const [usState, setUsState] = useState(null)
+    const [zipCode, setZipCode] = useState()
 
     function handleLoginSubmit(event){
         event.preventDefault()
@@ -45,26 +51,55 @@ function CreateEmployee(){
             lastName: lastName,
             dateOfBirth: dateOfBirth,
             startDate: startDate,
+            department: department,
+            street: street,
+            city: city,
+            state: usState,
+            zipCode: zipCode,
         }
         console.log(formatEmployeeData(newEmployee))
+    }
+
+    function fillTheForm(){
+        const birth = new Date()
+        birth.setFullYear(1983)
+        birth.setMonth(6)
+        birth.setDate(27)
+        const start = new Date()
+        start.setFullYear(2017)
+        start.setMonth(11)
+        start.setDate(1)
+
+        setFirstName("John")
+        setLastName("Smith")
+        setDateOfBirth(birth)
+        setStartDate(start)
+        setDepartment("Engineering")
+        setStreet("34th Peace St")
+        setCity("Chicago")
+        setUsState("Illinois")
+        setZipCode(60018)
     }
 
     return(
         <main>
             <section className="content_width">
                 <h1 className="section-title"><span>Create</span> an employee.</h1>
+                <FillForm onClick={() => fillTheForm()}>fill form</FillForm>
                 <form onSubmit={handleLoginSubmit}>
                     <InputsWrapper>
                         <div className="inputs-col">
                             <TextInput
                                 label="First name"
                                 placeholder="Your first name"
-                                onChange={(event) => setFirstName(event.target.value)}
+                                value={firstName}
+                                onChange={setFirstName}
                             />
                             <TextInput
                                 label="Last name"
                                 placeholder="Your last name"
-                                onChange={(event) => setLastName(event.target.value)}
+                                value={lastName}
+                                onChange={setLastName}
                             />
                             <DatePickerInput
                                 label="Date of birth"
@@ -75,6 +110,7 @@ function CreateEmployee(){
                                 hideWeekdays
                                 // minDate={new Date(2022, 1, 1)} // = 01/02/2022
                                 // maxDate={new Date(2022, 8, 1)} // = 01/09/2022
+                                value={dateOfBirth}
                                 onChange={setDateOfBirth}
                             />
                             <DatePickerInput
@@ -86,41 +122,46 @@ function CreateEmployee(){
                                 hideWeekdays
                                 // minDate={new Date(2022, 1, 1)} // = 01/02/2022
                                 // maxDate={new Date(2022, 8, 1)} // = 01/09/2022
+                                value={startDate}
                                 onChange={setStartDate}
                             />
-                            <TextInput
+                            <Select
                                 label="Department"
                                 placeholder="Your department"
-                                onChange={(event) => setLastName(event.target.value)}
+                                data={departmentsList}
+                                clearable
+                                value={department}
+                                onChange={setDepartment}
                             />
                         </div>
                         <div className="inputs-col inputs-address">
                             <TextInput
                                 label="Street"
                                 placeholder="Your street"
-                                onChange={(event) => setFirstName(event.target.value)}
+                                value={street}
+                                onChange={setStreet}
                             />
                             <TextInput
                                 label="City"
                                 placeholder="Your city"
-                                onChange={(event) => setLastName(event.target.value)}
-                            />
-                            <TextInput
-                                label="State"
-                                placeholder="Your state"
-                                onChange={(event) => setLastName(event.target.value)}
+                                value={city}
+                                onChange={setCity}
                             />
                             <Select
                                 label="State"
                                 placeholder="Your state"
                                 searchable
+                                clearable
                                 nothingFound="No options"
                                 data={statesNames}
+                                value={usState}
+                                onChange={setUsState}
                             />
-                            <TextInput
+                            <NumberInput
                                 label="Zip code"
                                 placeholder="Your zip code"
-                                onChange={(event) => setLastName(event.target.value)}
+                                value={zipCode}
+                                onChange={setZipCode}
                             />
                         </div>
                     </InputsWrapper>
@@ -135,6 +176,24 @@ function CreateEmployee(){
 
 export default CreateEmployee
 
+const FillForm = styled.span`
+    position:absolute;
+    top:0;
+    right:0;
+    font-size:12px;
+    line-height:1;
+    text-transform:uppercase;
+    padding:8px 12px;
+    background-color:${colors.light1};
+    color:${colors.primary};
+    border-radius:4px;
+    cursor:pointer;
+    transition:0.1s background-color ease-in-out;
+    &:hover{
+        background-color:${colors.light2};
+        transition:0.1s background-color ease-in-out;
+    }
+`
 const InputsWrapper = styled.div`
     display:flex;
     flex-wrap:wrap;

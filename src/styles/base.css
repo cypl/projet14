@@ -76,6 +76,7 @@ section {
     width: 80%;
     max-width: 1200px;
     margin: auto;
+    position:relative;
 }
 
 .content_large {
