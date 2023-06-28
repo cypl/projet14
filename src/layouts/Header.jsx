@@ -34,6 +34,7 @@ export default Header
 
 const HeaderContainer = styled.header`
     border-bottom:1px solid ${colors.light1};
+    background-color:#fff;
 `
 const Branding = styled.h1`
     font-size:24px;

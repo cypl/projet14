@@ -61,9 +61,10 @@ img {
 
 main {
     padding:40px 0;
+    background-color: #fff;
 }
 section {
-    background: #fff;
+    background-color: #fff;
 }
 
 .content_hide_menu,

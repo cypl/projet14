@@ -16,7 +16,7 @@ function Footer(){
 export default Footer
 
 const FooterContainer = styled.footer`
-    border-top:1px solid ${colors.light1};
+    border-top:1px solid ${colors.light2};
 `
 const FooterContent = styled.div`
     padding:40px 0;

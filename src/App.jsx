@@ -17,6 +17,7 @@ export default App
 const GlobalStyle = createGlobalStyle`
   html {
     color: ${colors.secondary2};
+    background-color:${colors.light1};
   }
   .section-title{
     font-weight:900;
