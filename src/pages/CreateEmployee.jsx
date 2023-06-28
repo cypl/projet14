@@ -1,6 +1,8 @@
 import { useState } from "react"
-import { Button } from '@mantine/core';
+import { TextInput } from '@mantine/core'
 import { DatePickerInput } from "@mantine/dates"
+import styled from 'styled-components'
+import { colors } from "../utils/colors"
 
 function formatEmployeeData(data){
     return {
@@ -46,55 +48,74 @@ function CreateEmployee(){
     return(
         <main>
             <section className="content_width">
-                <p>Here, you can create an employee.</p>
-                <form className="sign-in-form" onSubmit={handleLoginSubmit}>
-
-                    <div>
-                        <label htmlFor="firstname">First name</label>
-                        <input type="text" id="firstname" onChange={(event) => setFirstName(event.target.value)}/>
-                    </div>
-
-                    <div>
-                        <label htmlFor="lastname">Last name</label>
-                        <input type="text" id="lastname" onChange={(event) => setLastName(event.target.value)}/>
-                    </div>
-
-                    <div>
-                        <DatePickerInput
-                            label="Date of birth"
-                            placeholder="Pick date"
-                            valueFormat="MM-DD-YYYY"
-                            mx="left"
-                            maw={300}
-                            clearable
-                            hideOutsideDates
-                            hideWeekdays
-                            // minDate={new Date(2022, 1, 1)} // = 01/02/2022
-                            // maxDate={new Date(2022, 8, 1)} // = 01/09/2022
-                            onChange={setDateOfBirth}
+                <h1 className="section-title"><span>Create</span> an employee.</h1>
+                <form onSubmit={handleLoginSubmit}>
+                    <InputsWrapper>
+                        <div className="inputs-col">
+                            <TextInput
+                                label="First name"
+                                placeholder="Your first name"
+                                onChange={(event) => setFirstName(event.target.value)}
                             />
-                    </div>
-
-                    <div>
-                        <DatePickerInput
-                            label="Start date"
-                            placeholder="Pick date"
-                            valueFormat="MM-DD-YYYY"
-                            mx="left"
-                            maw={300}
-                            clearable
-                            hideOutsideDates
-                            hideWeekdays
-                            // minDate={new Date(2022, 1, 1)} // = 01/02/2022
-                            // maxDate={new Date(2022, 8, 1)} // = 01/09/2022
-                            onChange={setStartDate}
+                            <TextInput
+                                label="Last name"
+                                placeholder="Your last name"
+                                onChange={(event) => setLastName(event.target.value)}
                             />
-                    </div>
+                            <DatePickerInput
+                                label="Date of birth"
+                                placeholder="Pick date"
+                                valueFormat="MM-DD-YYYY"
+                                clearable
+                                hideOutsideDates
+                                hideWeekdays
+                                // minDate={new Date(2022, 1, 1)} // = 01/02/2022
+                                // maxDate={new Date(2022, 8, 1)} // = 01/09/2022
+                                onChange={setDateOfBirth}
+                            />
+                            <DatePickerInput
+                                label="Start date"
+                                placeholder="Pick date"
+                                valueFormat="MM-DD-YYYY"
+                                clearable
+                                hideOutsideDates
+                                hideWeekdays
+                                // minDate={new Date(2022, 1, 1)} // = 01/02/2022
+                                // maxDate={new Date(2022, 8, 1)} // = 01/09/2022
+                                onChange={setStartDate}
+                            />
+                            <TextInput
+                                label="Department"
+                                placeholder="Your department"
+                                onChange={(event) => setLastName(event.target.value)}
+                            />
+                        </div>
+                        <div className="inputs-col inputs-address">
+                            <TextInput
+                                label="Street"
+                                placeholder="Your street"
+                                onChange={(event) => setFirstName(event.target.value)}
+                            />
+                            <TextInput
+                                label="City"
+                                placeholder="Your city"
+                                onChange={(event) => setLastName(event.target.value)}
+                            />
+                            <TextInput
+                                label="State"
+                                placeholder="Your state"
+                                onChange={(event) => setLastName(event.target.value)}
+                            />
+                            <TextInput
+                                label="Zip code"
+                                placeholder="Your zip code"
+                                onChange={(event) => setLastName(event.target.value)}
+                            />
+                        </div>
+                    </InputsWrapper>
 
                     <button>Save</button>
-                    <Button>
-                    Save
-                    </Button>
+                    
                 </form>
             </section>
         </main>
@@ -102,3 +123,17 @@ function CreateEmployee(){
 }
 
 export default CreateEmployee
+
+const InputsWrapper = styled.div`
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    & .inputs-col{
+        width:calc(50% - 20px);
+        &.inputs-address{
+            background-color:${colors.light1};
+            padding:20px;
+            border-radius:4px;
+        }
+    }
+`

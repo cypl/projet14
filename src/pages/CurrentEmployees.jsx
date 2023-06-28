@@ -38,6 +38,7 @@ function CurrentEmployees(){
     return(
         <main>
             <section className="content_width">
+                <h1 className="section-title"><span>Find</span> employees.</h1>
                 <Table striped highlightOnHover withBorder withColumnBorders>
                     <thead>
                         <tr>
