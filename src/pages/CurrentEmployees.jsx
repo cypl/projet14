@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { GetDataEmployees } from "../api/Api"
 import { Table } from '@mantine/core'
+import { generateMockedData } from "../utils/randomData"
 
 function CurrentEmployees(){
 
@@ -10,8 +11,8 @@ function CurrentEmployees(){
     useEffect(() => {
         const employeesData = employees.data
         function rows(){
-            return employeesData.map((employee) => (
-                <tr key={employee.firstName}>
+            return employeesData.map((employee, index) => (
+                <tr key={index}>
                     <td>{employee.firstName}</td>
                     <td>{employee.lastName}</td>
                     <td>{employee.dateOfBirth}</td>
@@ -31,14 +32,14 @@ function CurrentEmployees(){
         
     }, [employees.data, employees.isLoaded])
     
-    if(employees.isLoaded){
-        console.log(tableRows)
-    }
+    // if(employees.isLoaded){
+    //     console.log(tableRows)
+    // }
 
     return(
         <main>
             <section className="content_width">
-                <h1 className="section-title"><span>Find</span> current employees.</h1>
+                <h1 className="section-title" onClick={() => generateMockedData()}><span>Find</span> current employees.</h1>
                 <Table striped highlightOnHover withBorder withColumnBorders>
                     <thead>
                         <tr>

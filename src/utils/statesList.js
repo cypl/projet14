@@ -235,4 +235,6 @@ export const statesList = [
         "name": "Wyoming",
         "abbreviation": "WY"
     }
-];
+]
+
+export const statesNames = statesList.map((s) => s.name)
