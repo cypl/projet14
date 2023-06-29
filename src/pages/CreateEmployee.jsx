@@ -34,6 +34,7 @@ function CreateEmployee(){
     const [usState, setUsState] = useState(null)
     const [zipCode, setZipCode] = useState()
 
+
     function handleLoginSubmit(event){
         event.preventDefault()
         const newEmployee = {
@@ -87,13 +88,13 @@ function CreateEmployee(){
                                 label="First name"
                                 placeholder="Your first name"
                                 value={firstName}
-                                onChange={setFirstName}
+                                onChange={(event) => setFirstName(event.currentTarget.value)}
                             />
                             <TextInput
                                 label="Last name"
                                 placeholder="Your last name"
                                 value={lastName}
-                                onChange={setLastName}
+                                onChange={(event) => setLastName(event.currentTarget.value)}
                             />
                             <DatePickerInput
                                 label="Date of birth"
@@ -138,13 +139,13 @@ function CreateEmployee(){
                                     label="Street"
                                     placeholder="Your street"
                                     value={street}
-                                    onChange={setStreet}
+                                    onChange={(event) => setStreet(event.currentTarget.value)}
                                 />
                                 <TextInput
                                     label="City"
                                     placeholder="Your city"
                                     value={city}
-                                    onChange={setCity}
+                                    onChange={(event) => setCity(event.currentTarget.value)}
                                 />
                                 <Select
                                     label="State"
