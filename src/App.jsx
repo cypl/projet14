@@ -1,9 +1,36 @@
+import { useEffect } from "react"
 import Router from "./router/Router"
 import { createGlobalStyle } from 'styled-components'
+import { GetDataEmployees } from "./api/Api"
 import { colors } from "./utils/colors"
+import { useDispatch } from "react-redux"
+import { setInitialData } from "./store/dataSlice"
 
 function App() {
   
+  const dispatch = useDispatch()  
+  const employees = GetDataEmployees()
+  
+  useEffect(()=> {
+    if(employees.isLoaded && employees.isError === null){
+      const employeesData = employees.data
+      const employeesList = employeesData.map(obj => [
+          obj.firstName,
+          obj.lastName,
+          obj.dateOfBirth,
+          obj.startDate,
+          obj.department,
+          obj.street,
+          obj.city,
+          obj.state,
+          obj.zipCode
+        ])
+      dispatch(setInitialData(employeesList)) 
+    }
+  }, [dispatch, employees.data, employees.isError, employees.isLoaded])
+
+
+
   return (
     <>
       <GlobalStyle />

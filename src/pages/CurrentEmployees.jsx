@@ -1,55 +1,32 @@
 import { useState, useEffect } from "react"
-import { GetDataEmployees } from "../api/Api"
 import { Table } from '@mantine/core'
 import { generateMockedData } from "../utils/randomData"
+import { useSelector } from "react-redux"
+
 
 function CurrentEmployees(){
 
-    const employees = GetDataEmployees()
-
-    if(employees.isLoaded){
-        const employeesList = employees.data
-        console.log(employeesList.map(obj => [
-            obj.firstName,
-            obj.lastName,
-            obj.dateOfBirth,
-            obj.startDate,
-            obj.department,
-            obj.street,
-            obj.city,
-            obj.state,
-            obj.zipCode
-          ]))
-    }
-
+    const currentEmployees = useSelector((state) => state.employees.data)
     const[tableRows, setTableRows] = useState()
 
     useEffect(() => {
-        const employeesData = employees.data
-
         function rows(){
-            return employeesData.map((employee, index) => (
+            return currentEmployees.map((employee, index) => (
                 <tr key={index}>
-                    <td>{employee.firstName}</td>
-                    <td>{employee.lastName}</td>
-                    <td>{employee.dateOfBirth}</td>
-                    <td>{employee.startDate}</td>
-                    <td>{employee.department}</td>
-                    <td>{employee.street}</td>
-                    <td>{employee.city}</td>
-                    <td>{employee.state}</td>
-                    <td>{employee.zipCode}</td>
+                    <td>{employee[0]}</td>
+                    <td>{employee[1]}</td>
+                    <td>{employee[2]}</td>
+                    <td>{employee[3]}</td>
+                    <td>{employee[4]}</td>
+                    <td>{employee[5]}</td>
+                    <td>{employee[6]}</td>
+                    <td>{employee[7]}</td>
+                    <td>{employee[8]}</td>
                 </tr>
             ))
         }
-
-        if(employees.isLoaded){
-            setTableRows(rows())
-        }
-        
-    }, [employees.data, employees.isLoaded])
-    
-    
+        setTableRows(rows())
+    }, [currentEmployees])
 
     return(
         <main>
