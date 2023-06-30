@@ -11,12 +11,12 @@ export const dataSlice = createSlice({
     setInitialData: (state, action) => {
       state.data = action.payload
     },
-    addAdditionalData: (state, action) => {
+    addEmployee: (state, action) => {
         state.data.push(action.payload)
     },
   },
 })
 
-export const { setInitialData, addAdditionalData } = dataSlice.actions
+export const { setInitialData, addEmployee } = dataSlice.actions
 
 export default dataSlice.reducer
