@@ -30,10 +30,10 @@ body {
     position: relative;
 }
 
-input[type="text"] {
+/* input[type="text"] {
     border-radius: 0;
     box-shadow: none;
-}
+} */
 
 * {
     box-sizing: border-box;
