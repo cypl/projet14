@@ -3,6 +3,10 @@ import { Table } from '@mantine/core'
 import { generateMockedData } from "../utils/randomData"
 import { useSelector } from "react-redux"
 
+function reverseDataOrder(data){
+    const reversedData = [...data].reverse()
+    return reversedData
+  }
 
 function CurrentEmployees(){
 
@@ -11,7 +15,10 @@ function CurrentEmployees(){
 
     useEffect(() => {
         function rows(){
-            return currentEmployees.map((employee, index) => (
+            // currentEmployees order is reversed, 
+            // to show the last added employee first
+            const reverseCurrentEmployees = reverseDataOrder(currentEmployees)
+            return reverseCurrentEmployees.map((employee, index) => (
                 <tr key={index}>
                     <td>{employee[0]}</td>
                     <td>{employee[1]}</td>
