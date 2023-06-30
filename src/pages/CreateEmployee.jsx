@@ -7,23 +7,27 @@ import { statesNames } from "../utils/statesList"
 import { departmentsList } from "../utils/departmentsList"
 import { getRandomValue, randomFirstNames, randomLastNames, randomBirthYears, randomStartYears, randomMonths, randomDays, randomStreets, randomCities, randomStates, randomZipCodes } from "../utils/randomData"
 import { formatDateString } from "../utils/formatDate"
+import { useDispatch } from "react-redux"
+import { addEmployee } from "../store/dataSlice"
 
-
-function formatEmployeeData(data){
-    return {
-        firstName: data.firstName ?? "",
-        lastName: data.lastName ?? "",
-        dateOfBirth: formatDateString(data.dateOfBirth) ?? "",
-        startDate: formatDateString(data.startDate) ?? "",
-        department: data.department ?? "",
-        street: data.street ?? "",
-        city: data.city ?? "",
-        state: data.state ?? "",
-        zipCode: "" + data.zipCode ?? "",
-    }
-}
+// function formatEmployeeData(data){
+//     return {
+//         firstName: data.firstName ?? "",
+//         lastName: data.lastName ?? "",
+//         dateOfBirth: formatDateString(data.dateOfBirth) ?? "",
+//         startDate: formatDateString(data.startDate) ?? "",
+//         department: data.department ?? "",
+//         street: data.street ?? "",
+//         city: data.city ?? "",
+//         state: data.state ?? "",
+//         zipCode: "" + data.zipCode ?? "",
+//     }
+// }
        
 function CreateEmployee(){
+
+    const dispatch = useDispatch()  
+
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [dateOfBirth, setDateOfBirth] = useState(null)
@@ -37,18 +41,30 @@ function CreateEmployee(){
 
     function handleLoginSubmit(event){
         event.preventDefault()
-        const newEmployee = {
-            firstName: firstName,
-            lastName: lastName,
-            dateOfBirth: dateOfBirth,
-            startDate: startDate,
-            department: department,
-            street: street,
-            city: city,
-            state: usState,
-            zipCode: zipCode,
-        }
-        console.log(formatEmployeeData(newEmployee))
+        // const newEmployee = {
+        //     firstName: firstName,
+        //     lastName: lastName,
+        //     dateOfBirth: dateOfBirth,
+        //     startDate: startDate,
+        //     department: department,
+        //     street: street,
+        //     city: city,
+        //     state: usState,
+        //     zipCode: zipCode,
+        // }
+        const newEmployee = [
+            firstName,
+            lastName,
+            formatDateString(dateOfBirth),
+            formatDateString(startDate),
+            department,
+            street,
+            city,
+            usState,
+            zipCode,
+        ]
+        dispatch(addEmployee(newEmployee))
+        //console.log(formatEmployeeData(newEmployee))
     }
 
     function fillTheForm(){
