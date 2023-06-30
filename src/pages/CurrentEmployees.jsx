@@ -6,10 +6,27 @@ import { generateMockedData } from "../utils/randomData"
 function CurrentEmployees(){
 
     const employees = GetDataEmployees()
+
+    if(employees.isLoaded){
+        const employeesList = employees.data
+        console.log(employeesList.map(obj => [
+            obj.firstName,
+            obj.lastName,
+            obj.dateOfBirth,
+            obj.startDate,
+            obj.department,
+            obj.street,
+            obj.city,
+            obj.state,
+            obj.zipCode
+          ]))
+    }
+
     const[tableRows, setTableRows] = useState()
 
     useEffect(() => {
         const employeesData = employees.data
+
         function rows(){
             return employeesData.map((employee, index) => (
                 <tr key={index}>
@@ -32,9 +49,7 @@ function CurrentEmployees(){
         
     }, [employees.data, employees.isLoaded])
     
-    // if(employees.isLoaded){
-    //     console.log(tableRows)
-    // }
+    
 
     return(
         <main>
