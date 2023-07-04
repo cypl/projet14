@@ -28,4 +28,4 @@ const useFetchData = (path) => {
 }
 
 
-export const GetDataEmployees = () => { return useFetchData("public/data/mocked-employees.json") }
+export const GetDataEmployees = () => { return useFetchData("/data/mocked-employees.json") }
