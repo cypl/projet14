@@ -1,6 +1,8 @@
 import { useState } from "react"
-import { TextInput, Select, NumberInput } from '@mantine/core'
+import { NavLink } from "react-router-dom"
+import { TextInput, Select, NumberInput, Modal } from '@mantine/core'
 import { DatePickerInput } from "@mantine/dates"
+import { useDisclosure } from '@mantine/hooks'
 import styled from 'styled-components'
 import { colors } from "../utils/colors"
 import { statesNames } from "../utils/statesList"
@@ -25,6 +27,8 @@ import { addEmployee } from "../store/dataSlice"
 // }
        
 function CreateEmployee(){
+    
+    const [opened, { open, close }] = useDisclosure(false)
 
     const dispatch = useDispatch()  
 
@@ -183,8 +187,13 @@ function CreateEmployee(){
                         </div>
                     </InputsWrapper>
 
-                    <button>Save</button>
+                    <button onClick={open}>Save</button>
                     
+                    <Modal opened={opened} onClose={close} withCloseButton={false} centered>
+                        <p>New employee added: <strong>{firstName} {lastName}</strong>.</p>
+                        <p><span onClick={close}>Add a new one</span></p>
+                        <p><NavLink to="/">Check the list</NavLink></p>
+                    </Modal>
                 </form>
             </section>
         </main>
