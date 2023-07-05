@@ -45,17 +45,6 @@ function CreateEmployee(){
 
     function handleLoginSubmit(event){
         event.preventDefault()
-        // const newEmployee = {
-        //     firstName: firstName,
-        //     lastName: lastName,
-        //     dateOfBirth: dateOfBirth,
-        //     startDate: startDate,
-        //     department: department,
-        //     street: street,
-        //     city: city,
-        //     state: usState,
-        //     zipCode: zipCode,
-        // }
         const newEmployee = [
             firstName,
             lastName,
@@ -68,7 +57,6 @@ function CreateEmployee(){
             zipCode,
         ]
         dispatch(addEmployee(newEmployee))
-        //console.log(formatEmployeeData(newEmployee))
     }
 
     function fillTheForm(){
