@@ -6,7 +6,48 @@ import { useSelector } from "react-redux"
 function reverseDataOrder(data){
     const reversedData = [...data].reverse()
     return reversedData
-  }
+}
+
+/**
+ * Transform a string date to be sortable
+ * @param {String} stringDate date should be a string and have this format MM-DD-YYYY
+ * @returns a string ready to be sorted : YYYYMMMDD
+ */
+function makeDateSortable(stringDate){
+    const arrayDate = stringDate.split("-")
+    return arrayDate[2] + arrayDate[0] + arrayDate[1]
+}
+
+// retrieves sorted rows
+const customSort = (rows, selector, direction) => {
+    // ! \\ we assume date columns have ID 3 and 4
+    const colID = event.target.getAttribute("data-column-id")
+    let isDate = false
+    colID === "3" || colID === "4" ? isDate = true : isDate = false
+
+    return rows.sort((rowA, rowB) => {
+        let aField = ""
+        let bField = ""
+        if(isDate){
+            aField = makeDateSortable(selector(rowA))
+            bField = makeDateSortable(selector(rowB))
+        } else {
+            // text fields should not be case sensitive
+            aField = selector(rowA).toLowerCase()
+            bField = selector(rowB).toLowerCase()
+        }
+
+        let comparison = 0
+    
+        if (aField > bField) {
+            comparison = 1
+        } else if (aField < bField) {
+            comparison = -1
+        }
+        return direction === 'desc' ? comparison * -1 : comparison
+    })
+}
+
 
 function CurrentEmployees(){
 
@@ -93,8 +134,7 @@ function CurrentEmployees(){
                         columns={columns}
                         data={dataTable}
                         pagination
-                        // subHeaderAlign="right"
-                        // subHeaderWrap
+                        sortFunction={customSort}
                     />
                 }
             </section>
