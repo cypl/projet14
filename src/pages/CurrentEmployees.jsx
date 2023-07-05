@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Table } from '@mantine/core'
+import DataTable from 'react-data-table-component'
 import { generateMockedData } from "../utils/randomData"
 import { useSelector } from "react-redux"
 
@@ -11,50 +11,92 @@ function reverseDataOrder(data){
 function CurrentEmployees(){
 
     const currentEmployees = useSelector((state) => state.employees.data)
-    const[tableRows, setTableRows] = useState()
+
+    const [dataTable, setDataTable] = useState()
+
+    const columns = [
+        {
+            name: 'First Name',
+            selector: row => row.firstName,
+            sortable: true,
+        },
+        {
+            name: 'Last Name',
+            selector: row => row.lastName,
+            sortable: true,
+        },
+        {
+            name: 'Date of birth',
+            selector: row => row.dataOfBirth,
+            sortable: true,
+        },
+        {
+            name: 'Start date',
+            selector: row => row.startDate,
+            sortable: true,
+        },
+        {
+            name: 'Department',
+            selector: row => row.department,
+            sortable: true,
+        },
+        {
+            name: 'Street',
+            selector: row => row.street,
+            sortable: true,
+        },
+        {
+            name: 'City',
+            selector: row => row.city,
+            sortable: true,
+        },
+        {
+            name: 'State',
+            selector: row => row.state,
+            sortable: true,
+        },
+        {
+            name: 'Zip code',
+            selector: row => row.zipCode,
+            sortable: true,
+        },
+    ];
 
     useEffect(() => {
-        function rows(){
-            // currentEmployees order is reversed, 
-            // to show the last added employee first
+        // currentEmployees order is reversed, 
+        // to show the last added employee first
+        function datatable() {
             const reverseCurrentEmployees = reverseDataOrder(currentEmployees)
             return reverseCurrentEmployees.map((employee, index) => (
-                <tr key={index}>
-                    <td>{employee[0]}</td>
-                    <td>{employee[1]}</td>
-                    <td>{employee[2]}</td>
-                    <td>{employee[3]}</td>
-                    <td>{employee[4]}</td>
-                    <td>{employee[5]}</td>
-                    <td>{employee[6]}</td>
-                    <td>{employee[7]}</td>
-                    <td>{employee[8]}</td>
-                </tr>
+                {id: index,
+                 firstName: employee[0],
+                 lastName: employee[1],
+                 dataOfBirth: employee[2],
+                 startDate: employee[3],
+                 department: employee[4],
+                 street: employee[5],
+                 city: employee[6],
+                 state: employee[7],
+                 zipCode: employee[8],
+                }
             ))
         }
-        setTableRows(rows())
+        setDataTable(datatable())
     }, [currentEmployees])
 
     return(
         <main>
             <section className="content_width">
                 <h1 className="section-title" onClick={() => generateMockedData()}><span>Find</span> current employees.</h1>
-                <Table striped highlightOnHover withBorder withColumnBorders>
-                    <thead>
-                        <tr>
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <th>Date of birth</th>
-                            <th>Start date</th>
-                            <th>Department</th>
-                            <th>Street</th>
-                            <th>City</th>
-                            <th>State</th>
-                            <th>Zip Code</th>
-                        </tr>
-                    </thead>
-                    <tbody>{tableRows}</tbody>
-                </Table>
+                {dataTable &&
+                    <DataTable
+                        columns={columns}
+                        data={dataTable}
+                        pagination
+                        // subHeaderAlign="right"
+                        // subHeaderWrap
+                    />
+                }
             </section>
         </main>
     )
