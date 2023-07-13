@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react"
 import DataTable from 'react-data-table-component'
-import { generateMockedData } from "../utils/randomData"
 import { useSelector } from "react-redux"
-
-function reverseDataOrder(data){
-    const reversedData = [...data].reverse()
-    return reversedData
-}
+import { TextInput } from "@mantine/core"
+import { IconSearch } from "../utils/Icons"
 
 /**
  * Transform a string date to be sortable
@@ -14,8 +10,9 @@ function reverseDataOrder(data){
  * @returns a string ready to be sorted : YYYYMMMDD
  */
 function makeDateSortable(stringDate){
-    const arrayDate = stringDate.split("-")
-    return arrayDate[2] + arrayDate[0] + arrayDate[1]
+    // const arrayDate = stringDate.split("-")
+    // return arrayDate[2] + arrayDate[0] + arrayDate[1]
+    return new Date(stringDate).getTime()
 }
 
 // retrieves sorted rows
@@ -48,18 +45,24 @@ const customSort = (rows, selector, direction) => {
     })
 }
 
+const createEmployee = (employee, index) => ({
+    id: index,
+    ...employee
+})
 
 function CurrentEmployees(){
 
     const currentEmployees = useSelector((state) => state.employees.data)
 
     const [dataTable, setDataTable] = useState()
+    const [searchExpression, setSearchExpression] = useState("")
 
+    // table definitions
     const columns = [
         {
             name: 'First Name',
             selector: row => row.firstName,
-            sortable: true,
+            sortable: true
         },
         {
             name: 'Last Name',
@@ -68,7 +71,7 @@ function CurrentEmployees(){
         },
         {
             name: 'Date of birth',
-            selector: row => row.dataOfBirth,
+            selector: row => row.dateOfBirth,
             sortable: true,
         },
         {
@@ -99,42 +102,71 @@ function CurrentEmployees(){
         {
             name: 'Zip code',
             selector: row => row.zipCode,
-            sortable: true,
+            sortable: true
         },
     ];
 
     useEffect(() => {
         // currentEmployees order is reversed, 
         // to show the last added employee first
-        function datatable() {
-            const reverseCurrentEmployees = reverseDataOrder(currentEmployees)
-            return reverseCurrentEmployees.map((employee, index) => (
-                {id: index,
-                 firstName: employee[0],
-                 lastName: employee[1],
-                 dataOfBirth: employee[2],
-                 startDate: employee[3],
-                 department: employee[4],
-                 street: employee[5],
-                 city: employee[6],
-                 state: employee[7],
-                 zipCode: employee[8],
-                }
-            ))
+        function generateDataTable() {
+            const reverseCurrentEmployees = [...currentEmployees].reverse()
+            if(searchExpression.length === 0){
+                return reverseCurrentEmployees.map(createEmployee)
+            }
+            if(searchExpression.length >= 1){
+                let emp = null
+                const searchLower = searchExpression.toLowerCase()
+                // const searchNumber = +searchExpression
+                return reverseCurrentEmployees.filter((employee) => {
+                    const res = [...Object.keys(employee)].find(k => {
+                            if (emp===null)console.log(k)
+                            const value = employee[k]
+                            if (k==="zipCode") return (""+ (+value)).startsWith(""+(+searchLower))
+                            if (typeof value === "string") return value.toLowerCase().includes(searchLower)
+                        })
+                        emp=employee
+                        return res
+                    }
+
+                    // employee.some((field) => { // field is an element of an employee array (eg.: firstName)
+                    //     if (typeof field === 'string')
+                    //         return field.toLowerCase().includes(searchLower)
+                    //     if (typeof field === "number")
+                    //         return field == searchNumber
+                    //     return false
+                    // })
+                    )
+                    .map(createEmployee)
+            }
         }
-        setDataTable(datatable())
-    }, [currentEmployees])
+        setDataTable(generateDataTable())
+    }, [currentEmployees, searchExpression])
+
+    function searchEmployees(event){
+        setSearchExpression(event.target.value)
+    }
+
 
     return(
         <main>
             <section className="content_width">
-                <h1 className="section-title" onClick={() => generateMockedData()}><span>Find</span> current employees.</h1>
+                <h1 className="section-title"><span>Find</span> current employees.</h1>
+                <TextInput
+                    label="Search"
+                    placeholder="Search an employee"
+                    icon={<IconSearch />}
+                    //value={lastName}
+                    //required
+                    onChange={searchEmployees}
+                />
                 {dataTable &&
                     <DataTable
                         columns={columns}
                         data={dataTable}
                         pagination
                         sortFunction={customSort}
+                        noDataComponent={"There's no results found."}
                     />
                 }
             </section>
