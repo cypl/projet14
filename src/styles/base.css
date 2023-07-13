@@ -180,3 +180,20 @@ ul.legende {
 }
 
 
+
+
+
+.mantine-Input-input, 
+.mantine-TextInput-input{
+    border-color:#e1dddf;
+}
+
+
+
+.rdt_Pagination{
+    border-top:2px solid red!important;
+    color:red!important;
+}
+.rdt_TableHeadRow{
+    background-color:red!important;
+}
