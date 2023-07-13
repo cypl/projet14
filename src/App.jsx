@@ -13,20 +13,7 @@ function App() {
   
   useEffect(()=> {
     if(employees.isLoaded && employees.isError === null){
-      const employeesData = employees.data
-      // transform object to array
-      const employeesList = employeesData.map(obj => [
-        obj.firstName,
-        obj.lastName,
-        obj.dateOfBirth,
-        obj.startDate,
-        obj.department,
-        obj.street,
-        obj.city,
-        obj.state,
-        obj.zipCode
-      ])
-      dispatch(setInitialData(employeesList)) 
+      dispatch(setInitialData(employees.data)) 
     }
   }, [dispatch, employees.data, employees.isError, employees.isLoaded])
 
