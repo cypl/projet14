@@ -40,6 +40,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               },
               '.mantine-Button-leftIcon':{
                 marginRight:"0.5rem",
+              },
+              '.mantine-Menu-item.active':{
+                backgroundColor:`${colors.light2}`,
               }
             }),
           }}
