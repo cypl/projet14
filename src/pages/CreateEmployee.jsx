@@ -330,7 +330,7 @@ function CreateEmployee(){
                     {isFormValid ? 
                         <Button onClick={handleLoginSubmit}>Save</Button>
                     : 
-                        <Tooltip label="Please, fill in the form to save.">
+                        <Tooltip label="Fill out the form before saving.">
                             <Button
                                 data-disabled
                                 sx={{ '&[data-disabled]': { pointerEvents: 'all' } }}
