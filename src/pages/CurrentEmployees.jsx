@@ -1,8 +1,18 @@
 import { useState, useEffect } from "react"
+import styled from "styled-components"
+import { colors } from "../utils/colors"
 import DataTable from 'react-data-table-component'
 import { useSelector } from "react-redux"
 import { TextInput } from "@mantine/core"
 import { IconSearch } from "../utils/Icons"
+
+
+const HeadWithSearch = styled.div`
+    background-color:${colors.light1};
+    padding:40px 40px 20px 40px;
+    border-radius:5px;
+    margin-bottom:30px;
+`
 
 /**
  * Transform a string date to be sortable
@@ -151,15 +161,17 @@ function CurrentEmployees(){
     return(
         <main>
             <section className="content_width">
-                <h1 className="section-title"><span>Find</span> current employees.</h1>
-                <TextInput
-                    label="Search"
-                    placeholder="Search an employee"
-                    icon={<IconSearch />}
-                    //value={lastName}
-                    //required
-                    onChange={searchEmployees}
-                />
+                <HeadWithSearch>
+                    <h1 className="section-title"><span>Find</span> current employees.</h1>
+                    <TextInput
+                        label="Search for an employee"
+                        placeholder="Type anything (name, zip code…)"
+                        icon={<IconSearch />}
+                        //value={lastName}
+                        //required
+                        onChange={searchEmployees}
+                    />
+                </HeadWithSearch>
                 {dataTable &&
                     <DataTable
                         columns={columns}
