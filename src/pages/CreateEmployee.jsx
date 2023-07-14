@@ -50,6 +50,15 @@ const InputsAddress = styled.div`
         }
     }
 `
+const ContentModal = styled.div`
+    text-align:center;
+    & .modal-content-name{
+        padding-bottom:20px;
+    }
+    & .modal-content-button{
+        margin:0 10px;
+    }
+`
 
 function createDateEighteenYearsAgo(){
     let today = new Date()
@@ -162,6 +171,30 @@ function CreateEmployee(){
         setIsStateError(false)
         setZipCode(getRandomValue(randomZipCodes))
         setIsZipCodeError(false)
+    }
+    function emptyForm(){
+        setFirstName("")
+        setIsFirstNameError()
+        setLastName("")
+        setIsLastNameError()
+        setDateOfBirth(null)
+        setIsDateOfBirthError()
+        setStartDate(null)
+        setIsStartDateError()
+        setDepartment("")
+        setIsDepartmentError()
+        setStreet("")
+        setIsStreetError()
+        setCity("")
+        setIsCityError()
+        setUsState(null)
+        setIsStateError()
+        setZipCode("")
+        setIsZipCodeError()
+    }
+    function addAnotherOne(){
+        emptyForm()
+        handlers.close()
     }
 
 
@@ -318,10 +351,13 @@ function CreateEmployee(){
                         </Tooltip>
                     }
                     
-                    <Modal opened={opened} onClose={close} withCloseButton={false} centered>
-                        <p>New employee added: <strong>{firstName} {lastName}</strong>.</p>
-                        <p><span onClick={close}>Add a new one</span></p>
-                        <p><NavLink to="/">Check the list</NavLink></p>
+                    <Modal opened={opened} onClose={() => handlers.close()} withCloseButton={false} centered>
+                        <ContentModal>
+                            <p>New employee added!</p>
+                            <p className="modal-content-name"><strong>{firstName} {lastName}</strong></p>
+                            <Button variant={"outline"} onClick={() => addAnotherOne()} className="modal-content-button">Add a new one</Button>
+                            <Button className="modal-content-button"><NavLink to="/">Check the list</NavLink></Button>
+                        </ContentModal>
                     </Modal>
                 </form>
             </section>
