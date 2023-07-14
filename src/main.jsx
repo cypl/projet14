@@ -6,6 +6,7 @@ import { MantineProvider } from '@mantine/core'
 import { store } from './store/store'
 import { Provider } from 'react-redux'
 import { colors } from './utils/colors.js'
+import { HRStyles } from './utils/globalStylesMantine.js'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -20,31 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             primaryColor: 'brand',
             defaultRadius: 'sm',
             black:`${colors.secondary2}`,
-            globalStyles: () => ({
-              '.mantine-InputWrapper-root':{
-                paddingBottom:"20px",
-                position: "relative",
-              },
-              '.mantine-Input-wrapper, .mantine-TextInput-wrapper':{
-                marginBottom:0,
-              },
-              '.mantine-InputWrapper-required, .mantine-TextInput-required':{
-                color:`${colors.primary}`,
-              },
-              '.mantine-InputWrapper-label, .mantine-TextInput-label': {
-                  fontWeight:400,
-              },
-              '.mantine-InputWrapper-error':{
-                position: "absolute",
-                bottom:0,
-              },
-              '.mantine-Button-leftIcon':{
-                marginRight:"0.5rem",
-              },
-              '.mantine-Menu-item.active':{
-                backgroundColor:`${colors.light2}`,
-              }
-            }),
+            globalStyles: () => HRStyles(),
           }}
         >
         <App />
