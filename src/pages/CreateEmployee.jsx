@@ -229,7 +229,6 @@ function CreateEmployee(){
                                 placeholder="Pick date"
                                 valueFormat="MM-DD-YYYY"
                                 description="Employee should have 18 years old minimum."
-                                clearable
                                 required
                                 hideOutsideDates
                                 icon={<IconCalendar/>}
@@ -242,7 +241,6 @@ function CreateEmployee(){
                                 label="Start date"
                                 placeholder="Pick date"
                                 valueFormat="MM-DD-YYYY"
-                                clearable
                                 required
                                 hideOutsideDates
                                 icon={<IconCalendar/>}
@@ -255,7 +253,6 @@ function CreateEmployee(){
                                 label="Department"
                                 placeholder="Your department"
                                 data={departmentsList}
-                                clearable
                                 required
                                 value={department}
                                 onChange={(department) => validateInputSelect(department, setDepartment, setIsDepartmentError)}
@@ -288,7 +285,6 @@ function CreateEmployee(){
                                     label="State"
                                     placeholder="Your state"
                                     searchable
-                                    clearable
                                     required
                                     nothingFound="No options"
                                     data={statesNames}
