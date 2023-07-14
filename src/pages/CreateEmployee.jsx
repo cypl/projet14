@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react"
+import styled from 'styled-components'
 import { NavLink } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { addEmployee } from "../store/dataSlice"
 import { TextInput, Select, NumberInput, Modal, Button, Tooltip } from '@mantine/core'
 import { DatePickerInput } from "@mantine/dates"
 import { useDisclosure } from '@mantine/hooks'
-import styled from 'styled-components'
 import { colors } from "../utils/colors"
 import { IconCalendar, IconMagic, IconAdress } from "../utils/Icons"
 import { statesNames } from "../utils/statesList"
 import { departmentsList } from "../utils/departmentsList"
 import { getRandomValue, randomFirstNames, randomLastNames, randomBirthYears, randomStartYears, randomMonths, randomDays, randomStreets, randomCities, randomStates, randomZipCodes } from "../utils/randomData"
 import { formatDateString } from "../utils/formatDate"
-import { useDispatch } from "react-redux"
-import { addEmployee } from "../store/dataSlice"
+import { validateInputText, errorMessageInputText, validateInputSelect, errorMessageInputSelect, validateInputNumber, errorMessageInputNumber } from "../utils/validationsForm"
+
 
 //const Button
 const Btn = styled(Button)`
@@ -69,21 +71,10 @@ function isDifferenceGreaterThan18Years(date1, date2) {
     }
 }
 
-const validateInputText = (event, match, setText, setIsError) => {
-    let content = event.currentTarget.value
-    setText(content)
-    const regexText = /[^a-zA-ZÀ-ÿ\- ']/g // used to allow only letters, accented characters and -
-    const regexTextAndNumbers = /[^a-zA-ZÀ-ÿ\-0-9 ']/g // used to allow only letters, accented characters, numbers and -
-    let regex
-    match === "text-and-numbers" ? regex = regexTextAndNumbers : regex = regexText
-    content.match(regex) || content.length === 0 ? setIsError(true) : setIsError(false)
-}
-const errorMessageInputText = "Should not be empty or contain special characters."
 
 
 function CreateEmployee(){
     
-    //const [opened, { open, close }] = useDisclosure(false)
     const [opened, handlers] = useDisclosure(false)
 
     const dispatch = useDispatch()  
@@ -172,24 +163,6 @@ function CreateEmployee(){
         setZipCode(getRandomValue(randomZipCodes))
         setIsZipCodeError(false)
     }
-
-
-
-
-
-    const validateInputSelect = (option, setSelect, setIsError) => {
-        setSelect()
-        option === null || option === undefined ? setIsError(true) : setIsError(false)
-    }
-    const errorMessageInputSelect = "Should not be empty."
-
-
-    const validateInputNumber = (value, setNumber, setIsError) => {
-        setNumber(value)
-        const regexOnlyNumbers = /^[0-9]+$/
-        regexOnlyNumbers.test(value) && value > 0 ? setIsError(false) : setIsError(true)
-    }
-    const errorMessageInputNumber = "Should not be empty and should only contain positive numbers."
 
 
     const validateDateOfBirth = (value, setDate, setIsError) => {
