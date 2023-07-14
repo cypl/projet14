@@ -179,17 +179,7 @@ ul.legende {
     line-height: 1.4;
 }
 
-
-
-
-
-.mantine-Input-input, 
-.mantine-TextInput-input{
-    border-color:#e1dddf;
-}
-
-
-
+/* Table styles */
 .rdt_Pagination{
     border-top:1px solid #e1dddf!important;
     color:#685a60!important;
@@ -222,18 +212,15 @@ ul.legende {
 #pagination-last-page:focus{
     background-color:transparent!important;
 }
-
 #pagination-first-page:disabled,
 #pagination-previous-page:disabled,
 #pagination-next-page:disabled,
 #pagination-last-page:disabled{
     opacity: 0.5;
 }
-
 #pagination-first-page:disabled:hover,
 #pagination-previous-page:disabled:hover,
 #pagination-next-page:disabled:hover,
 #pagination-last-page:disabled:hover{
     background-color:transparent!important;
 }
-  
