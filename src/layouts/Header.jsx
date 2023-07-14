@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { colors } from '../utils/colors'
 import { NavLink } from 'react-router-dom'
 import { Menu, Button } from '@mantine/core'
+import { IconTable, IconUser } from '../utils/Icons'
 
 const HeaderContainer = styled.header`
     border-bottom:1px solid ${colors.light1};
@@ -27,13 +28,14 @@ function Header(){
             <HeaderContainer>
                 <HeaderContent className="content_width">
                     <Branding><NavLink to="/"><span>HR</span>net</NavLink></Branding>
-                        <Menu shadow="md" width={200}>
+                        <Menu shadow="md" width={150} withArrow={true}>
                             <Menu.Target>
                                 <Button>Menu</Button>
                             </Menu.Target>
                             <Menu.Dropdown>
-                                <Menu.Item component={NavLink} to="/create">Create new employee</Menu.Item>
-                                <Menu.Item component={NavLink} to="/">Find current employees</Menu.Item>
+                                <Menu.Label>HR Employees</Menu.Label>
+                                <Menu.Item component={NavLink} to="/create" icon={<IconUser/>}>Add new</Menu.Item>
+                                <Menu.Item component={NavLink} to="/" icon={<IconTable/>}>Current list</Menu.Item>
                             </Menu.Dropdown>
                         </Menu>
                 </HeaderContent>
