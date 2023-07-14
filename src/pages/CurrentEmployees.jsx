@@ -5,7 +5,7 @@ import DataTable from 'react-data-table-component'
 import { useSelector } from "react-redux"
 import { TextInput } from "@mantine/core"
 import { IconSearch } from "../utils/Icons"
-
+import { validateInputText, errorMessageInputText } from "../utils/validationsForm"
 
 const HeadWithSearch = styled.div`
     background-color:${colors.light1};
@@ -66,7 +66,8 @@ function CurrentEmployees(){
 
     const [dataTable, setDataTable] = useState()
     const [searchExpression, setSearchExpression] = useState("")
-
+    const [isSearchExpressionError, setIsSearchExpressionError] = useState()
+    
     // table definitions
     const columns = [
         {
@@ -154,7 +155,8 @@ function CurrentEmployees(){
     }, [currentEmployees, searchExpression])
 
     function searchEmployees(event){
-        setSearchExpression(event.target.value)
+        validateInputText(event, "text-and-numbers", setSearchExpression, setIsSearchExpressionError)
+        //setSearchExpression(event.target.value)
     }
 
 
@@ -167,9 +169,8 @@ function CurrentEmployees(){
                         label="Search for an employee"
                         placeholder="Type anything (name, zip code…)"
                         icon={<IconSearch />}
-                        //value={lastName}
-                        //required
                         onChange={searchEmployees}
+                        error={isSearchExpressionError && errorMessageInputText}
                     />
                 </HeadWithSearch>
                 {dataTable &&
@@ -178,7 +179,7 @@ function CurrentEmployees(){
                         data={dataTable}
                         pagination
                         sortFunction={customSort}
-                        noDataComponent={"There's no results found."}
+                        noDataComponent={"Whoops, there's no results found."}
                     />
                 }
             </section>
