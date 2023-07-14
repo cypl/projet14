@@ -23,3 +23,12 @@ export const validateInputNumber = (value, setNumber, setIsError) => {
     regexOnlyNumbers.test(value) && value > 0 ? setIsError(false) : setIsError(true)
 }
 export const errorMessageInputNumber = "Should not be empty and should only contain positive numbers."
+
+
+export const validateInputSearch = (event, setText, setIsError) => {
+    let content = event.currentTarget.value
+    setText(content)
+    const regexTextAndNumbers = /[^a-zA-ZÀ-ÿ\-0-9 ']/g // used to allow only letters, accented characters, numbers and -
+    content.match(regexTextAndNumbers) ? setIsError(true) : setIsError(false)
+}
+export const errorMessageInputSearch = "Should not contain special characters."

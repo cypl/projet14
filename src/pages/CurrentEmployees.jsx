@@ -5,7 +5,7 @@ import DataTable from 'react-data-table-component'
 import { useSelector } from "react-redux"
 import { TextInput } from "@mantine/core"
 import { IconSearch } from "../utils/Icons"
-import { validateInputText, errorMessageInputText } from "../utils/validationsForm"
+import { validateInputSearch, errorMessageInputSearch } from "../utils/validationsForm"
 
 const HeadWithSearch = styled.div`
     background-color:${colors.light1};
@@ -155,8 +155,7 @@ function CurrentEmployees(){
     }, [currentEmployees, searchExpression])
 
     function searchEmployees(event){
-        validateInputText(event, "text-and-numbers", setSearchExpression, setIsSearchExpressionError)
-        //setSearchExpression(event.target.value)
+        validateInputSearch(event, setSearchExpression, setIsSearchExpressionError)
     }
 
 
@@ -170,7 +169,7 @@ function CurrentEmployees(){
                         placeholder="Type anything (name, zip code…)"
                         icon={<IconSearch />}
                         onChange={searchEmployees}
-                        error={isSearchExpressionError && errorMessageInputText}
+                        error={isSearchExpressionError && errorMessageInputSearch}
                     />
                 </HeadWithSearch>
                 {dataTable &&
