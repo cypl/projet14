@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import './styles/index.css'
 import { MantineProvider } from '@mantine/core'
 import { store } from './store/store'
 import { Provider } from 'react-redux'
 import { colors } from './utils/colors.js'
 import { HRStyles } from './utils/globalStylesMantine.js'
+import './styles/index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
