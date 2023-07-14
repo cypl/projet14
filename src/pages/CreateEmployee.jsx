@@ -13,9 +13,9 @@ import { departmentsList } from "../utils/departmentsList"
 import { getRandomValue, randomFirstNames, randomLastNames, randomBirthYears, randomStartYears, randomMonths, randomDays, randomStreets, randomCities, randomStates, randomZipCodes } from "../utils/randomData"
 import { formatDateString } from "../utils/formatDate"
 import { validateInputText, errorMessageInputText, validateInputSelect, errorMessageInputSelect, validateInputNumber, errorMessageInputNumber } from "../utils/validationsForm"
+import { createDateEighteenYearsAgo, isDifferenceGreaterThan18Years } from "../utils/dates"
 
 
-//const Button
 const Btn = styled(Button)`
     position:absolute;
     top:0px;
@@ -59,28 +59,6 @@ const ContentModal = styled.div`
         margin:0 10px;
     }
 `
-
-function createDateEighteenYearsAgo(){
-    let today = new Date()
-    let year = today.getFullYear() - 18
-    let month = today.getMonth()
-    let day = today.getDate()
-    return new Date(year, month, day)
-}
-     
-function isDifferenceGreaterThan18Years(date1, date2) {
-    // Calculate difference in milliseconds
-    const difference = date2 - date1
-    // Convert difference in years
-    const differenceInYears = difference / (1000 * 60 * 60 * 24 * 365.25)
-    if (differenceInYears > 18) {
-        return true
-    } else {
-        return false
-    }
-}
-
-
 
 function CreateEmployee(){
     
