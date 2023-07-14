@@ -69,6 +69,18 @@ function isDifferenceGreaterThan18Years(date1, date2) {
     }
 }
 
+const validateInputText = (event, match, setText, setIsError) => {
+    let content = event.currentTarget.value
+    setText(content)
+    const regexText = /[^a-zA-ZÀ-ÿ\- ']/g // used to allow only letters, accented characters and -
+    const regexTextAndNumbers = /[^a-zA-ZÀ-ÿ\-0-9 ']/g // used to allow only letters, accented characters, numbers and -
+    let regex
+    match === "text-and-numbers" ? regex = regexTextAndNumbers : regex = regexText
+    content.match(regex) || content.length === 0 ? setIsError(true) : setIsError(false)
+}
+const errorMessageInputText = "Should not be empty or contain special characters."
+
+
 function CreateEmployee(){
     
     //const [opened, { open, close }] = useDisclosure(false)
@@ -162,13 +174,7 @@ function CreateEmployee(){
     }
 
 
-    const validateInputText = (event, setText, setIsError) => {
-        let content = event.currentTarget.value
-        setText(content)
-        const regexText = /[^a-zA-ZÀ-ÿ\-']/g // used to find special characters
-        content.match(regexText) || content.length === 0 ? setIsError(true) : setIsError(false)
-    }
-    const errorMessageInputText = "Should not be empty or contain special characters."
+
 
 
     const validateInputSelect = (option, setSelect, setIsError) => {
@@ -234,7 +240,7 @@ function CreateEmployee(){
                                 placeholder="Your first name"
                                 value={firstName}
                                 required
-                                onChange={(event) => validateInputText(event, setFirstName, setIsFirstNameError)}
+                                onChange={(event) => validateInputText(event, "text-only", setFirstName, setIsFirstNameError)}
                                 error={isFirstNameError && errorMessageInputText}
                             />
                             <TextInput
@@ -242,7 +248,7 @@ function CreateEmployee(){
                                 placeholder="Your last name"
                                 value={lastName}
                                 required
-                                onChange={(event) => validateInputText(event, setLastName, setIsLastNameError)}
+                                onChange={(event) => validateInputText(event, "text-only", setLastName, setIsLastNameError)}
                                 error={isLastNameError && errorMessageInputText}
                             />
                             <DatePickerInput
@@ -294,7 +300,7 @@ function CreateEmployee(){
                                     placeholder="Your street"
                                     value={street}
                                     required
-                                    onChange={(event) => validateInputText(event, setStreet, setIsStreetError)}
+                                    onChange={(event) => validateInputText(event, "text-and-numbers", setStreet, setIsStreetError)}
                                     error={isStreetError && errorMessageInputText}
                                 />
                                 <TextInput
@@ -302,7 +308,7 @@ function CreateEmployee(){
                                     placeholder="Your city"
                                     value={city}
                                     required
-                                    onChange={(event) => validateInputText(event, setCity, setIsCityError)}
+                                    onChange={(event) => validateInputText(event, "text-only", setCity, setIsCityError)}
                                     error={isCityError && errorMessageInputText}
                                 />
                                 <Select
