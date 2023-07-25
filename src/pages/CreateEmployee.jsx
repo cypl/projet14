@@ -3,9 +3,8 @@ import styled from 'styled-components'
 import { NavLink } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { addEmployee } from "../store/dataSlice"
-import { TextInput, Select, NumberInput, Modal, Button, Tooltip } from '@mantine/core'
+import { TextInput, Select, NumberInput, Button, Tooltip } from '@mantine/core'
 import { DatePickerInput } from "@mantine/dates"
-import { useDisclosure } from '@mantine/hooks'
 import { colors } from "../utils/colors"
 import { IconCalendar, IconMagic, IconAdress } from "../utils/Icons"
 import { statesNames } from "../utils/statesList"
@@ -14,6 +13,7 @@ import { getRandomValue, randomFirstNames, randomLastNames, randomBirthYears, ra
 import { formatDateString } from "../utils/formatDate"
 import { validateInputText, errorMessageInputText, validateInputSelect, errorMessageInputSelect, validateInputNumber, errorMessageInputNumber } from "../utils/validationsForm"
 import { createDateEighteenYearsAgo, isDifferenceGreaterThan18Years } from "../utils/dates"
+import { Modal, useModal } from "react-modal-classic"
 
 
 const Btn = styled(Button)`
@@ -51,6 +51,7 @@ const InputsAddress = styled.div`
     }
 `
 const ContentModal = styled.div`
+    padding:30px;
     text-align:center;
     & .modal-content-name{
         padding-bottom:20px;
@@ -62,7 +63,7 @@ const ContentModal = styled.div`
 
 function CreateEmployee(){
     
-    const [opened, handlers] = useDisclosure(false)
+    const { modalOpen, openModal, closeModal } = useModal()
 
     const dispatch = useDispatch()  
 
@@ -119,7 +120,7 @@ function CreateEmployee(){
             zipCode,
         }
         dispatch(addEmployee(newEmployee))
-        handlers.open()
+        openModal()
     }
 
     function fillTheForm(){
@@ -172,7 +173,7 @@ function CreateEmployee(){
     }
     function addAnotherOne(){
         emptyForm()
-        handlers.close()
+        closeModal()
     }
 
 
@@ -329,7 +330,7 @@ function CreateEmployee(){
                         </Tooltip>
                     }
                     
-                    <Modal opened={opened} onClose={() => handlers.close()} withCloseButton={false} centered>
+                    <Modal modalOpen={modalOpen} closeModal={closeModal} size={"m"}>
                         <ContentModal>
                             <p>New employee added!</p>
                             <p className="modal-content-name"><strong>{firstName} {lastName}</strong></p>
@@ -337,6 +338,7 @@ function CreateEmployee(){
                             <Button className="modal-content-button"><NavLink to="/">Check the list</NavLink></Button>
                         </ContentModal>
                     </Modal>
+                    
                 </form>
             </section>
         </main>
