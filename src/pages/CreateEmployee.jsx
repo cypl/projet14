@@ -53,6 +53,9 @@ const InputsAddress = styled.div`
 const ContentModal = styled.div`
     padding:30px;
     text-align:center;
+    & .modal-content-newemployee{
+        padding-bottom:20px;
+    }
     & .modal-content-name{
         padding-bottom:20px;
     }
@@ -63,7 +66,7 @@ const ContentModal = styled.div`
 
 function CreateEmployee(){
     
-    const { modalOpen, openModal, closeModal } = useModal()
+    const { modalOpen, openModal, animeOut, closeModal } = useModal()
 
     const dispatch = useDispatch()  
 
@@ -121,6 +124,9 @@ function CreateEmployee(){
         }
         dispatch(addEmployee(newEmployee))
         openModal()
+        setTimeout(() => {
+            emptyForm()
+        }, "500")
     }
 
     function fillTheForm(){
@@ -171,10 +177,9 @@ function CreateEmployee(){
         setZipCode("")
         setIsZipCodeError()
     }
-    function addAnotherOne(){
-        emptyForm()
-        closeModal()
-    }
+    // function addAnotherOne(){
+    //     () => closeModal()
+    // }
 
 
     const validateDateOfBirth = (value, setDate, setIsError) => {
@@ -330,11 +335,11 @@ function CreateEmployee(){
                         </Tooltip>
                     }
                     
-                    <Modal modalOpen={modalOpen} closeModal={closeModal} size={"m"}>
+                    <Modal modalOpen={modalOpen} closeModal={closeModal} size="m" closebutton="in" animeOut={animeOut}>
                         <ContentModal>
-                            <p>New employee added!</p>
-                            <p className="modal-content-name"><strong>{firstName} {lastName}</strong></p>
-                            <Button variant={"outline"} onClick={() => addAnotherOne()} className="modal-content-button">Add a new one</Button>
+                            <p className="modal-content-newemployee">New employee added!</p>
+                            {/* <p className="modal-content-name"><strong>{firstName} {lastName}</strong></p> */}
+                            <Button variant={"outline"} onClick={closeModal} className="modal-content-button">Add a new one</Button>
                             <Button className="modal-content-button"><NavLink to="/">Check the list</NavLink></Button>
                         </ContentModal>
                     </Modal>
