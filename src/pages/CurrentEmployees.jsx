@@ -20,9 +20,11 @@ const HeadWithSearch = styled.div`
  * @returns a string ready to be sorted : YYYYMMMDD
  */
 function makeDateSortable(stringDate){
-    // const arrayDate = stringDate.split("-")
-    // return arrayDate[2] + arrayDate[0] + arrayDate[1]
-    return new Date(stringDate).getTime()
+    const arrayDate = stringDate.split("-")
+    const year = parseInt(arrayDate[2], 10)
+    const month = parseInt(arrayDate[0], 10) - 1 // -1 because months are indexed from 0
+    const day = parseInt(arrayDate[1], 10)
+    return new Date(year, month, day)
 }
 
 // retrieves sorted rows
