@@ -16,10 +16,20 @@ import { createDateEighteenYearsAgo, isDifferenceGreaterThan18Years } from "../u
 import { Modal, useModal } from "react-modal-classic"
 
 
+const HeadSection = styled.header`
+    position:relative;
+    display:flex;
+    justify-content:space-between;
+    @media (max-width: 640px) {
+        display:block;
+        padding-bottom:20px;
+    }
+`
 const Btn = styled(Button)`
-    position:absolute;
-    top:0px;
-    right:0;
+    margin-top:8px;
+    @media (max-width: 640px) {
+        margin-top:0px;
+    }
 `
 const InputsWrapper = styled.div`
     display:flex;
@@ -28,9 +38,15 @@ const InputsWrapper = styled.div`
     margin-bottom:20px;
     & .inputs-col{
         width:calc(50% - 20px);
+        @media (max-width: 768px) {
+            width:100%;
+        }
     }
     & .input-col-address{
         padding-top:22px;
+        @media (max-width: 768px) {
+            padding-top:15px;
+        }
     }
 `
 const InputsAddress = styled.div`
@@ -177,9 +193,6 @@ function CreateEmployee(){
         setZipCode("")
         setIsZipCodeError()
     }
-    // function addAnotherOne(){
-    //     () => closeModal()
-    // }
 
 
     const validateDateOfBirth = (value, setDate, setIsError) => {
@@ -220,8 +233,10 @@ function CreateEmployee(){
     return(
         <main>
             <section className="content_width">
-                <h1 className="section-title"><span>Create</span> an employee.</h1>
-                <Btn onClick={fillTheForm} variant="outline" leftIcon={<IconMagic/>}>Fill the form</Btn>
+                <HeadSection>
+                    <h1 className="section-title"><span>Create</span> an employee.</h1>
+                    <Btn onClick={fillTheForm} variant="outline" leftIcon={<IconMagic/>}>Fill the form</Btn>
+                </HeadSection>
                 <form>
                     <InputsWrapper>
                         <div className="inputs-col">

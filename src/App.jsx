@@ -43,5 +43,6 @@ const GlobalStyle = createGlobalStyle`
   }
   h1.section-title{
     margin-bottom:1rem;
+    line-height:1.2;
   }
 `
