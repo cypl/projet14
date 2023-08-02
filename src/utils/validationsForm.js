@@ -11,7 +11,7 @@ export const errorMessageInputText = "Should not be empty or contain special cha
 
 
 export const validateInputSelect = (option, setSelect, setIsError) => {
-    setSelect()
+    setSelect(option)
     option === null || option === undefined ? setIsError(true) : setIsError(false)
 }
 export const errorMessageInputSelect = "Should not be empty."
