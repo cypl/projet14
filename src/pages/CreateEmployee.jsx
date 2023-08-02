@@ -12,9 +12,9 @@ import { departmentsList } from "../utils/departmentsList"
 import { getRandomValue, randomFirstNames, randomLastNames, randomBirthYears, randomStartYears, randomMonths, randomDays, randomStreets, randomCities, randomStates, randomZipCodes } from "../utils/randomData"
 import { formatDateString } from "../utils/formatDate"
 import { validateInputText, errorMessageInputText, validateInputSelect, errorMessageInputSelect, validateInputNumber, errorMessageInputNumber } from "../utils/validationsForm"
-import { createDateEighteenYearsAgo, isDifferenceGreaterThan18Years } from "../utils/dates"
+import { createDateEighteenYearsAgo } from "../utils/dates"
 import { Modal, useModal } from "react-modal-classic"
-
+import useDateValidation from "../utils/validationsForm"
 
 const HeadSection = styled.header`
     position:relative;
@@ -83,6 +83,7 @@ const ContentModal = styled.div`
 function CreateEmployee(){
     
     const { modalOpen, openModal, animeOut, closeModal } = useModal()
+    const { dateOfBirth, setDateOfBirth, startDate, setStartDate, isDatesError, setDatesError, updateDate } = useDateValidation()
 
     const dispatch = useDispatch()  
 
@@ -90,11 +91,6 @@ function CreateEmployee(){
     const [isFirstNameError, setIsFirstNameError] = useState()
     const [lastName, setLastName] = useState('')
     const [isLastNameError, setIsLastNameError] = useState()
-    const [dateOfBirth, setDateOfBirth] = useState(null)
-    const [isDateOfBirthError, setIsDateOfBirthError] = useState()
-    const [startDate, setStartDate] = useState(null)
-    const [isStartDateError, setIsStartDateError] = useState()
-    const [startDateCodeError, setStartDateCodeError] = useState(0)
     const [department, setDepartment] = useState(null)
     const [isDepartmentError, setIsDepartmentError] = useState()
     const [street, setStreet] = useState('')
@@ -111,8 +107,7 @@ function CreateEmployee(){
     useEffect(()=> {
         if((isFirstNameError === false) &&
             (isLastNameError === false) &&
-            (isDateOfBirthError === false) &&
-            (isStartDateError === false) &&
+            (isDatesError === false) &&
             (isDepartmentError === false) &&
             (isStreetError === false) &&
             (isCityError === false) &&
@@ -122,7 +117,7 @@ function CreateEmployee(){
         } else {
             setFormValid(false)
         }
-    }, [isCityError, isDateOfBirthError, isDepartmentError, isFirstNameError, isLastNameError, isStartDateError, isStateError, isStreetError, isZipCodeError])
+    }, [isCityError, isDatesError, isDepartmentError, isFirstNameError, isLastNameError, isStateError, isStreetError, isZipCodeError])
 
 
     function handleLoginSubmit(event){
@@ -159,9 +154,7 @@ function CreateEmployee(){
         setLastName(getRandomValue(randomLastNames))
         setIsLastNameError(false)
         setDateOfBirth(birth)
-        setIsDateOfBirthError(false)
         setStartDate(start)
-        setIsStartDateError(false)
         setDepartment(getRandomValue(departmentsList))
         setIsDepartmentError(false)
         setStreet(getRandomValue(randomStreets))
@@ -179,9 +172,8 @@ function CreateEmployee(){
         setLastName("")
         setIsLastNameError()
         setDateOfBirth(null)
-        setIsDateOfBirthError()
         setStartDate(null)
-        setIsStartDateError()
+        setDatesError(null)
         setDepartment("")
         setIsDepartmentError()
         setStreet("")
@@ -194,41 +186,6 @@ function CreateEmployee(){
         setIsZipCodeError()
     }
 
-
-    const validateDateOfBirth = (value, setDate, setIsError) => {
-        setDate(value)
-        value === null ? setIsError(true) : setIsError(false)
-    }
-    const errorMessageDateOfBirth = "Should not be empty."
-
-
-    const validateStartDate = (value, birthDateValue, setDate, setIsError, setCodeError) => {
-        if(birthDateValue === undefined || birthDateValue === null){
-            setIsError(true)
-            setCodeError(1) // "Date of birth should be filled first"
-        } else {
-            if(isDifferenceGreaterThan18Years(birthDateValue, value )){
-                setIsError(false)
-                setCodeError(0)
-                setDate(value)
-            } else {
-                setIsError(true) 
-                setCodeError(2) // "Employee must have 18 years old at start date"
-                setDate(value)
-            }
-        }
-        if(value === null || value === undefined){
-            setIsError(true)
-            setCodeError(3) // "Should not be empty."
-        }
-    }
-
-    const errorMessageStartDate = (startDateCodeError) => {
-        if(startDateCodeError === 1){ return "Date of birth should be filled first."}
-        if(startDateCodeError === 2){ return "Employee must have 18 years old at start date."}
-        if(startDateCodeError === 3){ return "Should not be empty."}
-        if(startDateCodeError === 0){ return false}
-    } 
 
     return(
         <main>
@@ -260,14 +217,13 @@ function CreateEmployee(){
                                 label="Date of birth"
                                 placeholder="Pick date"
                                 valueFormat="MM-DD-YYYY"
-                                description="Employee should have 18 years old minimum."
                                 required
                                 hideOutsideDates
                                 icon={<IconCalendar/>}
                                 maxDate={createDateEighteenYearsAgo()} // = 18 years from now
                                 value={dateOfBirth}
-                                onChange={(dateOfBirth) => validateDateOfBirth(dateOfBirth, setDateOfBirth, setIsDateOfBirthError)}
-                                error={isDateOfBirthError && errorMessageDateOfBirth}
+                                onChange={(value) => updateDate(value, "birth")}
+                                error={isDatesError && "Employee should have 18 years old minimum."}
                             />
                             <DatePickerInput
                                 label="Start date"
@@ -278,8 +234,8 @@ function CreateEmployee(){
                                 icon={<IconCalendar/>}
                                 maxDate={new Date()} 
                                 value={startDate}
-                                onChange={(startDate) => validateStartDate(startDate, dateOfBirth, setStartDate, setIsStartDateError, setStartDateCodeError)}
-                                error={errorMessageStartDate(startDateCodeError)}
+                                onChange={(value) => updateDate(value, "start")}
+                                error={isDatesError && "Employee should have 18 years old minimum."}
                             />
                             <Select
                                 label="Department"

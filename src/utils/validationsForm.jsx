@@ -1,3 +1,6 @@
+import { useState, useEffect } from 'react'
+import { isDifferenceGreaterThan18Years } from './dates'
+
 export const validateInputText = (event, match, setText, setIsError) => {
     let content = event.currentTarget.value
     setText(content)
@@ -32,3 +35,26 @@ export const validateInputSearch = (event, setText, setIsError) => {
     content.match(regexTextAndNumbers) ? setIsError(true) : setIsError(false)
 }
 export const errorMessageInputSearch = "Should not contain special characters."
+
+
+const useDateValidation = () => {
+    const [dateOfBirth, setDateOfBirth] = useState(null)
+    const [startDate, setStartDate] = useState(null)
+    const [isDatesError, setDatesError] = useState(null)
+
+    useEffect(() => {
+        setDatesError(!isDifferenceGreaterThan18Years(dateOfBirth, startDate))
+    }, [dateOfBirth, startDate])
+
+    const updateDate = (value, field) => {
+        if (field === "birth") {
+            setDateOfBirth(value)
+        } else {
+            setStartDate(value)
+        }
+    }
+
+    return { dateOfBirth, setDateOfBirth, startDate, setStartDate, isDatesError, setDatesError, updateDate }
+}
+
+export default useDateValidation;
