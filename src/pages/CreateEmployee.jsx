@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import styled from 'styled-components'
 import { NavLink } from "react-router-dom"
 import { useDispatch } from "react-redux"
@@ -13,7 +13,7 @@ import { getRandomValue, randomFirstNames, randomLastNames, randomBirthYears, ra
 import { formatDateString } from "../utils/formatDate"
 import { validateInputText, errorMessageInputText, validateInputSelect, errorMessageInputSelect, validateInputNumber, errorMessageInputNumber } from "../utils/validationsForm"
 import { createDateEighteenYearsAgo } from "../utils/dates"
-import { Modal, useModal } from "react-modal-classic"
+import { ModalContext } from "react-modal-classic"
 import useDateValidation from "../utils/validationsForm"
 
 const HeadSection = styled.header`
@@ -81,8 +81,8 @@ const ContentModal = styled.div`
 `
 
 function CreateEmployee(){
-    
-    const { modalOpen, openModal, animeOut, closeModal } = useModal()
+
+    const { openModal, closeModal } = useContext(ModalContext)
     const { dateOfBirth, setDateOfBirth, startDate, setStartDate, isDatesError, setDatesError, updateDate } = useDateValidation()
 
     const dispatch = useDispatch()  
@@ -120,6 +120,15 @@ function CreateEmployee(){
     }, [isCityError, isDatesError, isDepartmentError, isFirstNameError, isLastNameError, isStateError, isStreetError, isZipCodeError])
 
 
+    function SuccessModal(){
+        return (
+            <ContentModal>
+                <p className="modal-content-newemployee">New employee added!</p>
+                <Button variant={"outline"} onClick={closeModal} className="modal-content-button">Add a new one</Button>
+                <Button className="modal-content-button"><NavLink to="/">Check the list</NavLink></Button>
+            </ContentModal>
+        )
+    }
     function handleLoginSubmit(event){
         event.preventDefault()
         const newEmployee = {
@@ -134,7 +143,7 @@ function CreateEmployee(){
             zipCode,
         }
         dispatch(addEmployee(newEmployee))
-        openModal()
+        openModal(<SuccessModal/>)
         setTimeout(() => {
             emptyForm()
         }, "500")
@@ -305,16 +314,7 @@ function CreateEmployee(){
                             </Button>
                         </Tooltip>
                     }
-                    
-                    <Modal modalOpen={modalOpen} closeModal={closeModal} size="m" closebutton="in" animeOut={animeOut}>
-                        <ContentModal>
-                            <p className="modal-content-newemployee">New employee added!</p>
-                            {/* <p className="modal-content-name"><strong>{firstName} {lastName}</strong></p> */}
-                            <Button variant={"outline"} onClick={closeModal} className="modal-content-button">Add a new one</Button>
-                            <Button className="modal-content-button"><NavLink to="/">Check the list</NavLink></Button>
-                        </ContentModal>
-                    </Modal>
-                    
+                                        
                 </form>
             </section>
         </main>
