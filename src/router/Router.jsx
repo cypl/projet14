@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ModalProvider } from "react-modal-classic"
 import Header from '../layouts/Header'
 import Footer from '../layouts/Footer'
 import CurrentEmployees from '../pages/CurrentEmployees'
@@ -12,13 +13,15 @@ import Error from '../pages/Error'
 function Router(){
     return (
         <BrowserRouter>
-            <Header />
-            <Routes>
-                <Route path="/" element={<CurrentEmployees />} />
-                <Route path="/create" element={<CreateEmployee />} />
-                <Route path="*" element={<Error />} />
-            </Routes>
-            <Footer />
+            <ModalProvider>
+                <Header />
+                <Routes>
+                    <Route path="/" element={<CurrentEmployees />} />
+                    <Route path="/create" element={<CreateEmployee />} />
+                    <Route path="*" element={<Error />} />
+                </Routes>
+                <Footer />
+            </ModalProvider>
         </BrowserRouter>
     )
 }
