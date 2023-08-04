@@ -57,10 +57,12 @@ const customSort = (rows, selector, direction) => {
     })
 }
 
+
 const createEmployee = (employee, index) => ({
     id: index,
     ...employee
 })
+
 
 function CurrentEmployees(){
 
@@ -120,13 +122,17 @@ function CurrentEmployees(){
     ];
 
     useEffect(() => {
-        // currentEmployees order is reversed, 
-        // to show the last added employee first
+        
         function generateDataTable() {
+            // currentEmployees order is reversed, 
+            // to show the last added employee first
             const reverseCurrentEmployees = [...currentEmployees].reverse()
+            
             if(searchExpression.length === 0){
                 return reverseCurrentEmployees.map(createEmployee)
             }
+            
+            
             if(searchExpression.length >= 1){
                 let emp = null
                 const searchLower = searchExpression.toLowerCase()
