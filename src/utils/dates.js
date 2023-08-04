@@ -7,13 +7,12 @@ export function createDateEighteenYearsAgo(){
 }
 
 export function isDifferenceGreaterThan18Years(date1, date2) {
-    // Calculate difference in milliseconds
-    const difference = date2 - date1
-    // Convert difference in years
-    const differenceInYears = difference / (1000 * 60 * 60 * 24 * 365.25)
-    if (differenceInYears > 18) {
-        return true
-    } else {
-        return false
-    }
+    // Normalize dates to ignore hours, minutes, seconds and milliseconds
+    date1.setHours(0, 0, 0, 0)
+    date2.setHours(0, 0, 0, 0)
+    // Create a new date based on date1, but 18 years later
+    const date1Plus18 = new Date(date1)
+    date1Plus18.setFullYear(date1Plus18.getFullYear() + 18)
+    // Compare this new date with date2
+    return date2 >= date1Plus18
 }
