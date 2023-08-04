@@ -40,10 +40,12 @@ export const errorMessageInputSearch = "Should not contain special characters."
 const useDateValidation = () => {
     const [dateOfBirth, setDateOfBirth] = useState(null)
     const [startDate, setStartDate] = useState(null)
-    const [isDatesError, setDatesError] = useState(null)
+    const [isDatesError, setDatesError] = useState(false)
 
     useEffect(() => {
-        setDatesError(!isDifferenceGreaterThan18Years(dateOfBirth, startDate))
+        if (dateOfBirth && startDate) {
+            setDatesError(!isDifferenceGreaterThan18Years(dateOfBirth, startDate))
+        }
     }, [dateOfBirth, startDate])
 
     const updateDate = (value, field) => {
@@ -57,4 +59,4 @@ const useDateValidation = () => {
     return { dateOfBirth, setDateOfBirth, startDate, setStartDate, isDatesError, setDatesError, updateDate }
 }
 
-export default useDateValidation;
+export default useDateValidation

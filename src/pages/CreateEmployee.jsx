@@ -108,6 +108,8 @@ function CreateEmployee(){
         if((isFirstNameError === false) &&
             (isLastNameError === false) &&
             (isDatesError === false) &&
+            (dateOfBirth != null) && 
+            (startDate != null) && 
             (isDepartmentError === false) &&
             (isStreetError === false) &&
             (isCityError === false) &&
@@ -117,7 +119,7 @@ function CreateEmployee(){
         } else {
             setFormValid(false)
         }
-    }, [isCityError, isDatesError, isDepartmentError, isFirstNameError, isLastNameError, isStateError, isStreetError, isZipCodeError])
+    }, [dateOfBirth, isCityError, isDatesError, isDepartmentError, isFirstNameError, isLastNameError, isStateError, isStreetError, isZipCodeError, startDate])
 
 
     function SuccessModal(){
@@ -129,7 +131,7 @@ function CreateEmployee(){
             </ContentModal>
         )
     }
-    function handleLoginSubmit(event){
+    function handleSubmit(event){
         event.preventDefault()
         const newEmployee = {
             firstName,
@@ -144,9 +146,9 @@ function CreateEmployee(){
         }
         dispatch(addEmployee(newEmployee))
         openModal(<SuccessModal/>)
-        setTimeout(() => {
+        // setTimeout(() => {
             emptyForm()
-        }, "500")
+        // }, "500")
     }
 
     function fillTheForm(){
@@ -182,7 +184,7 @@ function CreateEmployee(){
         setIsLastNameError()
         setDateOfBirth(null)
         setStartDate(null)
-        setDatesError(null)
+        setDatesError(false)
         setDepartment("")
         setIsDepartmentError()
         setStreet("")
@@ -224,6 +226,7 @@ function CreateEmployee(){
                             />
                             <DatePickerInput
                                 label="Date of birth"
+                                description="Employee must have 18 years old at start date."
                                 placeholder="Pick date"
                                 valueFormat="MM-DD-YYYY"
                                 required
@@ -232,7 +235,7 @@ function CreateEmployee(){
                                 maxDate={createDateEighteenYearsAgo()} // = 18 years from now
                                 value={dateOfBirth}
                                 onChange={(value) => updateDate(value, "birth")}
-                                error={isDatesError && "Employee should have 18 years old minimum."}
+                                error={isDatesError && "Birth date must be sooner than 18 years before start date."}
                             />
                             <DatePickerInput
                                 label="Start date"
@@ -244,7 +247,7 @@ function CreateEmployee(){
                                 maxDate={new Date()} 
                                 value={startDate}
                                 onChange={(value) => updateDate(value, "start")}
-                                error={isDatesError && "Employee should have 18 years old minimum."}
+                                error={isDatesError && "Start date must be later than 18 years after birth date."}
                             />
                             <Select
                                 label="Department"
@@ -302,7 +305,7 @@ function CreateEmployee(){
                     </InputsWrapper>
 
                     {isFormValid ? 
-                        <Button onClick={handleLoginSubmit}>Save</Button>
+                        <Button onClick={handleSubmit}>Save</Button>
                     : 
                         <Tooltip label="Fill out the form before saving.">
                             <Button
