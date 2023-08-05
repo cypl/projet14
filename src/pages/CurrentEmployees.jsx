@@ -15,87 +15,106 @@ const HeadWithSearch = styled.div`
     margin-bottom:30px;
 `
 
-// retrieves sorted rows
-const customSort = (rows, selector, direction) => {
-    // ! \\ we assume date columns have ID 3 and 4
-    const colID = event.target.getAttribute("data-column-id")
-    let isDate = false
-    colID === "3" || colID === "4" ? isDate = true : isDate = false
-
-    return rows.sort((rowA, rowB) => {
-        let aField = ""
-        let bField = ""
-        if(isDate){
-            aField = makeDateStringSortable(selector(rowA))
-            bField = makeDateStringSortable(selector(rowB))
-        } else {
-            // text fields should not be case sensitive
-            aField = selector(rowA).toLowerCase()
-            bField = selector(rowB).toLowerCase()
-        }
-
-        let comparison = 0
-    
-        if (aField > bField) {
-            comparison = 1
-        } else if (aField < bField) {
-            comparison = -1
-        }
-        return direction === 'desc' ? comparison * -1 : comparison
-    })
-}
-
 const createEmployee = (employee, index) => ({
     id: index,
     ...employee
 })
+
+// sort string rows
+const stringSort = (selector) => ( rowA, rowB ) => {
+    const a = selector(rowA).toLowerCase()
+    const b = selector(rowB).toLowerCase()
+    if (a > b) {
+        return 1
+    }
+    else if (b > a) {
+        return -1
+    }
+    return 0
+}
+
+// sort string rows
+const numberSort = (selector) => ( rowA, rowB ) => {
+    const a = selector(rowA)
+    const b = selector(rowB)
+    if (a > b) {
+        return 1
+    }
+    else if (b > a) {
+        return -1
+    }
+    return 0
+}
+
+// sort dates rows
+const dateSort = (selector) => ( rowA, rowB ) => {
+    const a = makeDateStringSortable(selector(rowA))
+    const b = makeDateStringSortable(selector(rowB))
+    if (a > b) {
+        return 1
+    }
+    else if (b > a) {
+        return -1
+    }
+    return 0
+}
+
 
 // table definitions
 const columns = [
     {
         name: 'First Name',
         selector: row => row.firstName,
-        sortable: true
+        sortable: true,
+        sortFunction: stringSort(row => row.firstName)
     },
     {
         name: 'Last Name',
         selector: row => row.lastName,
         sortable: true,
+        sortFunction: stringSort(row => row.lastName)
     },
     {
         name: 'Date of birth',
         selector: row => row.dateOfBirth,
         sortable: true,
+        sortFunction: dateSort(row => row.dateOfBirth)
     },
     {
         name: 'Start date',
         selector: row => row.startDate,
         sortable: true,
+        sortFunction: dateSort(row => row.startDate)
     },
     {
         name: 'Department',
         selector: row => row.department,
         sortable: true,
+        sortFunction: stringSort(row => row.department)
     },
     {
         name: 'Street',
         selector: row => row.street,
         sortable: true,
+        sortFunction: stringSort(row => row.street)
     },
     {
         name: 'City',
         selector: row => row.city,
         sortable: true,
+        sortFunction: stringSort(row => row.city)
     },
     {
         name: 'State',
         selector: row => row.state,
         sortable: true,
+        sortFunction: stringSort(row => row.state)
     },
     {
         name: 'Zip code',
         selector: row => row.zipCode,
-        sortable: true
+        sortable: true,
+        sortFunction: numberSort(row => row.zipCode)
     },
 ]
 
@@ -118,29 +137,14 @@ function CurrentEmployees(){
             }
             
             if(searchExpression.length >= 1){
-                let emp = null
-                const searchLower = searchExpression.toLowerCase()
-                // const searchNumber = +searchExpression
+                const searchExpressionLowerCase = searchExpression.toLowerCase()
                 return reverseCurrentEmployees.filter((employee) => {
-                    const res = [...Object.keys(employee)].find(k => {
-                            if (emp===null)console.log(k)
-                            const value = employee[k]
-                            if (k==="zipCode") return (""+ (+value)).startsWith(""+(+searchLower))
-                            if (typeof value === "string") return value.toLowerCase().includes(searchLower)
-                        })
-                        emp=employee
-                        return res
-                    }
-
-                    // employee.some((field) => { // field is an element of an employee array (eg.: firstName)
-                    //     if (typeof field === 'string')
-                    //         return field.toLowerCase().includes(searchLower)
-                    //     if (typeof field === "number")
-                    //         return field == searchNumber
-                    //     return false
-                    // })
+                    // convert all employee properties to string (because zipCode is a number)
+                    // and check if they contain the search expression
+                    return Object.values(employee).some(val => 
+                        val.toString().toLowerCase().includes(searchExpressionLowerCase)
                     )
-                    .map(createEmployee)
+                }).map(createEmployee)
             }
         }
         setDataTable(generateDataTable())
@@ -165,7 +169,7 @@ function CurrentEmployees(){
                         columns={columns}
                         data={dataTable}
                         pagination
-                        sortFunction={customSort}
+                        //sortFunction={customSort}
                         noDataComponent={"Whoops, there's no results found."}
                     />
                 }
