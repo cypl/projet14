@@ -45,12 +45,59 @@ const customSort = (rows, selector, direction) => {
     })
 }
 
-
 const createEmployee = (employee, index) => ({
     id: index,
     ...employee
 })
 
+// table definitions
+const columns = [
+    {
+        name: 'First Name',
+        selector: row => row.firstName,
+        sortable: true
+    },
+    {
+        name: 'Last Name',
+        selector: row => row.lastName,
+        sortable: true,
+    },
+    {
+        name: 'Date of birth',
+        selector: row => row.dateOfBirth,
+        sortable: true,
+    },
+    {
+        name: 'Start date',
+        selector: row => row.startDate,
+        sortable: true,
+    },
+    {
+        name: 'Department',
+        selector: row => row.department,
+        sortable: true,
+    },
+    {
+        name: 'Street',
+        selector: row => row.street,
+        sortable: true,
+    },
+    {
+        name: 'City',
+        selector: row => row.city,
+        sortable: true,
+    },
+    {
+        name: 'State',
+        selector: row => row.state,
+        sortable: true,
+    },
+    {
+        name: 'Zip code',
+        selector: row => row.zipCode,
+        sortable: true
+    },
+]
 
 function CurrentEmployees(){
 
@@ -60,60 +107,10 @@ function CurrentEmployees(){
     const [searchExpression, setSearchExpression] = useState("")
     const [isSearchExpressionError, setIsSearchExpressionError] = useState()
     
-    // table definitions
-    const columns = [
-        {
-            name: 'First Name',
-            selector: row => row.firstName,
-            sortable: true
-        },
-        {
-            name: 'Last Name',
-            selector: row => row.lastName,
-            sortable: true,
-        },
-        {
-            name: 'Date of birth',
-            selector: row => row.dateOfBirth,
-            sortable: true,
-        },
-        {
-            name: 'Start date',
-            selector: row => row.startDate,
-            sortable: true,
-        },
-        {
-            name: 'Department',
-            selector: row => row.department,
-            sortable: true,
-        },
-        {
-            name: 'Street',
-            selector: row => row.street,
-            sortable: true,
-        },
-        {
-            name: 'City',
-            selector: row => row.city,
-            sortable: true,
-        },
-        {
-            name: 'State',
-            selector: row => row.state,
-            sortable: true,
-        },
-        {
-            name: 'Zip code',
-            selector: row => row.zipCode,
-            sortable: true
-        },
-    ];
-
     useEffect(() => {
         
         function generateDataTable() {
-            // currentEmployees order is reversed, 
-            // to show the last added employee first
+            // currentEmployees order is reversed, to show the last added employee first
             const reverseCurrentEmployees = [...currentEmployees].reverse()
             
             if(searchExpression.length === 0){
@@ -149,10 +146,6 @@ function CurrentEmployees(){
         setDataTable(generateDataTable())
     }, [currentEmployees, searchExpression])
 
-    function searchEmployees(event){
-        validateInputSearch(event, setSearchExpression, setIsSearchExpressionError)
-    }
-
 
     return(
         <main>
@@ -163,7 +156,7 @@ function CurrentEmployees(){
                         label="Search for an employee"
                         placeholder="Type anything (name, zip code…)"
                         icon={<IconSearch />}
-                        onChange={searchEmployees}
+                        onChange={(event) => validateInputSearch(event, setSearchExpression, setIsSearchExpressionError)}
                         error={isSearchExpressionError && errorMessageInputSearch}
                     />
                 </HeadWithSearch>
