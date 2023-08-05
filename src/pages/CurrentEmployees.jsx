@@ -148,7 +148,7 @@ function CurrentEmployees(){
             }
         }
         setDataTable(generateDataTable())
-    }, [currentEmployees, searchExpression])
+    }, [currentEmployees, isSearchExpressionError, searchExpression])
 
 
     return(
