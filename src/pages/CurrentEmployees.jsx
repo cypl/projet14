@@ -132,7 +132,7 @@ function CurrentEmployees(){
             // currentEmployees order is reversed, to show the last added employee first
             const reverseCurrentEmployees = [...currentEmployees].reverse()
             
-            if(searchExpression.length === 0){
+            if(searchExpression.length === 0 || isSearchExpressionError){
                 return reverseCurrentEmployees.map(createEmployee)
             }
             
