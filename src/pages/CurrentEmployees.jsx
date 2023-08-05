@@ -131,11 +131,11 @@ function CurrentEmployees(){
         function generateDataTable() {
             // currentEmployees order is reversed, to show the last added employee first
             const reverseCurrentEmployees = [...currentEmployees].reverse()
-            
+            // if there is no search or search contains a unauthorized character
             if(searchExpression.length === 0 || isSearchExpressionError){
                 return reverseCurrentEmployees.map(createEmployee)
             }
-            
+            // if search expression exist
             if(searchExpression.length >= 1){
                 const searchExpressionLowerCase = searchExpression.toLowerCase()
                 return reverseCurrentEmployees.filter((employee) => {
