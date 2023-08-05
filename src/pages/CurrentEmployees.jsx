@@ -169,7 +169,6 @@ function CurrentEmployees(){
                         columns={columns}
                         data={dataTable}
                         pagination
-                        //sortFunction={customSort}
                         noDataComponent={"Whoops, there's no results found."}
                     />
                 }
