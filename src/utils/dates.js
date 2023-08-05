@@ -16,3 +16,16 @@ export function isDifferenceGreaterThan18Years(date1, date2) {
     // Compare this new date with date2
     return date2 >= date1Plus18
 }
+
+/**
+ * Transform a string date to be sortable
+ * @param {String} stringDate date should be a string and have this format MM-DD-YYYY
+ * @returns a string ready to be sorted : YYYYMMMDD
+ */
+export function makeDateStringSortable(stringDate){
+    const arrayDate = stringDate.split("-")
+    const year = parseInt(arrayDate[2], 10)
+    const month = parseInt(arrayDate[0], 10) - 1 // -1 because months are indexed from 0
+    const day = parseInt(arrayDate[1], 10)
+    return new Date(year, month, day)
+}

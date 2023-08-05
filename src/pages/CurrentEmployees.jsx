@@ -6,6 +6,7 @@ import { useSelector } from "react-redux"
 import { TextInput } from "@mantine/core"
 import { IconSearch } from "../utils/Icons"
 import { validateInputSearch, errorMessageInputSearch } from "../utils/validationsForm"
+import { makeDateStringSortable } from "../utils/dates"
 
 const HeadWithSearch = styled.div`
     background-color:${colors.light1};
@@ -13,19 +14,6 @@ const HeadWithSearch = styled.div`
     border-radius:5px;
     margin-bottom:30px;
 `
-
-/**
- * Transform a string date to be sortable
- * @param {String} stringDate date should be a string and have this format MM-DD-YYYY
- * @returns a string ready to be sorted : YYYYMMMDD
- */
-function makeDateSortable(stringDate){
-    const arrayDate = stringDate.split("-")
-    const year = parseInt(arrayDate[2], 10)
-    const month = parseInt(arrayDate[0], 10) - 1 // -1 because months are indexed from 0
-    const day = parseInt(arrayDate[1], 10)
-    return new Date(year, month, day)
-}
 
 // retrieves sorted rows
 const customSort = (rows, selector, direction) => {
@@ -38,8 +26,8 @@ const customSort = (rows, selector, direction) => {
         let aField = ""
         let bField = ""
         if(isDate){
-            aField = makeDateSortable(selector(rowA))
-            bField = makeDateSortable(selector(rowB))
+            aField = makeDateStringSortable(selector(rowA))
+            bField = makeDateStringSortable(selector(rowB))
         } else {
             // text fields should not be case sensitive
             aField = selector(rowA).toLowerCase()
@@ -131,7 +119,6 @@ function CurrentEmployees(){
             if(searchExpression.length === 0){
                 return reverseCurrentEmployees.map(createEmployee)
             }
-            
             
             if(searchExpression.length >= 1){
                 let emp = null
