@@ -8,7 +8,7 @@
     "street": "1234 Banana Way",
     "city": "Omaha",
     "state": "Vermont",
-    "zipCode": 90028
+    "zipCode": "90028"
   },
   {
     "firstName": "Noah",
@@ -19,7 +19,7 @@
     "street": "1234 Chestnut Way",
     "city": "Baltimore",
     "state": "Delaware",
-    "zipCode": 10013
+    "zipCode": "10013"
   },
   {
     "firstName": "Chloe",
@@ -30,7 +30,7 @@
     "street": "5678 Cypress Ave",
     "city": "Kansas City",
     "state": "Montana",
-    "zipCode": 77019
+    "zipCode": "77019"
   },
   {
     "firstName": "Aiden",
@@ -41,7 +41,7 @@
     "street": "9012 Guava Ln",
     "city": "Milwaukee",
     "state": "Nevada",
-    "zipCode": 98109
+    "zipCode": "98109"
   },
   {
     "firstName": "Harper",
@@ -52,7 +52,7 @@
     "street": "5678 Strawberry Ave",
     "city": "Tampa",
     "state": "Wyoming",
-    "zipCode": 94102
+    "zipCode": "94102"
   },
   {
     "firstName": "Elizabeth",
@@ -63,7 +63,7 @@
     "street": "6789 Mango Blvd",
     "city": "Las Vegas",
     "state": "California",
-    "zipCode": 75206
+    "zipCode": "75206"
   },
   {
     "firstName": "Emma",
@@ -74,7 +74,7 @@
     "street": "1234 Chestnut Way",
     "city": "Orlando",
     "state": "Federated States Of Micronesia",
-    "zipCode": 94102
+    "zipCode": "94102"
   },
   {
     "firstName": "Sofia",
@@ -85,7 +85,7 @@
     "street": "9012 Lemon Ln",
     "city": "Salt Lake City",
     "state": "Pennsylvania",
-    "zipCode": 77006
+    "zipCode": "77006"
   },
   {
     "firstName": "Harper",
@@ -96,7 +96,7 @@
     "street": "3456 Watermelon Dr",
     "city": "Detroit",
     "state": "Arkansas",
-    "zipCode": 20002
+    "zipCode": "20002"
   },
   {
     "firstName": "James",
@@ -107,7 +107,7 @@
     "street": "3456 Pine Dr",
     "city": "San Diego",
     "state": "Maryland",
-    "zipCode": 90045
+    "zipCode": "90045"
   },
   {
     "firstName": "Isabella",
@@ -118,7 +118,7 @@
     "street": "5678 Cypress Ave",
     "city": "Memphis",
     "state": "West Virginia",
-    "zipCode": 90291
+    "zipCode": "90291"
   },
   {
     "firstName": "James",
@@ -129,7 +129,7 @@
     "street": "5678 Fig Ave",
     "city": "Fort Worth",
     "state": "Mississippi",
-    "zipCode": 75201
+    "zipCode": "75201"
   },
   {
     "firstName": "Harper",
@@ -140,7 +140,7 @@
     "street": "3456 Cranberry Dr",
     "city": "Los Angeles",
     "state": "Maine",
-    "zipCode": 32806
+    "zipCode": "32806"
   },
   {
     "firstName": "Joseph",
@@ -151,7 +151,7 @@
     "street": "1234 Banana Way",
     "city": "Minneapolis",
     "state": "South Carolina",
-    "zipCode": 90210
+    "zipCode": "90210"
   },
   {
     "firstName": "Ethan",
@@ -162,7 +162,7 @@
     "street": "9012 Redwood Ln",
     "city": "Cleveland",
     "state": "Minnesota",
-    "zipCode": 32801
+    "zipCode": "32801"
   },
   {
     "firstName": "Amelia",
@@ -173,7 +173,7 @@
     "street": "9012 Maple Ln",
     "city": "Dallas",
     "state": "South Dakota",
-    "zipCode": 98101
+    "zipCode": "98101"
   },
   {
     "firstName": "Andrew",
@@ -184,7 +184,7 @@
     "street": "3456 Pomegranate Dr",
     "city": "Charlotte",
     "state": "New York",
-    "zipCode": 94102
+    "zipCode": "94102"
   },
   {
     "firstName": "Henry",
@@ -195,7 +195,7 @@
     "street": "6789 Mango Blvd",
     "city": "Philadelphia",
     "state": "Nevada",
-    "zipCode": 19106
+    "zipCode": "19106"
   },
   {
     "firstName": "Lily",
@@ -206,7 +206,7 @@
     "street": "7890 Kiwi Rd",
     "city": "Virginia Beach",
     "state": "Arizona",
-    "zipCode": 75230
+    "zipCode": "75230"
   },
   {
     "firstName": "James",
@@ -217,7 +217,7 @@
     "street": "7890 Laurel Rd",
     "city": "Omaha",
     "state": "Maryland",
-    "zipCode": 90028
+    "zipCode": "90028"
   },
   {
     "firstName": "Mia",
@@ -228,7 +228,7 @@
     "street": "6789 Raspberry Blvd",
     "city": "Los Angeles",
     "state": "Montana",
-    "zipCode": 32806
+    "zipCode": "32806"
   },
   {
     "firstName": "Henry",
@@ -239,7 +239,7 @@
     "street": "9012 Melon Ln",
     "city": "Orlando",
     "state": "Connecticut",
-    "zipCode": 60610
+    "zipCode": "60610"
   },
   {
     "firstName": "Ava",
@@ -250,7 +250,7 @@
     "street": "1234 Berry Way",
     "city": "Tucson",
     "state": "Ohio",
-    "zipCode": 33132
+    "zipCode": "33132"
   },
   {
     "firstName": "Michael",
@@ -261,7 +261,7 @@
     "street": "6789 Magnolia Blvd",
     "city": "Louisville",
     "state": "New Jersey",
-    "zipCode": 77005
+    "zipCode": "77005"
   },
   {
     "firstName": "Samuel",
@@ -272,7 +272,7 @@
     "street": "1234 Plum Way",
     "city": "Los Angeles",
     "state": "Nebraska",
-    "zipCode": 77002
+    "zipCode": "77002"
   },
   {
     "firstName": "Isabella",
@@ -283,7 +283,7 @@
     "street": "6789 Raspberry Blvd",
     "city": "Tampa",
     "state": "District Of Columbia",
-    "zipCode": 77002
+    "zipCode": "77002"
   },
   {
     "firstName": "Emily",
@@ -294,7 +294,7 @@
     "street": "3456 Pomegranate Dr",
     "city": "Atlanta",
     "state": "South Dakota",
-    "zipCode": 10001
+    "zipCode": "10001"
   },
   {
     "firstName": "Chloe",
@@ -305,7 +305,7 @@
     "street": "1234 Chestnut Way",
     "city": "Cleveland",
     "state": "Illinois",
-    "zipCode": 30303
+    "zipCode": "30303"
   },
   {
     "firstName": "Elijah",
@@ -316,7 +316,7 @@
     "street": "7890 Kiwi Rd",
     "city": "Raleigh",
     "state": "Federated States Of Micronesia",
-    "zipCode": 94102
+    "zipCode": "94102"
   },
   {
     "firstName": "Henry",
@@ -327,7 +327,7 @@
     "street": "2345 Pineapple Ct",
     "city": "Salt Lake City",
     "state": "West Virginia",
-    "zipCode": 90045
+    "zipCode": "90045"
   },
   {
     "firstName": "Mason",
@@ -338,7 +338,7 @@
     "street": "9012 Melon Ln",
     "city": "Sacramento",
     "state": "Pennsylvania",
-    "zipCode": 10013
+    "zipCode": "10013"
   },
   {
     "firstName": "Benjamin",
@@ -349,7 +349,7 @@
     "street": "3456 Dogwood Dr",
     "city": "Las Vegas",
     "state": "Wyoming",
-    "zipCode": 33132
+    "zipCode": "33132"
   },
   {
     "firstName": "Andrew",
@@ -360,7 +360,7 @@
     "street": "9012 Melon Ln",
     "city": "San Antonio",
     "state": "Ohio",
-    "zipCode": 94103
+    "zipCode": "94103"
   },
   {
     "firstName": "Liam",
@@ -371,7 +371,7 @@
     "street": "5678 Strawberry Ave",
     "city": "Tampa",
     "state": "Alaska",
-    "zipCode": 19103
+    "zipCode": "19103"
   },
   {
     "firstName": "Elijah",
@@ -382,7 +382,7 @@
     "street": "9012 Guava Ln",
     "city": "Los Angeles",
     "state": "Palau",
-    "zipCode": 60654
+    "zipCode": "60654"
   },
   {
     "firstName": "Lily",
@@ -393,7 +393,7 @@
     "street": "3456 Lime Dr",
     "city": "Tampa",
     "state": "Rhode Island",
-    "zipCode": 90028
+    "zipCode": "90028"
   },
   {
     "firstName": "Sofia",
@@ -404,7 +404,7 @@
     "street": "2345 Papaya Ct",
     "city": "Detroit",
     "state": "Kentucky",
-    "zipCode": 60610
+    "zipCode": "60610"
   },
   {
     "firstName": "Andrew",
@@ -415,7 +415,7 @@
     "street": "1234 Banana Way",
     "city": "Pittsburgh",
     "state": "Pennsylvania",
-    "zipCode": 19107
+    "zipCode": "19107"
   },
   {
     "firstName": "Sofia",
@@ -426,7 +426,7 @@
     "street": "5678 Strawberry Ave",
     "city": "Milwaukee",
     "state": "Guam",
-    "zipCode": 94110
+    "zipCode": "94110"
   },
   {
     "firstName": "Olivia",
@@ -437,7 +437,7 @@
     "street": "9012 Hickory Ln",
     "city": "Denver",
     "state": "Ohio",
-    "zipCode": 77019
+    "zipCode": "77019"
   },
 
   {
@@ -449,7 +449,7 @@
     "street": "5678 Fig Ave",
     "city": "Portland",
     "state": "Wyoming",
-    "zipCode": 75219
+    "zipCode": "75219"
   },
   {
     "firstName": "Grace",
@@ -460,7 +460,7 @@
     "street": "2345 Blueberry Ct",
     "city": "Seattle",
     "state": "Vermont",
-    "zipCode": 60661
+    "zipCode": "60661"
   },
   {
     "firstName": "Henry",
@@ -471,7 +471,7 @@
     "street": "6789 Mango Blvd",
     "city": "El Paso",
     "state": "Alabama",
-    "zipCode": 90210
+    "zipCode": "90210"
   },
   {
     "firstName": "Elizabeth",
@@ -482,7 +482,7 @@
     "street": "5678 Cypress Ave",
     "city": "Philadelphia",
     "state": "Illinois",
-    "zipCode": 60610
+    "zipCode": "60610"
   },
   {
     "firstName": "Grace",
@@ -493,7 +493,7 @@
     "street": "2345 Apple Ct",
     "city": "St. Louis",
     "state": "Kansas",
-    "zipCode": 77019
+    "zipCode": "77019"
   },
   {
     "firstName": "Elijah",
@@ -504,7 +504,7 @@
     "street": "9012 Guava Ln",
     "city": "Birmingham",
     "state": "Guam",
-    "zipCode": 77002
+    "zipCode": "77002"
   },
   {
     "firstName": "Michael",
@@ -515,7 +515,7 @@
     "street": "7890 Grape Rd",
     "city": "Orlando",
     "state": "Kentucky",
-    "zipCode": 20002
+    "zipCode": "20002"
   },
   {
     "firstName": "Evelyn",
@@ -526,7 +526,7 @@
     "street": "9012 Lemon Ln",
     "city": "Virginia Beach",
     "state": "District Of Columbia",
-    "zipCode": 94110
+    "zipCode": "94110"
   },
   {
     "firstName": "William",
@@ -537,7 +537,7 @@
     "street": "7890 Grape Rd",
     "city": "Nashville",
     "state": "Connecticut",
-    "zipCode": 33132
+    "zipCode": "33132"
   },
   {
     "firstName": "David",
@@ -548,10 +548,6 @@
     "street": "5678 Orange Ave",
     "city": "San Diego",
     "state": "Colorado",
-    "zipCode": 20009
+    "zipCode": "20009"
   }
 ]
-
-
-
-
