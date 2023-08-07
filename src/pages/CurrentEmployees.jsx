@@ -5,7 +5,7 @@ import DataTable from 'react-data-table-component'
 import { useSelector } from "react-redux"
 import { TextInput } from "@mantine/core"
 import { IconSearch } from "../utils/Icons"
-import { validateInputSearch, errorMessageInputSearch } from "../utils/validationsForm"
+import { validateInputText, errorMessages } from "../utils/validationsForm"
 import { makeDateStringSortable } from "../utils/dates"
 
 const HeadWithSearch = styled.div`
@@ -160,8 +160,8 @@ function CurrentEmployees(){
                         label="Search for an employee"
                         placeholder="Type anything (name, zip code…)"
                         icon={<IconSearch />}
-                        onChange={(event) => validateInputSearch(event, setSearchExpression, setIsSearchExpressionError)}
-                        error={isSearchExpressionError && errorMessageInputSearch}
+                        onChange={(event) => validateInputText(event, "search", setSearchExpression, setIsSearchExpressionError)}
+                        error={isSearchExpressionError && errorMessages.get("inputTextSearch")}
                     />
                 </HeadWithSearch>
                 {dataTable &&
