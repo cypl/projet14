@@ -20,12 +20,13 @@ export const validateInputSelect = (option, setSelect, setIsError) => {
 export const errorMessageInputSelect = "Should not be empty."
 
 
-export const validateInputNumber = (value, setNumber, setIsError) => {
-    setNumber(value)
-    const regexOnlyNumbers = /^[0-9]+$/
-    regexOnlyNumbers.test(value) && value > 0 ? setIsError(false) : setIsError(true)
+export const validateInputZipCode = (event, setNumber, setIsError) => {
+    let content = event.currentTarget.value
+    setNumber(content)
+    const regexZipCode = /^[0-9]{5}(?:-[0-9]{4})?$/
+    regexZipCode.test(content) ? setIsError(false) : setIsError(true)
 }
-export const errorMessageInputNumber = "Should not be empty and should only contain positive numbers."
+export const errorMessageInputZipCode = "Should be a valid US Zip code."
 
 
 export const validateInputSearch = (event, setText, setIsError) => {
@@ -60,3 +61,6 @@ const useDateValidation = () => {
 }
 
 export default useDateValidation
+
+export const errorMessageDateOfBirth = "Birth date must be sooner than 18 years before start date."
+export const errorMessageStartDate = "Start date must be later than 18 years after birth date."
