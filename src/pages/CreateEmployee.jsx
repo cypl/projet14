@@ -146,9 +146,7 @@ function CreateEmployee(){
         }
         dispatch(addEmployee(newEmployee))
         openModal(<SuccessModal/>)
-        // setTimeout(() => {
-            emptyForm()
-        // }, "500")
+        emptyForm()
     }
 
     function fillTheForm(){
