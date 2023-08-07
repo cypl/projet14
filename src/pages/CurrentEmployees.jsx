@@ -7,6 +7,7 @@ import { TextInput } from "@mantine/core"
 import { IconSearch } from "../utils/Icons"
 import { validateInputText, errorMessages } from "../utils/validationsForm"
 import { makeDateStringSortable } from "../utils/dates"
+import { dataTableStyles } from "../utils/dataTableStyles"
 
 const HeadWithSearch = styled.div`
     background-color:${colors.light1};
@@ -170,6 +171,7 @@ function CurrentEmployees(){
                         data={dataTable}
                         pagination
                         noDataComponent={"Whoops, there's no results found."}
+                        customStyles={dataTableStyles}
                     />
                 }
             </section>
