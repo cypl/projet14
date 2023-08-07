@@ -11,7 +11,7 @@ import { statesNames } from "../utils/statesList"
 import { departmentsList } from "../utils/departmentsList"
 import { getRandomValue, randomFirstNames, randomLastNames, randomBirthYears, randomStartYears, randomMonths, randomDays, randomStreets, randomCities, randomStates, randomZipCodes } from "../utils/randomData"
 import { formatDateString } from "../utils/formatDate"
-import { validateInputText, errorMessageInputText, validateInputSelect, errorMessageInputSelect, validateInputZipCode, errorMessageInputZipCode } from "../utils/validationsForm"
+import { validateInputText, validateInputSelect, validateInputZipCode, errorMessages } from "../utils/validationsForm"
 import { createDateEighteenYearsAgo } from "../utils/dates"
 import { ModalContext } from "react-modal-classic"
 import useDateValidation from "../utils/validationsForm"
@@ -214,7 +214,7 @@ function CreateEmployee(){
                                 value={firstName}
                                 required
                                 onChange={(event) => validateInputText(event, "text-only", setFirstName, setIsFirstNameError)}
-                                error={isFirstNameError && errorMessageInputText}
+                                error={isFirstNameError && errorMessages.get("inputTextOnly")}
                             />
                             <TextInput
                                 label="Last name"
@@ -222,7 +222,7 @@ function CreateEmployee(){
                                 value={lastName}
                                 required
                                 onChange={(event) => validateInputText(event, "text-only", setLastName, setIsLastNameError)}
-                                error={isLastNameError && errorMessageInputText}
+                                error={isLastNameError && errorMessages.get("inputTextOnly")}
                             />
                             <DatePickerInput
                                 label="Date of birth"
@@ -232,10 +232,10 @@ function CreateEmployee(){
                                 required
                                 hideOutsideDates
                                 icon={<IconCalendar/>}
-                                maxDate={createDateEighteenYearsAgo()} // = 18 years from now
+                                maxDate={createDateEighteenYearsAgo()}
                                 value={dateOfBirth}
                                 onChange={(value) => updateDate(value, "birth")}
-                                error={isDatesError && "Birth date must be sooner than 18 years before start date."}
+                                error={isDatesError && errorMessages.get("dateOfBirth")}
                             />
                             <DatePickerInput
                                 label="Start date"
@@ -247,7 +247,7 @@ function CreateEmployee(){
                                 maxDate={new Date()} 
                                 value={startDate}
                                 onChange={(value) => updateDate(value, "start")}
-                                error={isDatesError && "Start date must be later than 18 years after birth date."}
+                                error={isDatesError && errorMessages.get("startDate")}
                             />
                             <Select
                                 label="Department"
@@ -256,7 +256,7 @@ function CreateEmployee(){
                                 required
                                 value={department}
                                 onChange={(department) => validateInputSelect(department, setDepartment, setIsDepartmentError)}
-                                error={isDepartmentError && errorMessageInputSelect}
+                                error={isDepartmentError && errorMessages.get("inputSelect")}
                             />
                         </div>
                         <div className="inputs-col input-col-address">
@@ -271,7 +271,7 @@ function CreateEmployee(){
                                     value={street}
                                     required
                                     onChange={(event) => validateInputText(event, "text-and-numbers", setStreet, setIsStreetError)}
-                                    error={isStreetError && errorMessageInputText}
+                                    error={isStreetError && errorMessages.get("inputTextNumbers")}
                                 />
                                 <TextInput
                                     label="City"
@@ -279,7 +279,7 @@ function CreateEmployee(){
                                     value={city}
                                     required
                                     onChange={(event) => validateInputText(event, "text-only", setCity, setIsCityError)}
-                                    error={isCityError && errorMessageInputText}
+                                    error={isCityError && errorMessages.get("inputTextOnly")}
                                 />
                                 <Select
                                     label="State"
@@ -290,7 +290,7 @@ function CreateEmployee(){
                                     data={statesNames}
                                     value={state}
                                     onChange={(state) => validateInputSelect(state, setUsState, setIsStateError)}
-                                    error={isStateError && errorMessageInputSelect}
+                                    error={isStateError && errorMessages.get("inputSelect")}
                                 />
                                 <TextInput
                                     label="Zip code"
@@ -298,7 +298,7 @@ function CreateEmployee(){
                                     required
                                     value={zipCode}
                                     onChange={(event) => validateInputZipCode(event, setZipCode, setIsZipCodeError)}
-                                    error={isZipCodeError && errorMessageInputZipCode}
+                                    error={isZipCodeError && errorMessages.get("inputZipCode")}
                                 />
                             </InputsAddress>
                         </div>
