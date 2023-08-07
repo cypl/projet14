@@ -12,8 +12,9 @@ import { statesNames } from "../utils/statesList"
 import { departmentsList } from "../utils/departmentsList"
 import { getRandomValue, randomFirstNames, randomLastNames, randomBirthYears, randomStartYears, randomMonths, randomDays, randomStreets, randomCities, randomStates, randomZipCodes } from "../utils/randomData"
 import { formatDateString } from "../utils/formatDate"
-import { validateInputText, validateInputSelect, validateInputZipCode, useDateValidation, errorMessages } from "../utils/validationsForm"
+import { validateInputText, validateInputSelect, validateInputZipCode, errorMessages } from "../utils/validationsForm"
 import { createDateEighteenYearsAgo } from "../utils/dates"
+import useDateValidation from "../utils/validationsForm"
 
 const HeadSection = styled.header`
     position:relative;
