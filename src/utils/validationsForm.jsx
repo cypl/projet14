@@ -7,17 +7,25 @@ export const validateInputText = (event, match, setText, setIsError) => {
     const regexText = /[^a-zA-ZÀ-ÿ\- ']/g // used to allow only letters, accented characters and -
     const regexTextAndNumbers = /[^a-zA-ZÀ-ÿ\-0-9 ']/g // used to allow only letters, accented characters, numbers and -
     let regex
-    match === "text-and-numbers" ? regex = regexTextAndNumbers : regex = regexText
-    content.match(regex) || content.length === 0 ? setIsError(true) : setIsError(false)
+    if(match === "text-and-numbers"){
+        regex = regexTextAndNumbers
+        content.match(regex) || content.length === 0 ? setIsError(true) : setIsError(false)
+    } else if(match === "text-only"){
+        regex = regexText
+        content.match(regex) || content.length === 0 ? setIsError(true) : setIsError(false)
+    } else if(match === "search"){
+        regex = regexTextAndNumbers
+        content.match(regex) ? setIsError(true) : setIsError(false)
+    } else {
+        console.log("validateInputText() needs a correct 'match' parameter, it could be 'text-and-numbers', 'text-only' or 'search'.")
+    }
 }
-export const errorMessageInputText = "Should not be empty or contain special characters."
 
 
 export const validateInputSelect = (option, setSelect, setIsError) => {
     setSelect(option)
     option === null || option === undefined ? setIsError(true) : setIsError(false)
 }
-export const errorMessageInputSelect = "Should not be empty."
 
 
 export const validateInputZipCode = (event, setNumber, setIsError) => {
@@ -26,16 +34,6 @@ export const validateInputZipCode = (event, setNumber, setIsError) => {
     const regexZipCode = /^[0-9]{5}(?:-[0-9]{4})?$/
     regexZipCode.test(content) ? setIsError(false) : setIsError(true)
 }
-export const errorMessageInputZipCode = "Should be a valid US Zip code."
-
-
-export const validateInputSearch = (event, setText, setIsError) => {
-    let content = event.currentTarget.value
-    setText(content)
-    const regexTextAndNumbers = /[^a-zA-ZÀ-ÿ\-0-9 ']/g // used to allow only letters, accented characters, numbers and -
-    content.match(regexTextAndNumbers) ? setIsError(true) : setIsError(false)
-}
-export const errorMessageInputSearch = "Should not contain special characters."
 
 
 const useDateValidation = () => {
@@ -62,5 +60,13 @@ const useDateValidation = () => {
 
 export default useDateValidation
 
-export const errorMessageDateOfBirth = "Birth date must be sooner than 18 years before start date."
-export const errorMessageStartDate = "Start date must be later than 18 years after birth date."
+
+export const errorMessages = new Map([
+    ["inputTextOnly", "Should not be empty or contain special characters or numbers."],
+    ["inputTextNumbers", "Should not be empty or contain special characters."],
+    ["inputTextSearch", "Should not contain special characters."],
+    ["inputSelect", "Should not be empty."],
+    ["inputZipCode", "Should be a valid US Zip code."],
+    ["dateOfBirth", "Birth date should be sooner than 18 years before start date."],
+    ["startDate", "Start date should be later than 18 years after birth date."]
+])
