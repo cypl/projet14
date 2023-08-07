@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { NavLink } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { addEmployee } from "../store/dataSlice"
-import { TextInput, Select, NumberInput, Button, Tooltip } from '@mantine/core'
+import { TextInput, Select, Button, Tooltip } from '@mantine/core'
 import { DatePickerInput } from "@mantine/dates"
 import { colors } from "../utils/colors"
 import { IconCalendar, IconMagic, IconAdress } from "../utils/Icons"
@@ -11,7 +11,7 @@ import { statesNames } from "../utils/statesList"
 import { departmentsList } from "../utils/departmentsList"
 import { getRandomValue, randomFirstNames, randomLastNames, randomBirthYears, randomStartYears, randomMonths, randomDays, randomStreets, randomCities, randomStates, randomZipCodes } from "../utils/randomData"
 import { formatDateString } from "../utils/formatDate"
-import { validateInputText, errorMessageInputText, validateInputSelect, errorMessageInputSelect, validateInputNumber, errorMessageInputNumber } from "../utils/validationsForm"
+import { validateInputText, errorMessageInputText, validateInputSelect, errorMessageInputSelect, validateInputZipCode, errorMessageInputZipCode } from "../utils/validationsForm"
 import { createDateEighteenYearsAgo } from "../utils/dates"
 import { ModalContext } from "react-modal-classic"
 import useDateValidation from "../utils/validationsForm"
@@ -99,7 +99,7 @@ function CreateEmployee(){
     const [isCityError, setIsCityError] = useState()
     const [state, setUsState] = useState(null)
     const [isStateError, setIsStateError] = useState()
-    const [zipCode, setZipCode] = useState()
+    const [zipCode, setZipCode] = useState('')
     const [isZipCodeError, setIsZipCodeError] = useState()
 
     const [isFormValid, setFormValid] = useState(false)
@@ -292,13 +292,13 @@ function CreateEmployee(){
                                     onChange={(state) => validateInputSelect(state, setUsState, setIsStateError)}
                                     error={isStateError && errorMessageInputSelect}
                                 />
-                                <NumberInput
+                                <TextInput
                                     label="Zip code"
                                     placeholder="Your zip code"
                                     required
                                     value={zipCode}
-                                    onChange={(zipCode) => validateInputNumber(zipCode, setZipCode, setIsZipCodeError)}
-                                    error={isZipCodeError && errorMessageInputNumber}
+                                    onChange={(event) => validateInputZipCode(event, setZipCode, setIsZipCodeError)}
+                                    error={isZipCodeError && errorMessageInputZipCode}
                                 />
                             </InputsAddress>
                         </div>
