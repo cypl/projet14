@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react"
 import styled from 'styled-components'
 import { NavLink } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { addEmployee } from "../store/dataSlice"
 import { TextInput, Select, Button, Tooltip } from '@mantine/core'
 import { DatePickerInput } from "@mantine/dates"
@@ -71,9 +71,10 @@ const ContentModal = styled.div`
     text-align:center;
     & .modal-content-newemployee{
         padding-bottom:20px;
-    }
-    & .modal-content-name{
-        padding-bottom:20px;
+        & strong{
+            font-weight:900;
+            color:${colors.primary};
+        }
     }
     & .modal-content-button{
         margin:0 10px;
@@ -84,7 +85,7 @@ function CreateEmployee(){
 
     const { openModal, closeModal } = useContext(ModalContext)
     const { dateOfBirth, setDateOfBirth, startDate, setStartDate, isDatesError, setDatesError, updateDate } = useDateValidation()
-
+    
     const dispatch = useDispatch()  
 
     const [firstName, setFirstName] = useState('')
@@ -122,10 +123,13 @@ function CreateEmployee(){
     }, [dateOfBirth, isCityError, isDatesError, isDepartmentError, isFirstNameError, isLastNameError, isStateError, isStreetError, isZipCodeError, startDate])
 
 
-    function SuccessModal(){
+    function SuccessModalContent(){
+        const currentEmployees = useSelector((state) => state.employees.data)
+        const reverseCurrentEmployees = [...currentEmployees].reverse()
         return (
             <ContentModal>
-                <p className="modal-content-newemployee">New employee added!</p>
+                <p className="modal-content-newemployee">New employee added:<br/>
+                <strong>{reverseCurrentEmployees[0].firstName} {reverseCurrentEmployees[0].lastName}</strong></p>
                 <Button variant={"outline"} onClick={closeModal} className="modal-content-button">Add a new one</Button>
                 <Button className="modal-content-button"><NavLink to="/">Check the list</NavLink></Button>
             </ContentModal>
@@ -145,7 +149,7 @@ function CreateEmployee(){
             zipCode,
         }
         dispatch(addEmployee(newEmployee))
-        openModal(<SuccessModal/>)
+        openModal(<SuccessModalContent/>)
         emptyForm()
     }
 
