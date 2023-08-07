@@ -131,7 +131,7 @@ function CreateEmployee(){
                 <p className="modal-content-newemployee">New employee added:<br/>
                 <strong>{reverseCurrentEmployees[0].firstName} {reverseCurrentEmployees[0].lastName}</strong></p>
                 <Button variant={"outline"} onClick={closeModal} className="modal-content-button">Add a new one</Button>
-                <Button className="modal-content-button"><NavLink to="/">Check the list</NavLink></Button>
+                <NavLink to="/"><Button className="modal-content-button">Check the list</Button></NavLink>
             </ContentModal>
         )
     }
