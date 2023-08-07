@@ -3,8 +3,9 @@ import { colors } from "./colors"
 export const HRStyles = () => {
     return {
         '.mantine-InputWrapper-root':{
-          paddingBottom:"20px",
+          paddingBottom:"5px",
           position: "relative",
+          marginBottom: "20px",
         },
         '.mantine-Input-wrapper, .mantine-TextInput-wrapper':{
           marginBottom:0,
@@ -18,6 +19,7 @@ export const HRStyles = () => {
         '.mantine-InputWrapper-error':{
           position: "absolute",
           bottom:0,
+          transform: "translate(0,100%)",
         },
         '.mantine-Button-leftIcon':{
           marginRight:"0.5rem",
