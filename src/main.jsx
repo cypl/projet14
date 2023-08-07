@@ -4,7 +4,6 @@ import App from './App.jsx'
 import { MantineProvider } from '@mantine/core'
 import { store } from './store/store'
 import { Provider } from 'react-redux'
-import { colors } from './utils/colors.js'
 import { HRStyles } from './utils/globalStylesMantine.js'
 import './styles/index.css'
 
@@ -15,12 +14,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             theme={{
               colorScheme: 'light',
               colors: {
-                brand: ['#a1a7ff', '#9094ff', '#7f82ff', '#6f6fff', '#5e5cff', '#4d4aff', '#3c37ff', '#322cd7', '#2720af', '#1d1587'],
+                brand: ['#b9c1fc', '#a6acfd', '#9298fd', '#7f83fe', '#6c6efe', '#585afe', '#4545ff', '#3a3add', '#3030bb', '#252599'],
+                gray: ['#f1eeef', '#e0dcdd', '#cec9cc', '#bdb7bb', '#aca5a9', '#9a9298', '#898086', '#756c71', '#60585d', '#4c4448'],
               },
-              spacing: { xs: '1rem', sm: '1.2rem', md: '1.8rem', lg: '2.2rem', xl: '2.8rem' },
               primaryColor: 'brand',
               defaultRadius: 'sm',
-              black:`${colors.secondary2}`,
               globalStyles: () => HRStyles(),
             }}
           >
