@@ -139,10 +139,10 @@ function CurrentEmployees(){
             if(searchExpression.length >= 1){
                 const searchExpressionLowerCase = searchExpression.toLowerCase()
                 return reverseCurrentEmployees.filter((employee) => {
-                    // convert all employee properties to string (because zipCode is a number)
+                    // convert all employee properties to lowercase
                     // and check if they contain the search expression
-                    return Object.values(employee).some(val => 
-                        val.toString().toLowerCase().includes(searchExpressionLowerCase)
+                    return Object.values(employee).some(value => 
+                        value.toLowerCase().includes(searchExpressionLowerCase)
                     )
                 }).map(createEmployee)
             }
