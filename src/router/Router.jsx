@@ -7,7 +7,12 @@ import CreateEmployee from '../pages/CreateEmployee'
 import Error from '../pages/Error'
 
 /**
- * Displays the routes of the application.
+ * Defines the main routing structure for the application.
+ * 
+ * The application is wrapped with a `ModalProvider` to enable modal display functionality
+ * throughout the app. The `Header` component is consistently displayed at the top of the 
+ * application across all routes, whereas the `Footer` is displayed at the bottom.
+ * 
  * @returns {JSX.Element} - The JSX markup for the Router component.
  */
 function Router(){
