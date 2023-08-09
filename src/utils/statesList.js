@@ -237,4 +237,7 @@ export const statesList = [
     }
 ]
 
+/**
+ * An array of the different US states names.
+ */
 export const statesNames = statesList.map((s) => s.name)
