@@ -1,3 +1,8 @@
+/**
+ * Icon representing a calendar.
+ * 
+ * @returns {JSX.Element} SVG element representing the calendar icon.
+ */
 export function IconCalendar(){
     return (
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -6,6 +11,11 @@ export function IconCalendar(){
     )
 }
 
+/**
+ * Icon representing a search.
+ * 
+ * @returns {JSX.Element} SVG element representing the search icon.
+ */
 export function IconSearch(){
     return (
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,6 +24,11 @@ export function IconSearch(){
     )
 }
 
+/**
+ * Icon representing magic.
+ * 
+ * @returns {JSX.Element} SVG element representing the magic icon.
+ */
 export function IconMagic(){
     return (
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,6 +37,11 @@ export function IconMagic(){
     )
 }
 
+/**
+ * Icon representing adress.
+ * 
+ * @returns {JSX.Element} SVG element representing the adress icon.
+ */
 export function IconAdress(){
     return (
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,6 +50,11 @@ export function IconAdress(){
     )
 }
 
+/**
+ * Icon representing table.
+ * 
+ * @returns {JSX.Element} SVG element representing the table icon.
+ */
 export function IconTable(){
     return (
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,6 +63,11 @@ export function IconTable(){
     )
 }
 
+/**
+ * Icon representing an user.
+ * 
+ * @returns {JSX.Element} SVG element representing the user icon.
+ */
 export function IconUser(){
     return(
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
