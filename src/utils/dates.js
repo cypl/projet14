@@ -1,3 +1,7 @@
+/**
+ * Creates a date object representing a date 18 years prior to the current date.
+ * @returns {Date} - A date object set 18 years in the past.
+ */
 export function createDateEighteenYearsAgo(){
     let today = new Date()
     let year = today.getFullYear() - 18
@@ -6,6 +10,14 @@ export function createDateEighteenYearsAgo(){
     return new Date(year, month, day)
 }
 
+/**
+ * Checks if the difference between two dates is at least 18 years.
+ * Both dates are normalized to start at 00:00:00.000 for accurate comparison.
+ *
+ * @param {Date} date1 - The first date to compare.
+ * @param {Date} date2 - The second date to compare.
+ * @returns {boolean} - Returns true if date2 is at least 18 years later than date1.
+ */
 export function isDifferenceGreaterThan18Years(date1, date2) {
     // Normalize dates to ignore hours, minutes, seconds and milliseconds
     date1.setHours(0, 0, 0, 0)
@@ -18,9 +30,11 @@ export function isDifferenceGreaterThan18Years(date1, date2) {
 }
 
 /**
- * Transform a string date to be sortable
- * @param {String} stringDate date should be a string and have this format MM-DD-YYYY
- * @returns a string ready to be sorted : YYYYMMMDD
+ * Transforms a string date into a sortable format.
+ * Converts a date string in the format MM-DD-YYYY to a format YYYYMMDD.
+ * 
+ * @param {string} stringDate - The date string in the format MM-DD-YYYY.
+ * @returns {string} - The date string in a sortable format YYYYMMDD.
  */
 export function makeDateStringSortable(stringDate){
     const arrayDate = stringDate.split("-")
