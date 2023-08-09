@@ -1,5 +1,9 @@
 import { colors } from "./colors"
 
+/**
+ * Defines the global styles of Mantine library components
+ * @returns {Object} - The differents custom styles for Mantine components.
+ */
 export const HRStyles = () => {
     return {
       '.mantine-InputWrapper-root':{
