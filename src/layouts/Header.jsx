@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import { colors } from '../utils/colors'
 import { NavLink } from 'react-router-dom'
-import { Menu, Button } from '@mantine/core'
-import { IconTable, IconUser } from '../utils/Icons'
+import NavigationMenu from './NavigationMenu'
 
 const HeaderContainer = styled.header`
     border-bottom:1px solid ${colors.light1};
@@ -22,25 +21,19 @@ const HeaderContent = styled.div`
     display:flex;
     justify-content:space-between;
 `
+
+/**
+ * Displays the header of the application.
+ * @returns {JSX.Element} - The JSX markup for the Header component.
+ */
 function Header(){
     return(
-        <>
-            <HeaderContainer>
-                <HeaderContent className="content_width">
-                    <Branding><NavLink to="/"><span>HR</span>net</NavLink></Branding>
-                        <Menu shadow="md" width={150} withArrow={true}>
-                            <Menu.Target>
-                                <Button>Menu</Button>
-                            </Menu.Target>
-                            <Menu.Dropdown>
-                                <Menu.Label>HR Employees</Menu.Label>
-                                <Menu.Item component={NavLink} to="/create" icon={<IconUser/>}>Add new</Menu.Item>
-                                <Menu.Item component={NavLink} to="/" icon={<IconTable/>}>Current list</Menu.Item>
-                            </Menu.Dropdown>
-                        </Menu>
-                </HeaderContent>
-            </HeaderContainer>
-        </>
+        <HeaderContainer>
+            <HeaderContent className="content_width">
+                <Branding><NavLink to="/"><span>HR</span>net</NavLink></Branding>
+                    <NavigationMenu />
+            </HeaderContent>
+        </HeaderContainer>
     )
 }
 
