@@ -1,5 +1,6 @@
 import { colors } from "./colors"
 
+// customs styles for the DataTable component (see CurrentEmployees page)
 export const dataTableStyles = {
     headRow: {
 		style: {
