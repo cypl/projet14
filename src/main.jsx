@@ -7,6 +7,13 @@ import { Provider } from 'react-redux'
 import { HRStyles } from './utils/globalStylesMantine.js'
 import './styles/index.css'
 
+/**
+ * Entry point for the React application.
+ * 
+ * This file sets up the necessary providers for the app:
+ * - The Redux store, using the Provider component from 'react-redux'
+ * - Theming and other configurations for Mantine components with the MantineProvider.
+ */
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
