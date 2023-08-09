@@ -1,4 +1,4 @@
-import { formatDateString } from "./formatDate"
+import { formatDateString } from "./dates"
 import { departmentsList } from "./departmentsList"
 
 // Get a random item from an array
