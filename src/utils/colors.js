@@ -1,3 +1,4 @@
+// main colors of the application
 export const colors = {
     primary1: "#a6acfd",
     primary: "#4545ff",
