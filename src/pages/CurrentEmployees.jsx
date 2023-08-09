@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
 import styled from "styled-components"
-import { colors } from "../utils/colors"
 import DataTable from 'react-data-table-component'
 import { useSelector } from "react-redux"
 import { TextInput } from "@mantine/core"
+import { colors } from "../utils/colors"
 import { IconSearch } from "../utils/Icons"
 import { validateInputText, errorMessages } from "../utils/validationsForm"
 import { makeDateStringSortable } from "../utils/dates"
@@ -16,13 +16,22 @@ const HeadWithSearch = styled.div`
     margin-bottom:30px;
 `
 
+/**
+ * Formats an employee object with an added 'id' property based on a given index.
+ *
+ * @param {Object} employee - The employee data to format.
+ * @param {number} index - The index to use as the 'id' for the formatted employee object.
+ * @returns {Object} - The formatted employee object with an added 'id' property.
+ */
 const createEmployee = (employee, index) => ({
     id: index,
     ...employee
 })
 
-// sort string rows
-const stringSort = (selector) => ( rowA, rowB ) => {
+/** 
+ * DataTable function to sort string rows using lowerCase
+ */
+const stringSortLowerCase = (selector) => ( rowA, rowB ) => {
     const a = selector(rowA).toLowerCase()
     const b = selector(rowB).toLowerCase()
     if (a > b) {
@@ -34,8 +43,10 @@ const stringSort = (selector) => ( rowA, rowB ) => {
     return 0
 }
 
-// sort string rows
-const numberSort = (selector) => ( rowA, rowB ) => {
+/** 
+ * DataTable function to sort string rows without using lowerCase
+ */
+const stringSort = (selector) => ( rowA, rowB ) => {
     const a = selector(rowA)
     const b = selector(rowB)
     if (a > b) {
@@ -47,7 +58,9 @@ const numberSort = (selector) => ( rowA, rowB ) => {
     return 0
 }
 
-// sort dates rows
+/** 
+ * DataTable function to sort dates rows (dates as a string)
+ */
 const dateSort = (selector) => ( rowA, rowB ) => {
     const a = makeDateStringSortable(selector(rowA))
     const b = makeDateStringSortable(selector(rowB))
@@ -61,19 +74,21 @@ const dateSort = (selector) => ( rowA, rowB ) => {
 }
 
 
-// table definitions
+/** 
+ * DataTable definitions
+*/
 const columns = [
     {
         name: 'First Name',
         selector: row => row.firstName,
         sortable: true,
-        sortFunction: stringSort(row => row.firstName)
+        sortFunction: stringSortLowerCase(row => row.firstName)
     },
     {
         name: 'Last Name',
         selector: row => row.lastName,
         sortable: true,
-        sortFunction: stringSort(row => row.lastName)
+        sortFunction: stringSortLowerCase(row => row.lastName)
     },
     {
         name: 'Date of birth',
@@ -91,34 +106,38 @@ const columns = [
         name: 'Department',
         selector: row => row.department,
         sortable: true,
-        sortFunction: stringSort(row => row.department)
+        sortFunction: stringSortLowerCase(row => row.department)
     },
     {
         name: 'Street',
         selector: row => row.street,
         sortable: true,
-        sortFunction: stringSort(row => row.street)
+        sortFunction: stringSortLowerCase(row => row.street)
     },
     {
         name: 'City',
         selector: row => row.city,
         sortable: true,
-        sortFunction: stringSort(row => row.city)
+        sortFunction: stringSortLowerCase(row => row.city)
     },
     {
         name: 'State',
         selector: row => row.state,
         sortable: true,
-        sortFunction: stringSort(row => row.state)
+        sortFunction: stringSortLowerCase(row => row.state)
     },
     {
         name: 'Zip code',
         selector: row => row.zipCode,
         sortable: true,
-        sortFunction: numberSort(row => row.zipCode)
+        sortFunction: stringSort(row => row.zipCode)
     },
 ]
 
+/**
+ * Displays the CurrentEmployees page.
+ * @returns {JSX.Element} - The JSX markup for the CurrentEmployees component page.
+ */
 function CurrentEmployees(){
 
     const currentEmployees = useSelector((state) => state.employees.data)
@@ -127,8 +146,19 @@ function CurrentEmployees(){
     const [searchExpression, setSearchExpression] = useState("")
     const [isSearchExpressionError, setIsSearchExpressionError] = useState()
     
+    /**
+     * Updates the dataTable state based on the currentEmployees, searchExpression, and search input validity.
+     * 
+     * - If no search expression is provided or the search expression contains unauthorized characters,
+     *   all current employees are displayed (with the latest additions first).
+     * - If a valid search expression is provided, only the employees matching the search criteria are displayed.
+     * 
+     * Dependencies:
+     * - currentEmployees: ensures dataTable updates when the employees data changes.
+     * - isSearchExpressionError: checks whether the search input is valid.
+     * - searchExpression: to filter the employees data based on the search criteria.
+     */
     useEffect(() => {
-        
         function generateDataTable() {
             // currentEmployees order is reversed, to show the last added employee first
             const reverseCurrentEmployees = [...currentEmployees].reverse()
