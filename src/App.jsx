@@ -6,29 +6,6 @@ import { colors } from "./utils/colors"
 import { useDispatch } from "react-redux"
 import { setInitialData } from "./store/dataSlice"
 
-function App() {
-  
-  const dispatch = useDispatch()  
-  const employees = GetDataEmployees()
-  
-  useEffect(()=> {
-    if(employees.isLoaded && employees.isError === null){
-      dispatch(setInitialData(employees.data)) 
-    }
-  }, [dispatch, employees.data, employees.isError, employees.isLoaded])
-
-
-
-  return (
-    <>
-      <GlobalStyle />
-      <Router />
-    </>
-  )
-}
-
-export default App
-
 const GlobalStyle = createGlobalStyle`
   html {
     color: ${colors.secondary2};
@@ -46,3 +23,32 @@ const GlobalStyle = createGlobalStyle`
     line-height:1.2;
   }
 `
+
+/**
+ * The main application component.
+ * This component sets up global styles, fetches initial employee data, and renders the main router.
+ */
+function App() {
+  
+  const dispatch = useDispatch()  
+  const employees = GetDataEmployees()
+  
+  /**
+   * useEffect hook to dispatch the initial employee data to the Redux store.
+   * This effect runs when the employees data is loaded without any errors.
+   */
+  useEffect(()=> {
+    if(employees.isLoaded && employees.isError === null){
+      dispatch(setInitialData(employees.data)) 
+    }
+  }, [dispatch, employees.data, employees.isError, employees.isLoaded])
+
+  return (
+    <>
+      <GlobalStyle />
+      <Router />
+    </>
+  )
+}
+
+export default App
