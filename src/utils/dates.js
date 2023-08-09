@@ -43,3 +43,20 @@ export function makeDateStringSortable(stringDate){
     const day = parseInt(arrayDate[1], 10)
     return new Date(year, month, day)
 }
+
+/**
+ * Formats a Date object into a string in the format MM-DD-YYYY.
+ * 
+ * @param {Date} dateObject - The Date object to be formatted. Can be null or undefined.
+ * @returns {string} - The formatted date string in the format MM-DD-YYYY, or an empty string if the input is null or undefined.
+ */
+export function formatDateString(dateObject){
+    if(dateObject != null){
+        const month = ('0' + (dateObject.getMonth() + 1)).slice(-2) // +1 because month start from 0
+        const day = ('0' + dateObject.getDate()).slice(-2)
+        const year = dateObject.getFullYear()
+        return month + '-' + day + '-' + year
+    } else {
+        return ""
+    }
+}
