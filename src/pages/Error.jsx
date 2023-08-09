@@ -16,6 +16,10 @@ const BtnWrapper = styled.div`
     justify-content:center;
 `
 
+/**
+ * Displays the error page.
+ * @returns {JSX.Element} - The JSX markup for the Error page component.
+ */
 function Error(){
     return(
         <main>
