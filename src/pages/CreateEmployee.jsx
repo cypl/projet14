@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react"
-import styled from 'styled-components'
-import { NavLink } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
+import styled from "styled-components"
+import { useDispatch } from "react-redux"
 import { addEmployee } from "../store/dataSlice"
 import { TextInput, Select, Button, Tooltip } from '@mantine/core'
 import { DatePickerInput } from "@mantine/dates"
@@ -11,10 +10,9 @@ import { IconCalendar, IconMagic, IconAdress } from "../utils/Icons"
 import { statesNames } from "../utils/statesList"
 import { departmentsList } from "../utils/departmentsList"
 import { getRandomValue, randomFirstNames, randomLastNames, randomBirthYears, randomStartYears, randomMonths, randomDays, randomStreets, randomCities, randomStates, randomZipCodes } from "../utils/randomData"
-import { formatDateString } from "../utils/dates"
-import { validateInputText, validateInputSelect, validateInputZipCode, errorMessages } from "../utils/validationsForm"
-import { createDateEighteenYearsAgo } from "../utils/dates"
-import useDateValidation from "../utils/validationsForm"
+import { useDateValidation, validateInputText, validateInputSelect, validateInputZipCode, errorMessages } from "../utils/validationsForm"
+import { createDateEighteenYearsAgo, formatDateString } from "../utils/dates"
+import SuccessModalContent from "../layouts/SuccessModalContent"
 
 const HeadSection = styled.header`
     position:relative;
@@ -66,24 +64,14 @@ const InputsAddress = styled.div`
         }
     }
 `
-const ContentModal = styled.div`
-    padding:30px;
-    text-align:center;
-    & .modal-content-newemployee{
-        padding-bottom:20px;
-        & strong{
-            font-weight:900;
-            color:${colors.primary};
-        }
-    }
-    & .modal-content-button{
-        margin:0 10px;
-    }
-`
 
+/**
+ * Displays the CreateEmployee page.
+ * @returns {JSX.Element} - The JSX markup for the CreateEmployee component page.
+ */
 function CreateEmployee(){
 
-    const { openModal, closeModal } = useContext(ModalContext)
+    const { openModal } = useContext(ModalContext)
     const { dateOfBirth, setDateOfBirth, startDate, setStartDate, isDatesError, setDatesError, updateDate } = useDateValidation()
     
     const dispatch = useDispatch()  
@@ -102,9 +90,9 @@ function CreateEmployee(){
     const [isStateError, setIsStateError] = useState()
     const [zipCode, setZipCode] = useState('')
     const [isZipCodeError, setIsZipCodeError] = useState()
-
     const [isFormValid, setFormValid] = useState(false)
 
+    // Check for errors and the presence of certain values to determine the validity of the form.
     useEffect(()=> {
         if((isFirstNameError === false) &&
             (isLastNameError === false) &&
@@ -123,36 +111,9 @@ function CreateEmployee(){
     }, [dateOfBirth, isCityError, isDatesError, isDepartmentError, isFirstNameError, isLastNameError, isStateError, isStreetError, isZipCodeError, startDate])
 
 
-    function SuccessModalContent(){
-        const currentEmployees = useSelector((state) => state.employees.data)
-        const reverseCurrentEmployees = [...currentEmployees].reverse()
-        return (
-            <ContentModal>
-                <p className="modal-content-newemployee">New employee added:<br/>
-                <strong>{reverseCurrentEmployees[0].firstName} {reverseCurrentEmployees[0].lastName}</strong></p>
-                <Button variant={"outline"} onClick={closeModal} className="modal-content-button">Add a new one</Button>
-                <NavLink to="/"><Button className="modal-content-button">Check the list</Button></NavLink>
-            </ContentModal>
-        )
-    }
-    function handleSubmit(event){
-        event.preventDefault()
-        const newEmployee = {
-            firstName,
-            lastName,
-            dateOfBirth: formatDateString(dateOfBirth),
-            startDate: formatDateString(startDate),
-            department,
-            street,
-            city,
-            state,
-            zipCode,
-        }
-        dispatch(addEmployee(newEmployee))
-        openModal(<SuccessModalContent/>)
-        emptyForm()
-    }
-
+    /**
+     * Fill the form with randomized values.
+     */
     function fillTheForm(){
         const birth = new Date()
         birth.setFullYear(getRandomValue(randomBirthYears))
@@ -179,6 +140,7 @@ function CreateEmployee(){
         setZipCode(getRandomValue(randomZipCodes))
         setIsZipCodeError(false)
     }
+
     function emptyForm(){
         setFirstName("")
         setIsFirstNameError()
@@ -199,6 +161,23 @@ function CreateEmployee(){
         setIsZipCodeError()
     }
 
+    function handleSubmit(event){
+        event.preventDefault()
+        const newEmployee = {
+            firstName,
+            lastName,
+            dateOfBirth: formatDateString(dateOfBirth),
+            startDate: formatDateString(startDate),
+            department,
+            street,
+            city,
+            state,
+            zipCode,
+        }
+        dispatch(addEmployee(newEmployee))
+        openModal(<SuccessModalContent/>)
+        emptyForm()
+    }
 
     return(
         <main>
