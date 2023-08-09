@@ -100,7 +100,7 @@ export const validateInputZipCode = (event, setNumber, setIsError) => {
  * {isDatesError && <p>Error: The difference between the two dates should be at least 18 years.</p>}
  * 
  */
-const useDateValidation = () => {
+export const useDateValidation = () => {
     const [dateOfBirth, setDateOfBirth] = useState(null)
     const [startDate, setStartDate] = useState(null)
     const [isDatesError, setDatesError] = useState(false)
@@ -121,8 +121,6 @@ const useDateValidation = () => {
 
     return { dateOfBirth, setDateOfBirth, startDate, setStartDate, isDatesError, setDatesError, updateDate }
 }
-
-export default useDateValidation
 
 /**
  * A map containing error messages associated with validation cases.
