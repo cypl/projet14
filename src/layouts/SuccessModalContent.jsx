@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { useSelector } from "react-redux"
-import { NavLink } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { Button } from '@mantine/core'
 import styled from 'styled-components'
 import { ModalContext } from "react-modal-classic"
@@ -31,13 +31,19 @@ function SuccessModalContent(){
     const reverseCurrentEmployees = [...currentEmployees].reverse()
     
     const { closeModal } = useContext(ModalContext)
+    const navigate = useNavigate()
+
+    function checkTheList(){
+        closeModal()
+        navigate("/")
+    }
 
     return (
         <ContentModal>
             <p className="modal-content-newemployee">New employee added:<br/>
             <strong>{reverseCurrentEmployees[0].firstName} {reverseCurrentEmployees[0].lastName}</strong></p>
             <Button variant={"outline"} onClick={closeModal} className="modal-content-button">Add a new one</Button>
-            <NavLink to="/"><Button className="modal-content-button">Check the list</Button></NavLink>
+            <Button onClick={checkTheList} className="modal-content-button">Check the list</Button>
         </ContentModal>
     )
 }
