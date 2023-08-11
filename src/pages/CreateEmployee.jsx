@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react"
 import styled from "styled-components"
 import { useDispatch } from "react-redux"
 import { addEmployee } from "../store/dataSlice"
-import { TextInput, Select, Button, Tooltip } from '@mantine/core'
+import { Select, Button, Tooltip } from '@mantine/core'
 import { DatePickerInput } from "@mantine/dates"
 import { ModalContext } from "react-modal-classic"
 import { colors } from "../utils/colors"
@@ -10,9 +10,10 @@ import { IconCalendar, IconMagic, IconAdress } from "../utils/Icons"
 import { statesNames } from "../utils/statesList"
 import { departmentsList } from "../utils/departmentsList"
 import { getRandomValue, randomFirstNames, randomLastNames, randomBirthYears, randomStartYears, randomMonths, randomDays, randomStreets, randomCities, randomStates, randomZipCodes } from "../utils/randomData"
-import { useDateValidation, validateInputText, validateInputSelect, validateInputZipCode, errorMessages } from "../utils/validationsForm"
+import { useDateValidation, validateInputSelect, errorMessages } from "../utils/validationsForm"
 import { createDateEighteenYearsAgo, formatDateString } from "../utils/dates"
 import SuccessModalContent from "../layouts/SuccessModalContent"
+import InputTextCy from "../components/InputTextCy"
 
 const HeadSection = styled.header`
     position:relative;
@@ -189,21 +190,27 @@ function CreateEmployee(){
                 <form>
                     <InputsWrapper>
                         <div className="inputs-col">
-                            <TextInput
-                                label="First name"
-                                placeholder="Your first name"
+                            <InputTextCy 
+                                label={"First name"}
+                                isRequired
+                                placeHolder={"Your first name"}
                                 value={firstName}
-                                required
-                                onChange={(event) => validateInputText(event, "text-only", setFirstName, setIsFirstNameError)}
-                                error={isFirstNameError && errorMessages.get("inputTextOnly")}
+                                match={"text-only"}
+                                setText={setFirstName}
+                                setIsError={setIsFirstNameError}
+                                isError={isFirstNameError}
+                                errorMessage={errorMessages.get("inputTextOnly")}
                             />
-                            <TextInput
-                                label="Last name"
-                                placeholder="Your last name"
+                            <InputTextCy 
+                                label={"Last name"}
+                                isRequired
+                                placeHolder={"Your last name"}
                                 value={lastName}
-                                required
-                                onChange={(event) => validateInputText(event, "text-only", setLastName, setIsLastNameError)}
-                                error={isLastNameError && errorMessages.get("inputTextOnly")}
+                                match={"text-only"}
+                                setText={setLastName}
+                                setIsError={setIsLastNameError}
+                                isError={isLastNameError}
+                                errorMessage={errorMessages.get("inputTextOnly")}
                             />
                             <DatePickerInput
                                 label="Date of birth"
@@ -246,21 +253,27 @@ function CreateEmployee(){
                                     <IconAdress/>
                                     Address
                                 </h2>
-                                <TextInput
-                                    label="Street"
-                                    placeholder="Your street"
+                                <InputTextCy 
+                                    label={"Street"}
+                                    isRequired
+                                    placeHolder={"Your street"}
                                     value={street}
-                                    required
-                                    onChange={(event) => validateInputText(event, "text-and-numbers", setStreet, setIsStreetError)}
-                                    error={isStreetError && errorMessages.get("inputTextNumbers")}
+                                    match={"text-and-numbers"}
+                                    setText={setStreet}
+                                    setIsError={setIsStreetError}
+                                    isError={isStreetError}
+                                    errorMessage={errorMessages.get("inputTextNumbers")}
                                 />
-                                <TextInput
-                                    label="City"
-                                    placeholder="Your city"
+                                <InputTextCy 
+                                    label={"City"}
+                                    isRequired
+                                    placeHolder={"Your city"}
                                     value={city}
-                                    required
-                                    onChange={(event) => validateInputText(event, "text-only", setCity, setIsCityError)}
-                                    error={isCityError && errorMessages.get("inputTextOnly")}
+                                    match={"text-only"}
+                                    setText={setCity}
+                                    setIsError={setIsCityError}
+                                    isError={isCityError}
+                                    errorMessage={errorMessages.get("inputTextOnly")}
                                 />
                                 <Select
                                     label="State"
@@ -273,13 +286,16 @@ function CreateEmployee(){
                                     onChange={(state) => validateInputSelect(state, setUsState, setIsStateError)}
                                     error={isStateError && errorMessages.get("inputSelect")}
                                 />
-                                <TextInput
-                                    label="Zip code"
-                                    placeholder="Your zip code"
-                                    required
+                                <InputTextCy 
+                                    label={"Zip code"}
+                                    isRequired
+                                    placeHolder={"Your zip code"}
                                     value={zipCode}
-                                    onChange={(event) => validateInputZipCode(event, setZipCode, setIsZipCodeError)}
-                                    error={isZipCodeError && errorMessages.get("inputZipCode")}
+                                    match={"zip-code"}
+                                    setText={setZipCode}
+                                    setIsError={setIsZipCodeError}
+                                    isError={isZipCodeError}
+                                    errorMessage={errorMessages.get("inputZipCode")}
                                 />
                             </InputsAddress>
                         </div>
