@@ -10,4 +10,5 @@ export const colors = {
     secondary2: "#4c4448",
     light1: "#f1eeef",
     light2: "#e0dcdd",
+    error: "#f54242",
 }
