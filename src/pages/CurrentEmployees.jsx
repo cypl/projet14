@@ -7,7 +7,7 @@ import { IconSearch } from "../utils/Icons"
 import { errorMessages } from "../utils/validationsForm"
 import { makeDateStringSortable } from "../utils/dates"
 import { dataTableStyles } from "../utils/dataTableStyles"
-import InputTextCy from "../components/InputTextCy"
+import InputTextCy from "../components/InputText"
 
 const HeadWithSearch = styled.div`
     background-color:${colors.light1};

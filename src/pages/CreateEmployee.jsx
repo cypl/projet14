@@ -13,7 +13,7 @@ import { getRandomValue, randomFirstNames, randomLastNames, randomBirthYears, ra
 import { useDateValidation, validateInputSelect, errorMessages } from "../utils/validationsForm"
 import { createDateEighteenYearsAgo, formatDateString } from "../utils/dates"
 import SuccessModalContent from "../layouts/SuccessModalContent"
-import InputTextCy from "../components/InputTextCy"
+import InputText from "../components/InputText"
 
 const HeadSection = styled.header`
     position:relative;
@@ -190,7 +190,7 @@ function CreateEmployee(){
                 <form>
                     <InputsWrapper>
                         <div className="inputs-col">
-                            <InputTextCy 
+                            <InputText 
                                 label={"First name"}
                                 isRequired
                                 placeHolder={"Your first name"}
@@ -201,7 +201,7 @@ function CreateEmployee(){
                                 isError={isFirstNameError}
                                 errorMessage={errorMessages.get("inputTextOnly")}
                             />
-                            <InputTextCy 
+                            <InputText 
                                 label={"Last name"}
                                 isRequired
                                 placeHolder={"Your last name"}
@@ -253,7 +253,7 @@ function CreateEmployee(){
                                     <IconAdress/>
                                     Address
                                 </h2>
-                                <InputTextCy 
+                                <InputText 
                                     label={"Street"}
                                     isRequired
                                     placeHolder={"Your street"}
@@ -264,7 +264,7 @@ function CreateEmployee(){
                                     isError={isStreetError}
                                     errorMessage={errorMessages.get("inputTextNumbers")}
                                 />
-                                <InputTextCy 
+                                <InputText
                                     label={"City"}
                                     isRequired
                                     placeHolder={"Your city"}
@@ -286,7 +286,7 @@ function CreateEmployee(){
                                     onChange={(state) => validateInputSelect(state, setUsState, setIsStateError)}
                                     error={isStateError && errorMessages.get("inputSelect")}
                                 />
-                                <InputTextCy 
+                                <InputText 
                                     label={"Zip code"}
                                     isRequired
                                     placeHolder={"Your zip code"}
