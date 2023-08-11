@@ -1,9 +1,18 @@
 import styled from 'styled-components'
 import { colors } from '../utils/colors'
 import PropTypes from 'prop-types'
-//import { validateInputText } from '../utils/validationsForm'
 
 
+/**
+ * Validates an input text based on specified matching criteria.
+ * Sets the content of the input to a state and updates an error state based on validation.
+ * 
+ * @param {Event} event - The event object, typically from an input's onChange event.
+ * @param {string} match - Matching criteria: can be one of "text-and-numbers", "text-only", "search" or "zip-code".
+ * @param {function} setText - Function to set the text content state.
+ * @param {function} setIsError - Function to set the error state: true indicates an error, false indicates valid input.
+ * 
+ */
 const validateInputText = (event, match, setText, setIsError) => {
     let content = event.currentTarget.value
     setText(content)
@@ -24,7 +33,7 @@ const validateInputText = (event, match, setText, setIsError) => {
         regex = regexZipCode
         !content.match(regex) || content.length === 0 ? setIsError(true) : setIsError(false)
     } else {
-        console.log("validateInputText() needs a correct 'match' parameter, it could be 'text-and-numbers', 'text-only' or 'search'.")
+        console.log("validateInputText() needs a correct 'match' parameter, it could be 'text-and-numbers', 'text-only', 'search' or 'zip-code'.")
     }
 }
 
