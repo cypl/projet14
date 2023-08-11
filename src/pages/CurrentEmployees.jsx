@@ -2,12 +2,12 @@ import { useState, useEffect } from "react"
 import styled from "styled-components"
 import DataTable from 'react-data-table-component'
 import { useSelector } from "react-redux"
-import { TextInput } from "@mantine/core"
 import { colors } from "../utils/colors"
 import { IconSearch } from "../utils/Icons"
-import { validateInputText, errorMessages } from "../utils/validationsForm"
+import { errorMessages } from "../utils/validationsForm"
 import { makeDateStringSortable } from "../utils/dates"
 import { dataTableStyles } from "../utils/dataTableStyles"
+import InputTextCy from "../components/InputTextCy"
 
 const HeadWithSearch = styled.div`
     background-color:${colors.light1};
@@ -187,12 +187,15 @@ function CurrentEmployees(){
             <section className="content_width">
                 <HeadWithSearch>
                     <h1 className="section-title"><span>Find</span> current employees.</h1>
-                    <TextInput
-                        label="Search for an employee"
-                        placeholder="Type anything (name, zip code…)"
+                    <InputTextCy 
+                        label={"Search for an employee"} 
+                        placeHolder={"Type anything (name, zip code…)"}
                         icon={<IconSearch />}
-                        onChange={(event) => validateInputText(event, "search", setSearchExpression, setIsSearchExpressionError)}
-                        error={isSearchExpressionError && errorMessages.get("inputTextSearch")}
+                        match={"search"}
+                        setText={setSearchExpression}
+                        setIsError={setIsSearchExpressionError}
+                        isError={isSearchExpressionError}
+                        errorMessage={errorMessages.get("inputTextSearch")}
                     />
                 </HeadWithSearch>
                 {dataTable &&
