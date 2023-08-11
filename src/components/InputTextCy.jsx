@@ -1,10 +1,34 @@
 import styled from 'styled-components'
 import { colors } from '../utils/colors'
 import PropTypes from 'prop-types'
-import { validateInputText } from '../utils/validationsForm'
+//import { validateInputText } from '../utils/validationsForm'
 
 
-function InputTextCy({ label, isRequired, placeHolder, icon, match, setText, setIsError, isError, errorMessage }){
+const validateInputText = (event, match, setText, setIsError) => {
+    let content = event.currentTarget.value
+    setText(content)
+    const regexText = /[^a-zA-ZÀ-ÿ\- ']/g // used to allow only letters, accented characters and -
+    const regexTextAndNumbers = /[^a-zA-ZÀ-ÿ\-0-9 ']/g // used to allow only letters, accented characters, numbers and -
+    const regexZipCode = /^[0-9]{5}(?:-[0-9]{4})?$/ // A valid US Zip Code format includes five digits and can optionally have a dash followed by four more digits (12345 or 12345-6789).
+    let regex
+    if(match === "text-and-numbers"){
+        regex = regexTextAndNumbers
+        content.match(regex) || content.length === 0 ? setIsError(true) : setIsError(false)
+    } else if(match === "text-only"){
+        regex = regexText
+        content.match(regex) || content.length === 0 ? setIsError(true) : setIsError(false)
+    } else if(match === "search"){
+        regex = regexTextAndNumbers
+        content.match(regex) ? setIsError(true) : setIsError(false)
+    } else if(match === "zip-code"){
+        regex = regexZipCode
+        !content.match(regex) || content.length === 0 ? setIsError(true) : setIsError(false)
+    } else {
+        console.log("validateInputText() needs a correct 'match' parameter, it could be 'text-and-numbers', 'text-only' or 'search'.")
+    }
+}
+
+function InputTextCy({ label, isRequired, placeHolder, value, icon, match, setText, setIsError, isError, errorMessage }){
     return(
         <InputWrapper>
             
@@ -22,6 +46,7 @@ function InputTextCy({ label, isRequired, placeHolder, icon, match, setText, set
                 }
                 <InputField 
                     type="text" 
+                    value={value}
                     placeholder={placeHolder.length > 0 && placeHolder} 
                     onChange={(event) => validateInputText(event, match, setText, setIsError)} 
                     className={`${isError ? "input-error" : ""} ${icon ? "input-icon" : ""}`}
@@ -40,8 +65,9 @@ InputTextCy.propTypes = {
     label: PropTypes.string,
     isRequired: PropTypes.bool,
     placeHolder: PropTypes.string,
+    value: PropTypes.string,
     icon: PropTypes.element,
-    match: PropTypes.oneOf(["text-and-numbers", "text-only", "search"]).isRequired,
+    match: PropTypes.oneOf(["text-and-numbers", "text-only", "search", "zip-code"]).isRequired,
     setText: PropTypes.func,
     setIsError: PropTypes.func,
     isError: PropTypes.bool,
@@ -105,6 +131,9 @@ const InputField = styled.input`
         border:1px solid ${colors.error};
         transition:0.1s border-color ease-in-out;
         color:${colors.error};
+        &::placeholder{
+            opacity:1;
+        }
     }
     &.input-icon{
         padding-left:2rem;
