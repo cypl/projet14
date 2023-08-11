@@ -1,39 +1,7 @@
 import { useState, useEffect } from 'react'
 import { isDifferenceGreaterThan18Years } from './dates'
 
-/**
- * Validates an input text based on specified matching criteria.
- * Sets the content of the input to a state and updates an error state based on validation.
- * 
- * @param {Event} event - The event object, typically from an input's onChange event.
- * @param {string} match - Matching criteria: can be one of "text-and-numbers", "text-only", or "search".
- * @param {function} setText - Function to set the text content state.
- * @param {function} setIsError - Function to set the error state: true indicates an error, false indicates valid input.
- *
- * @example
- * 
- * <input onChange={(event) => validateInputText(event, 'text-only', setTextValue, setInputError)} />
- * 
- */
-export const validateInputText = (event, match, setText, setIsError) => {
-    let content = event.currentTarget.value
-    setText(content)
-    const regexText = /[^a-zA-ZÀ-ÿ\- ']/g // used to allow only letters, accented characters and -
-    const regexTextAndNumbers = /[^a-zA-ZÀ-ÿ\-0-9 ']/g // used to allow only letters, accented characters, numbers and -
-    let regex
-    if(match === "text-and-numbers"){
-        regex = regexTextAndNumbers
-        content.match(regex) || content.length === 0 ? setIsError(true) : setIsError(false)
-    } else if(match === "text-only"){
-        regex = regexText
-        content.match(regex) || content.length === 0 ? setIsError(true) : setIsError(false)
-    } else if(match === "search"){
-        regex = regexTextAndNumbers
-        content.match(regex) ? setIsError(true) : setIsError(false)
-    } else {
-        console.log("validateInputText() needs a correct 'match' parameter, it could be 'text-and-numbers', 'text-only' or 'search'.")
-    }
-}
+
 
 /**
  * Validates a select input based on the selected option's value.
@@ -56,27 +24,6 @@ export const validateInputSelect = (option, setSelect, setIsError) => {
     option === null || option === undefined ? setIsError(true) : setIsError(false)
 }
 
-/**
- * Validates an input meant for a US Zip Code.
- * Updates the content state with the current value and sets an error state based on the Zip Code format.
- * 
- * A valid US Zip Code format includes five digits and can optionally have a dash followed by four more digits (12345 or 12345-6789).
- * 
- * @param {Event} event - The input event containing the current value of the Zip Code input field.
- * @param {function} setNumber - Function to set the input field content state.
- * @param {function} setIsError - Function to set the error state: true indicates an invalid Zip Code format, false indicates a valid format.
- *
- * @example
- * 
- * <input type="text" onChange={(event) => validateInputZipCode(event, setZipCode, setZipCodeError)} />
- * 
- */
-export const validateInputZipCode = (event, setNumber, setIsError) => {
-    let content = event.currentTarget.value
-    setNumber(content)
-    const regexZipCode = /^[0-9]{5}(?:-[0-9]{4})?$/
-    regexZipCode.test(content) ? setIsError(false) : setIsError(true)
-}
 
 /**
  * Custom hook for validating the difference between two dates (specifically for a date of birth and a start date).
