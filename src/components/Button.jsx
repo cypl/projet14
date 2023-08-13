@@ -65,14 +65,14 @@ const ButtonComponent = styled.button`
     }
 `
 
-function ButtonCy({text, onClick, outline, deactivate, icon}){
+function Button({text, onClick, outline, deactivate, icon, className}){
 
     function preventClick(event){
         event.preventDefault()
     }
 
     return(
-        <ButtonComponent onClick={!deactivate ? onClick : preventClick} className={`${outline && "outline"} ${icon && "button-icon"} ${deactivate && "button-deactivate"}`}>
+        <ButtonComponent onClick={!deactivate ? onClick : preventClick} className={`${outline && "outline"} ${icon && "button-icon"} ${deactivate && "button-deactivate"} ${className && className}`}>
             {icon &&
                 <span className="svg-wrapper">
                     {icon}
@@ -83,12 +83,13 @@ function ButtonCy({text, onClick, outline, deactivate, icon}){
     )
 }
 
-export default ButtonCy
+export default Button
 
-ButtonCy.propTypes = {
+Button.propTypes = {
     text: PropTypes.string.isRequired,
     onClick: PropTypes.func,
     outline: PropTypes.bool,
     deactivate: PropTypes.bool,
     icon: PropTypes.element,
+    className: PropTypes.string,
 }
