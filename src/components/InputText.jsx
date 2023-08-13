@@ -37,12 +37,19 @@ const validateInputText = (event, match, setText, setIsError) => {
     }
 }
 
+/**
+ * Displays a text input component.
+ * @returns {JSX.Element} - The JSX markup for a InputText component.
+ */
 function InputText({ label, isRequired, placeHolder, value, icon, match, setText, setIsError, isError, errorMessage }){
+    
+    const inputId = label ? `input-${label.replace(/[^a-zA-Z0-9]/g, '')}` : undefined
+
     return(
         <InputWrapper>
             
             {label && label.length > 0 &&
-                <InputLabel>
+                <InputLabel htmlFor={inputId}>
                     {label}{isRequired && <span className="is-required">*</span>}
                 </InputLabel>
             }
@@ -55,6 +62,9 @@ function InputText({ label, isRequired, placeHolder, value, icon, match, setText
                 }
                 <InputField 
                     type="text" 
+                    id={inputId}
+                    aria-required={isRequired ? "true" : "false"}
+                    aria-invalid={isError ? "true" : "false"}
                     value={value}
                     placeholder={placeHolder.length > 0 && placeHolder} 
                     onChange={(event) => validateInputText(event, match, setText, setIsError)} 
