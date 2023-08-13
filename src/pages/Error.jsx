@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom"
 import styled from 'styled-components'
-import { Button } from "@mantine/core"
+import Button from "../components/Button"
 
 const SectionError = styled.section`
     & .section-title{
@@ -27,7 +27,11 @@ function Error(){
                 <h1 className="section-title">Error <span>404</span></h1>
                 <p>Sorry, this page doesn’t exist.</p>
                 <BtnWrapper>
-                    <Button><NavLink to="/">Go to homepage</NavLink></Button>
+                    <NavLink to="/">
+                        <Button
+                            text="Go to homepage"
+                        />
+                    </NavLink>
                 </BtnWrapper>
             </SectionError>
         </main>

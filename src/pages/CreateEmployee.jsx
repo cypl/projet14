@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react"
 import styled from "styled-components"
 import { useDispatch } from "react-redux"
 import { addEmployee } from "../store/dataSlice"
-import { Select, Button, Tooltip } from '@mantine/core'
+import { Select } from '@mantine/core'
 import { DatePickerInput } from "@mantine/dates"
 import { ModalContext } from "react-modal-classic"
 import { colors } from "../utils/colors"
@@ -14,6 +14,7 @@ import { useDateValidation, validateInputSelect, errorMessages } from "../utils/
 import { createDateEighteenYearsAgo, formatDateString } from "../utils/dates"
 import SuccessModalContent from "../layouts/SuccessModalContent"
 import InputText from "../components/InputText"
+import Button from "../components/Button"
 //
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -188,7 +189,12 @@ function CreateEmployee(){
             <section className="content_width">
                 <HeadSection>
                     <h1 className="section-title"><span>Create</span> an employee.</h1>
-                    <Btn onClick={fillTheForm} variant="outline" leftIcon={<IconMagic/>}>Fill the form</Btn>
+                    <Btn 
+                        text="Fill the form"
+                        onClick={fillTheForm}
+                        outline
+                        icon={<IconMagic/>}
+                    />
                 </HeadSection>
                 <form>
                     <InputsWrapper>
@@ -315,17 +321,9 @@ function CreateEmployee(){
                     </InputsWrapper>
 
                     {isFormValid ? 
-                        <Button onClick={handleSubmit}>Save</Button>
+                        <Button text="Save" onClick={handleSubmit}/>
                     : 
-                        <Tooltip label="Fill out the form before saving.">
-                            <Button
-                                data-disabled
-                                sx={{ '&[data-disabled]': { pointerEvents: 'all' } }}
-                                onClick={(event) => event.preventDefault()}
-                                >
-                                Save
-                            </Button>
-                        </Tooltip>
+                        <Button text="Save" deactivate/>
                     }
                                         
                 </form>
