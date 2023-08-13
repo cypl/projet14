@@ -1,9 +1,9 @@
 import { useContext } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { Button } from '@mantine/core'
 import styled from 'styled-components'
 import { ModalContext } from "react-modal-classic"
+import Button from "../components/Button"
 import { colors } from '../utils/colors'
 
 const ContentModal = styled.div`
@@ -42,8 +42,17 @@ function SuccessModalContent(){
         <ContentModal>
             <p className="modal-content-newemployee">New employee added:<br/>
             <strong>{reverseCurrentEmployees[0].firstName} {reverseCurrentEmployees[0].lastName}</strong></p>
-            <Button variant={"outline"} onClick={closeModal} className="modal-content-button">Add a new one</Button>
-            <Button onClick={checkTheList} className="modal-content-button">Check the list</Button>
+            <Button 
+                text="Add a new one"
+                outline
+                onClick={closeModal}
+                className="modal-content-button"
+            />
+            <Button 
+                text="Check the list"
+                onClick={checkTheList}
+                className="modal-content-button"
+            />
         </ContentModal>
     )
 }
