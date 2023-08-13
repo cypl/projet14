@@ -14,6 +14,9 @@ import { useDateValidation, validateInputSelect, errorMessages } from "../utils/
 import { createDateEighteenYearsAgo, formatDateString } from "../utils/dates"
 import SuccessModalContent from "../layouts/SuccessModalContent"
 import InputText from "../components/InputText"
+//
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 const HeadSection = styled.header`
     position:relative;
@@ -224,6 +227,16 @@ function CreateEmployee(){
                                 value={dateOfBirth}
                                 onChange={(value) => updateDate(value, "birth")}
                                 error={isDatesError && errorMessages.get("dateOfBirth")}
+                            />
+                            <DatePicker 
+                                selected={dateOfBirth}
+                                name="Date of birth"
+                                placeholderText="Pick date"
+                                dateFormat="MM-dd-yyyy"
+                                onChange={(value) => updateDate(value, "birth")}
+                                maxDate={createDateEighteenYearsAgo()}
+                                showYearDropdown
+                                scrollableYearDropdown
                             />
                             <DatePickerInput
                                 label="Start date"
