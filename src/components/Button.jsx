@@ -39,7 +39,7 @@ const ButtonComponent = styled.button`
         color:${colors.primary};
         transition:0.1s background-color ease-in-out;
         &:hover{
-            background-color:${colors.primary0};
+            background-color:${colors.primary1};
             transition:0.1s background-color ease-in-out;
         }
         &.button-deactivate{
