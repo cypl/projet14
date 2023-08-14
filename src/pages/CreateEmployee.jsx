@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { useDispatch } from "react-redux"
 import { addEmployee } from "../store/dataSlice"
 import { Select } from '@mantine/core'
-import { DatePickerInput } from "@mantine/dates"
 import { ModalContext } from "react-modal-classic"
 import { colors } from "../utils/colors"
 import { IconCalendar, IconMagic, IconAdress } from "../utils/Icons"
@@ -13,11 +12,10 @@ import { getRandomValue, randomFirstNames, randomLastNames, randomBirthYears, ra
 import { useDateValidation, validateInputSelect, errorMessages } from "../utils/validationsForm"
 import { createDateEighteenYearsAgo, formatDateString } from "../utils/dates"
 import SuccessModalContent from "../layouts/SuccessModalContent"
-import InputText from "../components/InputText"
 import Button from "../components/Button"
-//
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import InputFieldText from "../components/InputFieldText"
+import { validateInputText } from "../utils/validationsForm"
+import InputFieldDate from "../components/InputFieldDate"
 
 const HeadSection = styled.header`
     position:relative;
@@ -199,62 +197,46 @@ function CreateEmployee(){
                 <form>
                     <InputsWrapper>
                         <div className="inputs-col">
-                            <InputText 
+                            <InputFieldText
                                 label={"First name"}
                                 isRequired
                                 placeHolder={"Your first name"}
                                 value={firstName}
-                                match={"text-only"}
-                                setText={setFirstName}
-                                setIsError={setIsFirstNameError}
                                 isError={isFirstNameError}
                                 errorMessage={errorMessages.get("inputTextOnly")}
+                                onChange={(event) => validateInputText(event, "text-only", setFirstName, setIsFirstNameError)}
                             />
-                            <InputText 
+                            <InputFieldText
                                 label={"Last name"}
                                 isRequired
                                 placeHolder={"Your last name"}
                                 value={lastName}
-                                match={"text-only"}
-                                setText={setLastName}
-                                setIsError={setIsLastNameError}
                                 isError={isLastNameError}
                                 errorMessage={errorMessages.get("inputTextOnly")}
+                                onChange={(event) => validateInputText(event, "text-only", setLastName, setIsLastNameError)}
                             />
-                            <DatePickerInput
-                                label="Date of birth"
-                                description="Employee must have 18 years old at start date."
-                                placeholder="Pick date"
-                                valueFormat="MM-DD-YYYY"
-                                required
-                                hideOutsideDates
-                                icon={<IconCalendar/>}
-                                maxDate={createDateEighteenYearsAgo()}
+                            <InputFieldDate 
+                                label={"Date of birth"}
+                                description={"Employee must have 18 years old at start date."}
+                                isRequired
+                                placeHolder={"Pick a date"}
                                 value={dateOfBirth}
-                                onChange={(value) => updateDate(value, "birth")}
-                                error={isDatesError && errorMessages.get("dateOfBirth")}
-                            />
-                            <DatePicker 
-                                selected={dateOfBirth}
-                                name="Date of birth"
-                                placeholderText="Pick date"
-                                dateFormat="MM-dd-yyyy"
+                                icon={<IconCalendar/>}
+                                isError={isDatesError}
+                                errorMessage={errorMessages.get("dateOfBirth")}
                                 onChange={(value) => updateDate(value, "birth")}
                                 maxDate={createDateEighteenYearsAgo()}
-                                showYearDropdown
-                                scrollableYearDropdown
                             />
-                            <DatePickerInput
-                                label="Start date"
-                                placeholder="Pick date"
-                                valueFormat="MM-DD-YYYY"
-                                required
-                                hideOutsideDates
-                                icon={<IconCalendar/>}
-                                maxDate={new Date()} 
+                            <InputFieldDate 
+                                label={"Start date"}
+                                isRequired
+                                placeHolder={"Pick a date"}
                                 value={startDate}
+                                icon={<IconCalendar/>}
+                                isError={isDatesError}
+                                errorMessage={errorMessages.get("startDate")}
                                 onChange={(value) => updateDate(value, "start")}
-                                error={isDatesError && errorMessages.get("startDate")}
+                                maxDate={new Date()}
                             />
                             <Select
                                 label="Department"
@@ -272,27 +254,23 @@ function CreateEmployee(){
                                     <IconAdress/>
                                     Address
                                 </h2>
-                                <InputText 
+                                <InputFieldText
                                     label={"Street"}
                                     isRequired
                                     placeHolder={"Your street"}
                                     value={street}
-                                    match={"text-and-numbers"}
-                                    setText={setStreet}
-                                    setIsError={setIsStreetError}
                                     isError={isStreetError}
                                     errorMessage={errorMessages.get("inputTextNumbers")}
+                                    onChange={(event) => validateInputText(event, "text-and-numbers", setStreet, setIsStreetError)}
                                 />
-                                <InputText
+                                <InputFieldText
                                     label={"City"}
                                     isRequired
                                     placeHolder={"Your city"}
                                     value={city}
-                                    match={"text-only"}
-                                    setText={setCity}
-                                    setIsError={setIsCityError}
                                     isError={isCityError}
                                     errorMessage={errorMessages.get("inputTextOnly")}
+                                    onChange={(event) => validateInputText(event, "text-only", setCity, setIsCityError)}
                                 />
                                 <Select
                                     label="State"
@@ -305,16 +283,14 @@ function CreateEmployee(){
                                     onChange={(state) => validateInputSelect(state, setUsState, setIsStateError)}
                                     error={isStateError && errorMessages.get("inputSelect")}
                                 />
-                                <InputText 
+                                <InputFieldText
                                     label={"Zip code"}
                                     isRequired
                                     placeHolder={"Your zip code"}
                                     value={zipCode}
-                                    match={"zip-code"}
-                                    setText={setZipCode}
-                                    setIsError={setIsZipCodeError}
                                     isError={isZipCodeError}
                                     errorMessage={errorMessages.get("inputZipCode")}
+                                    onChange={(event) => validateInputText(event, "zip-code", setZipCode, setIsZipCodeError)}
                                 />
                             </InputsAddress>
                         </div>
