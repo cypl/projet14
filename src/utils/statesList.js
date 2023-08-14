@@ -240,4 +240,7 @@ export const statesList = [
 /**
  * An array of the different US states names.
  */
-export const statesNames = statesList.map((s) => s.name)
+export const statesNames = statesList.map(s => ({
+        value: s.name,
+        label: s.name
+}))
