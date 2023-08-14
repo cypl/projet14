@@ -1,5 +1,6 @@
 import { formatDateString } from "./dates"
 import { departmentsList } from "./departmentsList"
+import { statesNames } from "./statesList"
 
 /**
  * Retrieve a random item from an array.
@@ -52,11 +53,6 @@ export const randomStreets = ["1234 Elm St", "5678 Oak Ave", "9012 Maple Ln", "3
 export const randomCities = ["Atlanta", "Austin", "Baltimore", "Birmingham", "Boston", "Charlotte", "Chicago", "Cincinnati", "Cleveland", "Columbus", "Dallas", "Denver", "Detroit", "El Paso", "Fort Worth", "Houston", "Indianapolis", "Jacksonville", "Kansas City", "Las Vegas", "Los Angeles", "Louisville", "Memphis", "Miami", "Milwaukee", "Minneapolis", "Nashville", "New-Orleans", "New York", "Oklahoma City", "Omaha", "Orlando", "Philadelphia", "Phoenix", "Pittsburgh", "Portland", "Raleigh", "Richmond", "Sacramento", "Salt Lake City", "San Antonio", "San Diego", "San Francisco", "San Jose", "Seattle", "St. Louis", "Tampa", "Tucson", "Virginia Beach", "Washington"]
 
 /**
- * Array of different US states.
- */
-export const randomStates = ["Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District Of Columbia", "Federated States Of Micronesia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Marshall Islands", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio", "Oklahoma", "Oregon", "Palau", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virgin Islands", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]
-
-/**
  * Array of possible US zip codes.
  */
 export const randomZipCodes = ["90210", "60611", "77002", "10001", "33139", "94102", "90046", "30303", "75201", "98101", "32801", "19103", "60610", "20001", "90291", "33132", "94110", "90069", "75204", "10019", "60654", "77005", "33130", "94103" , "90036", "32803", "19102", "98121", "75219", "20002", "33131", "90028", "60607", "77019", "32806", "10036", "75206" , "19107" , "90045", "98109" , "20009" , "77006", "60661", "94114", "32804", "19106", "10013", "75230", "90027"]
@@ -91,7 +87,7 @@ export function createEmployeeObject(){
         department: getRandomValue(departmentsList),
         street: getRandomValue(randomStreets),
         city: getRandomValue(randomCities),
-        state: getRandomValue(randomStates),
+        state: getRandomValue(statesNames),
         zipCode: getRandomValue(randomZipCodes),
     }
 }
