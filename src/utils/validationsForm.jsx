@@ -2,6 +2,40 @@ import { useState, useEffect } from 'react'
 import { isDifferenceGreaterThan18Years } from './dates'
 
 
+/**
+ * Validates an input text based on specified matching criteria.
+ * Sets the content of the input to a state and updates an error state based on validation.
+ * 
+ * @param {Event} event - The event object, typically from an input's onChange event.
+ * @param {string} match - Matching criteria: can be one of "text-and-numbers", "text-only", "search" or "zip-code".
+ * @param {function} setText - Function to set the text content state.
+ * @param {function} setIsError - Function to set the error state: true indicates an error, false indicates valid input.
+ * 
+ */
+export const validateInputText = (event, match, setText, setIsError) => {
+    let content = event.currentTarget.value
+    setText(content)
+    const regexText = /[^a-zA-ZÀ-ÿ\- ']/g // used to allow only letters, accented characters and -
+    const regexTextAndNumbers = /[^a-zA-ZÀ-ÿ\-0-9 ']/g // used to allow only letters, accented characters, numbers and -
+    const regexZipCode = /^[0-9]{5}(?:-[0-9]{4})?$/ // A valid US Zip Code format includes five digits and can optionally have a dash followed by four more digits (12345 or 12345-6789).
+    let regex
+    if(match === "text-and-numbers"){
+        regex = regexTextAndNumbers
+        content.match(regex) || content.length === 0 ? setIsError(true) : setIsError(false)
+    } else if(match === "text-only"){
+        regex = regexText
+        content.match(regex) || content.length === 0 ? setIsError(true) : setIsError(false)
+    } else if(match === "search"){
+        regex = regexTextAndNumbers
+        content.match(regex) ? setIsError(true) : setIsError(false)
+    } else if(match === "zip-code"){
+        regex = regexZipCode
+        !content.match(regex) || content.length === 0 ? setIsError(true) : setIsError(false)
+    } else {
+        console.log("validateInputText() needs a correct 'match' parameter, it could be 'text-and-numbers', 'text-only', 'search' or 'zip-code'.")
+    }
+}
+
 
 /**
  * Validates a select input based on the selected option's value.
