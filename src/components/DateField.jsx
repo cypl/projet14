@@ -35,8 +35,14 @@ DateField.propTypes = {
     onChange: PropTypes.func,
 }
 const InputFieldWrapper = styled.div`
+    & .react-datepicker-popper{
+        z-index:2;
+    }
     & .react-datepicker-wrapper{
         width:100%;
+    }
+    & .react-datepicker__triangle{
+        display:none;
     }
 `
 const InputField = styled(DatePicker)`
