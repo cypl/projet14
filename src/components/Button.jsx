@@ -67,12 +67,8 @@ const ButtonComponent = styled.button`
 
 function Button({text, onClick, outline, deactivate, icon, className}){
 
-    function preventClick(event){
-        event.preventDefault()
-    }
-
     return(
-        <ButtonComponent onClick={!deactivate ? onClick : preventClick} className={`${outline && "outline"} ${icon && "button-icon"} ${deactivate && "button-deactivate"} ${className && className}`}>
+        <ButtonComponent onClick={!deactivate ? onClick : (event) => event.preventDefault()} className={`${outline && "outline"} ${icon && "button-icon"} ${deactivate && "button-deactivate"} ${className && className}`}>
             {icon &&
                 <span className="svg-wrapper">
                     {icon}
