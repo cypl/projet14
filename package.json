@@ -10,11 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mantine/core": "^6.0.15",
-    "@mantine/dates": "^6.0.15",
-    "@mantine/hooks": "^6.0.15",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "dayjs": "^1.11.8",
@@ -25,6 +20,7 @@
     "react-modal-classic": "^0.0.32",
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.13.0",
+    "react-select": "^5.7.4",
     "styled-components": "^5.3.11"
   },
   "devDependencies": {
