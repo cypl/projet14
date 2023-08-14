@@ -7,7 +7,8 @@ import { IconSearch } from "../utils/Icons"
 import { errorMessages } from "../utils/validationsForm"
 import { makeDateStringSortable } from "../utils/dates"
 import { dataTableStyles } from "../utils/dataTableStyles"
-import InputTextCy from "../components/InputText"
+import InputFieldText from "../components/InputFieldText"
+import { validateInputText } from "../utils/validationsForm"
 
 const HeadWithSearch = styled.div`
     background-color:${colors.light1};
@@ -187,15 +188,13 @@ function CurrentEmployees(){
             <section className="content_width">
                 <HeadWithSearch>
                     <h1 className="section-title"><span>Find</span> current employees.</h1>
-                    <InputTextCy 
-                        label={"Search for an employee"} 
+                    <InputFieldText
+                        label={"Search for an employee"}
                         placeHolder={"Type anything (name, zip code…)"}
                         icon={<IconSearch />}
-                        match={"search"}
-                        setText={setSearchExpression}
-                        setIsError={setIsSearchExpressionError}
                         isError={isSearchExpressionError}
                         errorMessage={errorMessages.get("inputTextSearch")}
+                        onChange={(event) => validateInputText(event, "search", setSearchExpression, setIsSearchExpressionError)}
                     />
                 </HeadWithSearch>
                 {dataTable &&
