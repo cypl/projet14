@@ -1,22 +1,49 @@
 import { NavLink } from 'react-router-dom'
-import { Menu, Button } from '@mantine/core'
-import { IconTable, IconUser } from '../utils/Icons'
+import styled from 'styled-components'
+import { colors } from '../utils/colors'
 
+const Menu = styled.ul`
+    line-height:1;
+    display:flex;
+    align-items:center;
+    font-size:0.875rem;
+`
+const MenuItem = styled.li`
+    line-height:1;
+    margin: 0 0.4rem;
+    &:last-child{
+        margin-right:0;
+    }
+    & a{
+        padding:5px 0;
+        color:${colors.secondary};
+        border-bottom:transparent;
+        transition:0.1s color ease-in-out, 0.1s border-color ease-in-out;
+        &:hover{
+            color:${colors.primary};
+            border-bottom:1px solid ${colors.primary1};
+            transition:0.1s color ease-in-out, 0.1s border-color ease-in-out;
+        }
+    }
+    & a.active{
+        color:${colors.primary};
+        border-bottom:1px solid ${colors.primary1};
+        transition:0.1s color ease-in-out, 0.1s border-color ease-in-out;
+    }
+`
 /**
  * Displays the navigation menu of the application.
  * @returns {JSX.Element} - The JSX markup for the NavigationMenu component.
  */
 function NavigationMenu(){
     return(
-        <Menu shadow="md" width={150} withArrow={true}>
-            <Menu.Target>
-                <Button>Menu</Button>
-            </Menu.Target>
-            <Menu.Dropdown>
-                <Menu.Label>HR Employees</Menu.Label>
-                <Menu.Item component={NavLink} to="/create" icon={<IconUser/>}>Add new</Menu.Item>
-                <Menu.Item component={NavLink} to="/" icon={<IconTable/>}>Current list</Menu.Item>
-            </Menu.Dropdown>
+        <Menu>
+            <MenuItem>
+                <NavLink to="/create">Add new</NavLink>
+            </MenuItem>
+            <MenuItem>
+                <NavLink to="/">Current list</NavLink>
+            </MenuItem>
         </Menu>
     )
 }
