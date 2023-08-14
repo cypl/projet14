@@ -2,13 +2,12 @@ import { useState, useEffect, useContext } from "react"
 import styled from "styled-components"
 import { useDispatch } from "react-redux"
 import { addEmployee } from "../store/dataSlice"
-import { Select } from '@mantine/core'
 import { ModalContext } from "react-modal-classic"
 import { colors } from "../utils/colors"
-import { IconCalendar, IconMagic, IconAdress } from "../utils/Icons"
+import { IconCalendar, IconMagic, IconAdress, IconUser } from "../utils/Icons"
 import { statesNames } from "../utils/statesList"
 import { departmentsList } from "../utils/departmentsList"
-import { getRandomValue, randomFirstNames, randomLastNames, randomBirthYears, randomStartYears, randomMonths, randomDays, randomStreets, randomCities, randomStates, randomZipCodes } from "../utils/randomData"
+import { getRandomValue, randomFirstNames, randomLastNames, randomBirthYears, randomStartYears, randomMonths, randomDays, randomStreets, randomCities, randomZipCodes } from "../utils/randomData"
 import { useDateValidation, validateInputSelect, errorMessages } from "../utils/validationsForm"
 import { createDateEighteenYearsAgo, formatDateString } from "../utils/dates"
 import SuccessModalContent from "../layouts/SuccessModalContent"
@@ -16,6 +15,8 @@ import Button from "../components/Button"
 import InputFieldText from "../components/InputFieldText"
 import { validateInputText } from "../utils/validationsForm"
 import InputFieldDate from "../components/InputFieldDate"
+import InputFieldSelect from "../components/InputFieldSelect"
+
 
 const HeadSection = styled.header`
     position:relative;
@@ -138,7 +139,7 @@ function CreateEmployee(){
         setIsStreetError(false)
         setCity(getRandomValue(randomCities))
         setIsCityError(false)
-        setUsState(getRandomValue(randomStates))
+        setUsState(getRandomValue(statesNames))
         setIsStateError(false)
         setZipCode(getRandomValue(randomZipCodes))
         setIsZipCodeError(false)
@@ -171,10 +172,10 @@ function CreateEmployee(){
             lastName,
             dateOfBirth: formatDateString(dateOfBirth),
             startDate: formatDateString(startDate),
-            department,
+            department: department.value,
             street,
             city,
-            state,
+            state: state.value,
             zipCode,
         }
         dispatch(addEmployee(newEmployee))
@@ -202,6 +203,7 @@ function CreateEmployee(){
                                 isRequired
                                 placeHolder={"Your first name"}
                                 value={firstName}
+                                icon={<IconUser/>}
                                 isError={isFirstNameError}
                                 errorMessage={errorMessages.get("inputTextOnly")}
                                 onChange={(event) => validateInputText(event, "text-only", setFirstName, setIsFirstNameError)}
@@ -211,6 +213,7 @@ function CreateEmployee(){
                                 isRequired
                                 placeHolder={"Your last name"}
                                 value={lastName}
+                                icon={<IconUser/>}
                                 isError={isLastNameError}
                                 errorMessage={errorMessages.get("inputTextOnly")}
                                 onChange={(event) => validateInputText(event, "text-only", setLastName, setIsLastNameError)}
@@ -238,14 +241,16 @@ function CreateEmployee(){
                                 onChange={(value) => updateDate(value, "start")}
                                 maxDate={new Date()}
                             />
-                            <Select
-                                label="Department"
-                                placeholder="Your department"
-                                data={departmentsList}
-                                required
+                            <InputFieldSelect
+                                label={"Department"}
+                                isRequired
+                                placeHolder={"Your department"}
                                 value={department}
+                                icon={<IconUser/>}
+                                isError={isStateError}
+                                errorMessage={errorMessages.get("inputSelect")}
                                 onChange={(department) => validateInputSelect(department, setDepartment, setIsDepartmentError)}
-                                error={isDepartmentError && errorMessages.get("inputSelect")}
+                                optionsSelect={departmentsList}
                             />
                         </div>
                         <div className="inputs-col input-col-address">
@@ -272,7 +277,7 @@ function CreateEmployee(){
                                     errorMessage={errorMessages.get("inputTextOnly")}
                                     onChange={(event) => validateInputText(event, "text-only", setCity, setIsCityError)}
                                 />
-                                <Select
+                                {/* <Select
                                     label="State"
                                     placeholder="Your state"
                                     searchable
@@ -282,6 +287,17 @@ function CreateEmployee(){
                                     value={state}
                                     onChange={(state) => validateInputSelect(state, setUsState, setIsStateError)}
                                     error={isStateError && errorMessages.get("inputSelect")}
+                                /> */}
+                                <InputFieldSelect
+                                    label={"State"}
+                                    isRequired
+                                    placeHolder={"Your state"}
+                                    value={state}
+                                    icon={<IconUser/>}
+                                    isError={isStateError}
+                                    errorMessage={errorMessages.get("inputSelect")}
+                                    onChange={(state) => validateInputSelect(state, setUsState, setIsStateError)}
+                                    optionsSelect={statesNames}
                                 />
                                 <InputFieldText
                                     label={"Zip code"}
