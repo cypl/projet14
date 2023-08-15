@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ModalProvider } from "react-modal-classic"
 import Header from '../layouts/Header'
 import Footer from '../layouts/Footer'
+import Loader from '../pages/Loader'
 
 // Charge page components using lazy
 const CurrentEmployees = lazy(() => import('../pages/CurrentEmployees'))
@@ -23,7 +24,7 @@ function Router() {
         <BrowserRouter>
             <ModalProvider>
                 <Header />
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<Loader />}>
                     <Routes>
                         <Route path="/" element={<CurrentEmployees />} />
                         <Route path="/create" element={<CreateEmployee />} />
