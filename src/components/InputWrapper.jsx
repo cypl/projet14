@@ -84,7 +84,7 @@ const Description = styled.p`
     font-size:0.75rem;
     line-height:1;
     padding:0.1rem 0 0.4rem 0;
-    color:${colors.secondary};
+    color:${colors.secondary2};
 `
 const ErrorMessage = styled.p`
     font-size:0.75rem;
