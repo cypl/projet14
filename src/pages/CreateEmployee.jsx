@@ -27,12 +27,6 @@ const HeadSection = styled.header`
         padding-bottom:20px;
     }
 `
-const Btn = styled(Button)`
-    margin-top:8px;
-    @media (max-width: 640px) {
-        margin-top:0px;
-    }
-`
 const InputsWrapper = styled.div`
     display:flex;
     flex-wrap:wrap;
@@ -188,7 +182,7 @@ function CreateEmployee(){
             <section className="content_width">
                 <HeadSection>
                     <h1 className="section-title"><span>Create</span> an employee.</h1>
-                    <Btn 
+                    <Button 
                         text="Fill the form"
                         onClick={fillTheForm}
                         outline
