@@ -27,11 +27,11 @@ const ButtonComponent = styled.button`
     &.button-deactivate{
         background-color:${colors.light1};
         border:0.0625rem solid ${colors.light1};
-        color:${colors.secondary};
+        color:${colors.secondary2};
         cursor:not-allowed;
         &:hover{
             background-color:${colors.light1};
-            color:${colors.secondary};
+            color:${colors.secondary2};
         }
     }
     &.outline{
@@ -44,8 +44,8 @@ const ButtonComponent = styled.button`
         }
         &.button-deactivate{
             background-color:${colors.light1};
-            border:0.0625rem solid ${colors.primary};
-            color:${colors.secondary};
+            border:0.0625rem solid ${colors.secondary1};
+            color:${colors.secondary2};
             cursor:not-allowed;
             &:hover{
                 background-color:${colors.light1};
