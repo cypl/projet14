@@ -16,17 +16,17 @@ const MenuItem = styled.li`
     }
     & a{
         padding:5px 0;
-        color:${colors.secondary};
+        color:${colors.secondary2};
         border-bottom:transparent;
         transition:0.1s color ease-in-out, 0.1s border-color ease-in-out;
         &:hover{
-            color:${colors.primary};
+            color:${colors.primary2};
             border-bottom:1px solid ${colors.primary1};
             transition:0.1s color ease-in-out, 0.1s border-color ease-in-out;
         }
     }
     & a.active{
-        color:${colors.primary};
+        color:${colors.primary2};
         border-bottom:1px solid ${colors.primary1};
         transition:0.1s color ease-in-out, 0.1s border-color ease-in-out;
     }
