@@ -53,7 +53,7 @@ const customStyles = (icon) => ({
     }),
     option: (provided, state) => ({
         ...provided,
-        backgroundColor: state.isSelected ? `${colors.primary}` : provided.backgroundColor,
+        backgroundColor: state.isSelected ? `${colors.primary}` : state.isFocused ? `${colors.primary1}` : provided.backgroundColor,
         color: state.isSelected ? `#fff` : `${colors.secondary2}`,
         '&:hover': {
             backgroundColor: state.isSelected ? `${colors.primary}` : `${colors.primary1}`,
