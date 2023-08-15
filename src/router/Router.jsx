@@ -1,10 +1,13 @@
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ModalProvider } from "react-modal-classic"
 import Header from '../layouts/Header'
 import Footer from '../layouts/Footer'
-import CurrentEmployees from '../pages/CurrentEmployees'
-import CreateEmployee from '../pages/CreateEmployee'
-import Error from '../pages/Error'
+
+// Charge page components using lazy
+const CurrentEmployees = lazy(() => import('../pages/CurrentEmployees'))
+const CreateEmployee = lazy(() => import('../pages/CreateEmployee'))
+const Error = lazy(() => import('../pages/Error'))
 
 /**
  * Defines the main routing structure for the application.
@@ -15,20 +18,22 @@ import Error from '../pages/Error'
  * 
  * @returns {JSX.Element} - The JSX markup for the Router component.
  */
-function Router(){
+function Router() {
     return (
         <BrowserRouter>
             <ModalProvider>
                 <Header />
-                <Routes>
-                    <Route path="/" element={<CurrentEmployees />} />
-                    <Route path="/create" element={<CreateEmployee />} />
-                    <Route path="*" element={<Error />} />
-                </Routes>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Routes>
+                        <Route path="/" element={<CurrentEmployees />} />
+                        <Route path="/create" element={<CreateEmployee />} />
+                        <Route path="*" element={<Error />} />
+                    </Routes>
+                </Suspense>
                 <Footer />
             </ModalProvider>
         </BrowserRouter>
-    )
+    );
 }
 
 export default Router
