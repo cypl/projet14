@@ -240,7 +240,6 @@ function CreateEmployee(){
                                 isRequired
                                 placeHolder={"Your department"}
                                 value={department}
-                                icon={<IconUser/>}
                                 isError={isStateError}
                                 errorMessage={errorMessages.get("inputSelect")}
                                 onChange={(department) => validateInputSelect(department, setDepartment, setIsDepartmentError)}
@@ -276,7 +275,7 @@ function CreateEmployee(){
                                     isRequired
                                     placeHolder={"Your state"}
                                     value={state}
-                                    icon={<IconUser/>}
+                                    icon={<IconAdress/>}
                                     isError={isStateError}
                                     errorMessage={errorMessages.get("inputSelect")}
                                     onChange={(state) => validateInputSelect(state, setUsState, setIsStateError)}
