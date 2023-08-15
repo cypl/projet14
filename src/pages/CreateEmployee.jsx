@@ -147,7 +147,7 @@ function CreateEmployee(){
         setDateOfBirth(null)
         setStartDate(null)
         setDatesError(false)
-        setDepartment("")
+        setDepartment(null)
         setIsDepartmentError()
         setStreet("")
         setIsStreetError()
@@ -271,17 +271,6 @@ function CreateEmployee(){
                                     errorMessage={errorMessages.get("inputTextOnly")}
                                     onChange={(event) => validateInputText(event, "text-only", setCity, setIsCityError)}
                                 />
-                                {/* <Select
-                                    label="State"
-                                    placeholder="Your state"
-                                    searchable
-                                    required
-                                    nothingFound="No options"
-                                    data={statesNames}
-                                    value={state}
-                                    onChange={(state) => validateInputSelect(state, setUsState, setIsStateError)}
-                                    error={isStateError && errorMessages.get("inputSelect")}
-                                /> */}
                                 <InputFieldSelect
                                     label={"State"}
                                     isRequired
