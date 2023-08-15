@@ -42,6 +42,7 @@ const customStyles = (icon) => ({
         },
         boxShadow: 'none',
         borderRadius: '4px',
+        minHeight: '40px',
     }),
     menu: (provided) => ({
         ...provided,
