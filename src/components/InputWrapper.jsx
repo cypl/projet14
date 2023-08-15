@@ -36,7 +36,7 @@ InputWrapper.propTypes = {
     inputId: PropTypes.string,
     isRequired: PropTypes.bool,
     placeHolder: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.any, // can be a string or an object
     icon: PropTypes.element,
     isError: PropTypes.bool,
     errorMessage: PropTypes.string,

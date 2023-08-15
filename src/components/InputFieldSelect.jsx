@@ -40,7 +40,7 @@ InputFieldSelect.propTypes = {
     description: PropTypes.string,
     isRequired: PropTypes.bool,
     placeHolder: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.object,
     icon: PropTypes.element,
     isError: PropTypes.bool,
     errorMessage: PropTypes.string,

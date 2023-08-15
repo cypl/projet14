@@ -20,13 +20,12 @@ function DateField({value, inputId, icon, isError, placeHolder, maxDate, onChang
             />
         </InputFieldWrapper>
     )
-
 }
 
 export default DateField
 
 DateField.propTypes = {
-    value: PropTypes.string,
+    value: PropTypes.object,
     inputId: PropTypes.string,
     icon: PropTypes.element,
     isError: PropTypes.bool,

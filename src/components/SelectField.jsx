@@ -8,7 +8,7 @@ function SelectField({value, inputId, icon, isError, placeHolder, onChange, opti
     return(
         <InputField 
             value={value}
-            id={inputId}
+            inputId={inputId}
             placeholder={placeHolder.length > 0 && placeHolder} 
             onChange={onChange}
             options={optionsSelect}
@@ -20,11 +20,6 @@ function SelectField({value, inputId, icon, isError, placeHolder, onChange, opti
                     borderColor: state.isFocused ? `${colors.primary}` : `${colors.secondary}`,
                     boxShadow: "none",
                 }),
-                // container: (baseStyles, state) => ({
-                //     ...baseStyles,
-                //     borderColor: state.isFocused ? `${colors.primary}` : `${colors.secondary}`,
-                //     boxShadow: "none",
-                // }),
             }}
         />
     )
@@ -34,7 +29,7 @@ function SelectField({value, inputId, icon, isError, placeHolder, onChange, opti
 export default SelectField
 
 SelectField.propTypes = {
-    value: PropTypes.string,
+    value: PropTypes.object,
     inputId: PropTypes.string,
     icon: PropTypes.element,
     isError: PropTypes.bool,
@@ -45,7 +40,7 @@ SelectField.propTypes = {
 
 const InputField = styled(Select)`
     width:100%;
-    line-height:1;
+    //line-height:1;
     font-size:0.875rem;
     // padding:10px 8px;
     border-radius:4px;
