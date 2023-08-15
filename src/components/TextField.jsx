@@ -45,7 +45,8 @@ const InputField = styled.input`
         transition:0.1s border-color ease-in-out;
     }
     &::placeholder{
-        opacity:0.5;
+        opacity:1;
+        color:${colors.secondary};
     }
     &.input-error{
         border:1px solid ${colors.error};
@@ -53,6 +54,7 @@ const InputField = styled.input`
         color:${colors.error};
         &::placeholder{
             opacity:1;
+            color:${colors.error};
         }
     }
     &.input-icon{
