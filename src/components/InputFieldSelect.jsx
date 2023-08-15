@@ -14,7 +14,6 @@ function InputFieldSelect({ label, description, isRequired, placeHolder, value, 
             inputId={inputId}
             isRequired={isRequired} 
             placeHolder={placeHolder} 
-            value={value} 
             icon={icon} 
             isError={isError} 
             errorMessage={errorMessage}

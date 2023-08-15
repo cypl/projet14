@@ -14,7 +14,6 @@ function InputFieldText({ label, description, isRequired, placeHolder, value, ic
             inputId={inputId}
             isRequired={isRequired} 
             placeHolder={placeHolder} 
-            value={value} 
             icon={icon} 
             isError={isError} 
             errorMessage={errorMessage}
