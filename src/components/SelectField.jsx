@@ -63,6 +63,10 @@ const customStyles = (icon) => ({
     })
 })
 
+/**
+ * Displays the select input for the application.
+ * @returns {JSX.Element} - The JSX markup for the SelectField component.
+ */
 function SelectField({value, inputId, icon, isError, placeHolder, onChange, optionsSelect}){
     return(
         <InputField 
@@ -76,7 +80,6 @@ function SelectField({value, inputId, icon, isError, placeHolder, onChange, opti
             styles={customStyles(icon)}
         />
     )
-
 }
 
 export default SelectField

@@ -47,6 +47,10 @@ const InputField = styled(DatePicker)`
     }
 `
 
+/**
+ * Displays the date input for the application.
+ * @returns {JSX.Element} - The JSX markup for the DateField component.
+ */
 function DateField({value, inputId, icon, isError, placeHolder, maxDate, onChange}){
     return(
         <InputFieldWrapper>

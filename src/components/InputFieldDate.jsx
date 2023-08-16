@@ -2,7 +2,10 @@ import InputWrapper from "./InputWrapper"
 import DateField from "./DateField"
 import PropTypes from 'prop-types'
 
-
+/**
+ * Displays a date input field for the application.
+ * @returns {JSX.Element} - The JSX markup for the InputFieldDate component.
+ */
 function InputFieldDate({ label, description, isRequired, placeHolder, value, icon, isError, errorMessage, onChange, maxDate }){
 
     const inputId = label ? `input-${label.replace(/[^a-zA-Z0-9]/g, '')}` : undefined
@@ -29,7 +32,6 @@ function InputFieldDate({ label, description, isRequired, placeHolder, value, ic
             />
         </InputWrapper>
     )
-
 }
 
 export default InputFieldDate

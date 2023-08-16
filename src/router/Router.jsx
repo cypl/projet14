@@ -34,7 +34,7 @@ function Router() {
                 <Footer />
             </ModalProvider>
         </BrowserRouter>
-    );
+    )
 }
 
 export default Router

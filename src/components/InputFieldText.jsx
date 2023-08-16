@@ -2,7 +2,10 @@ import InputWrapper from "./InputWrapper"
 import TextField from "./TextField"
 import PropTypes from 'prop-types'
 
-
+/**
+ * Displays a text input field for the application.
+ * @returns {JSX.Element} - The JSX markup for the InputFieldText component.
+ */
 function InputFieldText({ label, description, isRequired, placeHolder, value, icon, isError, errorMessage, onChange }){
 
     const inputId = label ? `input-${label.replace(/[^a-zA-Z0-9]/g, '')}` : undefined
@@ -29,7 +32,6 @@ function InputFieldText({ label, description, isRequired, placeHolder, value, ic
             />
         </InputWrapper>
     )
-
 }
 
 export default InputFieldText 

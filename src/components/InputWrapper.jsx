@@ -2,46 +2,6 @@ import styled from 'styled-components'
 import { colors } from '../utils/colors'
 import PropTypes from 'prop-types'
 
-
-function InputWrapper({ label, description, inputId, isRequired, icon, isError, errorMessage, children }){
-    
-    return (
-        <InputContainer>
-            {label && label.length > 0 &&
-                <InputLabel htmlFor={inputId}>
-                    {label}{isRequired && <span className="is-required">*</span>}
-                </InputLabel>
-            }
-            {description && description.length > 0 &&
-                <Description>{description}</Description>
-            }
-            <InputFieldWrapper>
-                {icon && 
-                    <InputFieldIcon className={isError && "input-error"}>
-                        {icon}
-                    </InputFieldIcon>
-                }
-                {children}
-            </InputFieldWrapper>
-            {isError && <ErrorMessage>{errorMessage.length > 0 && errorMessage}</ErrorMessage>}
-        </InputContainer>
-    )
-}
-
-export default InputWrapper
-
-InputWrapper.propTypes = {
-    label: PropTypes.string,
-    description: PropTypes.string,
-    inputId: PropTypes.string,
-    isRequired: PropTypes.bool,
-    placeHolder: PropTypes.string,
-    icon: PropTypes.element,
-    isError: PropTypes.bool,
-    errorMessage: PropTypes.string,
-    children: PropTypes.any,
-}
-
 const InputFieldWrapper = styled.div`
     position:relative;
 `
@@ -91,3 +51,46 @@ const ErrorMessage = styled.p`
     line-height: 1;
     padding-top: 0.35rem;
 `
+
+/**
+ * Displays the wrapper for an input of the application.
+ * @returns {JSX.Element} - The JSX markup for the InputWrapper component.
+ */
+function InputWrapper({ label, description, inputId, isRequired, icon, isError, errorMessage, children }){
+    
+    return (
+        <InputContainer>
+            {label && label.length > 0 &&
+                <InputLabel htmlFor={inputId}>
+                    {label}{isRequired && <span className="is-required">*</span>}
+                </InputLabel>
+            }
+            {description && description.length > 0 &&
+                <Description>{description}</Description>
+            }
+            <InputFieldWrapper>
+                {icon && 
+                    <InputFieldIcon className={isError && "input-error"}>
+                        {icon}
+                    </InputFieldIcon>
+                }
+                {children}
+            </InputFieldWrapper>
+            {isError && <ErrorMessage>{errorMessage.length > 0 && errorMessage}</ErrorMessage>}
+        </InputContainer>
+    )
+}
+
+export default InputWrapper
+
+InputWrapper.propTypes = {
+    label: PropTypes.string,
+    description: PropTypes.string,
+    inputId: PropTypes.string,
+    isRequired: PropTypes.bool,
+    placeHolder: PropTypes.string,
+    icon: PropTypes.element,
+    isError: PropTypes.bool,
+    errorMessage: PropTypes.string,
+    children: PropTypes.any,
+}

@@ -65,6 +65,10 @@ const ButtonComponent = styled.button`
     }
 `
 
+/**
+ * Displays the Button component.
+ * @returns {JSX.Element} - The JSX markup for the Button component.
+ */
 function Button({text, onClick, outline, deactivate, icon, className}){
 
     return(
