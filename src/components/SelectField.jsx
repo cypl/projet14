@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { colors } from '../utils/colors'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
+import { selectStyles } from '../utils/selectStyles'
 
 const InputField = styled(Select)`
     width:100%;
@@ -28,41 +29,6 @@ const InputField = styled(Select)`
     }
 `
 
-const customStyles = (icon) => ({
-    valueContainer: (provided) => ({
-      ...provided,
-      paddingLeft: icon ? '2rem' : provided.paddingLeft,
-      borderWidth: '0'
-    }),
-    control: (provided, state) => ({
-        ...provided,
-        borderColor: state.isFocused ? `${colors.primary}` : `${colors.light2}`,
-        '&:hover': {
-            borderColor: state.isFocused ? `${colors.primary}` : `${colors.light2}`,
-        },
-        boxShadow: 'none',
-        borderRadius: '4px',
-        minHeight: '40px',
-    }),
-    menu: (provided) => ({
-        ...provided,
-        borderColor: `${colors.light2}`,
-        borderWidth: '1px', 
-        borderStyle: 'solid',
-        borderRadius: '4px',
-        boxShadow: 'none'
-    }),
-    option: (provided, state) => ({
-        ...provided,
-        backgroundColor: state.isSelected ? `${colors.primary}` : state.isFocused ? `${colors.primary1}` : provided.backgroundColor,
-        color: state.isSelected ? `#fff` : `${colors.secondary2}`,
-        '&:hover': {
-            backgroundColor: state.isSelected ? `${colors.primary}` : `${colors.primary1}`,
-            color: state.isSelected ? `#fff` : `${colors.secondary2}`,
-        }
-    })
-})
-
 /**
  * Displays the select input for the application.
  * @returns {JSX.Element} - The JSX markup for the SelectField component.
@@ -77,7 +43,7 @@ function SelectField({value, inputId, icon, isError, placeHolder, onChange, opti
             options={optionsSelect}
             isSearchable={true}
             className={`${isError ? "input-error" : ""}`}
-            styles={customStyles(icon)}
+            styles={selectStyles(icon)}
         />
     )
 }
