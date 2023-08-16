@@ -4,35 +4,6 @@ import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-function DateField({value, inputId, icon, isError, placeHolder, maxDate, onChange}){
-    return(
-        <InputFieldWrapper>
-            <InputField 
-                selected={value}
-                id={inputId}
-                placeholderText={placeHolder}
-                dateFormat="MM-dd-yyyy"
-                onChange={onChange}
-                maxDate={maxDate}
-                className={`${isError ? "input-error" : ""} ${icon ? "input-icon" : ""}`}
-                showYearDropdown
-                scrollableYearDropdown
-            />
-        </InputFieldWrapper>
-    )
-}
-
-export default DateField
-
-DateField.propTypes = {
-    value: PropTypes.object,
-    inputId: PropTypes.string,
-    icon: PropTypes.element,
-    isError: PropTypes.bool,
-    placeHolder: PropTypes.string,
-    maxDate: PropTypes.object,
-    onChange: PropTypes.func,
-}
 const InputFieldWrapper = styled.div`
     & .react-datepicker-popper{
         z-index:2;
@@ -75,3 +46,33 @@ const InputField = styled(DatePicker)`
         padding-left:2rem;
     }
 `
+
+function DateField({value, inputId, icon, isError, placeHolder, maxDate, onChange}){
+    return(
+        <InputFieldWrapper>
+            <InputField 
+                selected={value}
+                id={inputId}
+                placeholderText={placeHolder}
+                dateFormat="MM-dd-yyyy"
+                onChange={onChange}
+                maxDate={maxDate}
+                className={`${isError ? "input-error" : ""} ${icon ? "input-icon" : ""}`}
+                showYearDropdown
+                scrollableYearDropdown
+            />
+        </InputFieldWrapper>
+    )
+}
+
+export default DateField
+
+DateField.propTypes = {
+    value: PropTypes.object,
+    inputId: PropTypes.string,
+    icon: PropTypes.element,
+    isError: PropTypes.bool,
+    placeHolder: PropTypes.string,
+    maxDate: PropTypes.object,
+    onChange: PropTypes.func,
+}
