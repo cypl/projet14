@@ -7,7 +7,7 @@ import Loader from '../pages/Loader'
 
 // Charge page components using lazy
 const CurrentEmployees = lazy(() => import('../pages/CurrentEmployees'))
-const CreateEmployee = lazy(() => import('../pages/CreateEmployee'))
+const AddEmployee = lazy(() => import('../pages/AddEmployee'))
 const Error = lazy(() => import('../pages/Error'))
 
 /**
@@ -27,7 +27,7 @@ function Router() {
                 <Suspense fallback={<Loader />}>
                     <Routes>
                         <Route path="/" element={<CurrentEmployees />} />
-                        <Route path="/create" element={<CreateEmployee />} />
+                        <Route path="/add" element={<AddEmployee />} />
                         <Route path="*" element={<Error />} />
                     </Routes>
                 </Suspense>

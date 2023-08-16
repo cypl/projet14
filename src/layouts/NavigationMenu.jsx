@@ -39,7 +39,7 @@ function NavigationMenu(){
     return(
         <Menu>
             <MenuItem>
-                <NavLink to="/create">Add new</NavLink>
+                <NavLink to="/add">Add new</NavLink>
             </MenuItem>
             <MenuItem>
                 <NavLink to="/">Current list</NavLink>
