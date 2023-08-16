@@ -181,7 +181,7 @@ function CreateEmployee(){
         <main>
             <section className="content_width">
                 <HeadSection>
-                    <h1 className="section-title"><span>Create</span> an employee.</h1>
+                    <h1 className="section-title"><span>Add</span> an employee.</h1>
                     <Button 
                         text="Fill the form"
                         onClick={fillTheForm}
@@ -195,7 +195,7 @@ function CreateEmployee(){
                             <InputFieldText
                                 label={"First name"}
                                 isRequired
-                                placeHolder={"Your first name"}
+                                placeHolder={"First name"}
                                 value={firstName}
                                 icon={<IconUser/>}
                                 isError={isFirstNameError}
@@ -205,7 +205,7 @@ function CreateEmployee(){
                             <InputFieldText
                                 label={"Last name"}
                                 isRequired
-                                placeHolder={"Your last name"}
+                                placeHolder={"Last name"}
                                 value={lastName}
                                 icon={<IconUser/>}
                                 isError={isLastNameError}
@@ -238,7 +238,7 @@ function CreateEmployee(){
                             <InputFieldSelect
                                 label={"Department"}
                                 isRequired
-                                placeHolder={"Your department"}
+                                placeHolder={"Department"}
                                 value={department}
                                 isError={isStateError}
                                 errorMessage={errorMessages.get("inputSelect")}
@@ -255,7 +255,7 @@ function CreateEmployee(){
                                 <InputFieldText
                                     label={"Street"}
                                     isRequired
-                                    placeHolder={"Your street"}
+                                    placeHolder={"Street"}
                                     value={street}
                                     isError={isStreetError}
                                     errorMessage={errorMessages.get("inputTextNumbers")}
@@ -264,7 +264,7 @@ function CreateEmployee(){
                                 <InputFieldText
                                     label={"City"}
                                     isRequired
-                                    placeHolder={"Your city"}
+                                    placeHolder={"City"}
                                     value={city}
                                     isError={isCityError}
                                     errorMessage={errorMessages.get("inputTextOnly")}
@@ -273,7 +273,7 @@ function CreateEmployee(){
                                 <InputFieldSelect
                                     label={"State"}
                                     isRequired
-                                    placeHolder={"Your state"}
+                                    placeHolder={"State"}
                                     value={state}
                                     icon={<IconAdress/>}
                                     isError={isStateError}
@@ -284,7 +284,7 @@ function CreateEmployee(){
                                 <InputFieldText
                                     label={"Zip code"}
                                     isRequired
-                                    placeHolder={"Your zip code"}
+                                    placeHolder={"Zip code"}
                                     value={zipCode}
                                     isError={isZipCodeError}
                                     errorMessage={errorMessages.get("inputZipCode")}
