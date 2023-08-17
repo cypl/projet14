@@ -29,7 +29,6 @@ Et voilà, le tour est joué !
 - React
 - React Router
 - Redux ToolKit
-- Axios
 - Styled Components
 - PropTypes
 
